@@ -1,0 +1,83 @@
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+}
+
+.inlineFields {
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* Divide en dos columnas  */
+    gap: 30px; /* Espacio entre los campos */
+}
+.inlineFields2 {
+    display: grid;
+    grid-template-columns: 4fr 1fr; /* Divide en dos columnas  */
+    gap: 30px; /* Espacio entre los campos */
+    
+}
+
+.formfield {
+    margin-bottom: 20px;
+    text-align: left;
+    
+}
+
+.imagenSubida{
+    width: 400px;
+    height: 300px;
+}
+/* Estilos para los encabezados */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #576362;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #576362;
+}
+
+h3 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #576362;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    color: #576362;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="date"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* inp ut[type="file"] {
+/* Estilos para el campo de carga de archivos */
+/* } */ 
+
+.submitbutton {
+    width: 80%;
+    background-color: #5df4ed;
+    color: #576362;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
