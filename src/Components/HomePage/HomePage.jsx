@@ -1,9 +1,30 @@
-import React from 'react'
+import React from 'react';
+import Card from '../Cards/Cards';
+import { useSelector} from 'react-redux';
 
-function HomePage() {
-  return (
-    <div>HomePage</div>
-  )
-}
+const Home = () => {
 
-export { HomePage }
+    const allReports = useSelector (state => state.allReports);
+
+    return (
+        <div className={style.cardContainer}>
+            {allReports.map(report => (
+                <Card
+                    key={report.id}
+                    id={report.id}
+                    name={report.name}
+                    image={report.image}
+                    description={report.description}
+                    status={report.status}
+                    date={report.date}
+                    location={report.location}
+                />
+             ))}  
+        </div>
+    );
+};
+
+export default Home;
+
+
+    
