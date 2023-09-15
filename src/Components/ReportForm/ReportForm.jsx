@@ -8,16 +8,30 @@ import { useState } from "react";
 //*----------------------------------------------------
 // import { validations } from "./validations"
 
+
+
 const ReportForm = () => {    
+    const navigate = useNavigate();
 
     const [dataReport, setDataReport] = useState({
         name: "",
-        edad:"",  
-        date: "",
-        lugar:"",
-        particularidades:"",
-        foto:"",
-        reporte:""
+        age:"",  
+        date: "",        
+        particular_signs:"",
+        image:"",
+        court_order:"",
+        description:"",
+        gender:"",
+        birthday_date:"",
+        nationality:"",
+        ethnicity:"",
+        hair_style:"",
+        hair_color:"",
+        eyes_color:"",
+        height:"",
+        weight:"",
+        clothes:"",
+        location:"",
 
     })
 
@@ -50,7 +64,7 @@ const ReportForm = () => {
         setUrlImage(response.data.secure_url)
         setDataReport({
             ...dataReport,
-            foto: response.data.secure_url,
+            image: response.data.secure_url,
         });
 
     }
@@ -61,7 +75,7 @@ const ReportForm = () => {
         setUrlImage("")
         setDataReport({
             ...dataReport,
-            foto: "",
+            image: "",
         });
     }
     
@@ -89,7 +103,7 @@ const ReportForm = () => {
         setUrlReport(response.data.secure_url)
         setDataReport({
             ...dataReport,
-            reporte: response.data.secure_url,
+            court_order: response.data.secure_url,
         });
 
     }
@@ -100,7 +114,7 @@ const ReportForm = () => {
         setUrlReport("")
         setDataReport({
             ...dataReport,
-            reporte: "",
+            court_order: "",
         });
     }
     
@@ -110,27 +124,32 @@ const ReportForm = () => {
     //     upload_preset: preset_pf
     // }
 
-    //--------------------------------------------
-    // const [archivo, setArchivo] = useState(null);
-
-    // const handleCambioDeArchivo = (e) => {
-    //     const archivoSeleccionado = e.target.files[0];
-    //     if (archivoSeleccionado) {
-    //         setArchivo(archivoSeleccionado);
-    //     }
-    // };
+    //-------------------onSubmit -------------------------
+    async function onSubmit(e) {
+        e.preventDefault();
+        
+        axios
+            .post("http://localhost:3001/reports", dataReport)
+            .then(() => {
+                navigate("/home");
+            })
+            .catch((err) => {
+                console.log(err.message);
+            console.log("Hubo un problema al guardar el reporte");
+            });
+    }
 
     return (
         <div className={style.container}>
-            <form>
+            <form onSubmit={onSubmit}>
 
-                <div>
+                <div >
                     <h1>Reporte B&R</h1>
                 </div>                
 
                 <div className={style.inlineFields2}>
                     <div className={style.formfield}>
-                        <label>Nombre y Apellido</label>
+                        <label>Nombre y Apellido (Completos)</label>
                         <br />
                         <input
                             className={style.input}
@@ -150,9 +169,9 @@ const ReportForm = () => {
                         <input
                             className={style.input}
                             onChange={onInputChange}
-                            name="edad"
+                            name="age"
                             type="number"
-                            value={dataReport.edad}
+                            value={dataReport.age}
                             min={0}
                             max={99}
                             required
@@ -184,31 +203,33 @@ const ReportForm = () => {
                         <input
                             className={style.input}
                             onChange={onInputChange}
-                            name="lugar"
+                            name="location"
                             type="text"
-                            value={dataReport.lugar}
+                            value={dataReport.location}
                             required
                     />  
                     </div>
                     
                     
                 </div>
-                
-                <br />
 
                 <div className={style.formfield}>
-                    <label>Señas particulares</label>
+                    <label>Resumen de lo hechos</label>
                     <br />
                     <textarea
                         className={style.input}
                         onChange={onInputChange}
-                        name="particularidades"                        
-                        value={dataReport.particularidades}
+                        name="description"                        
+                        value={dataReport.description}
                         rows={5}
                         required
                     />            
                     
                 </div>
+                
+                <br />
+
+                
 
                 <div className={style.formfield}>
                     <label>Fotografia</label>
@@ -216,7 +237,7 @@ const ReportForm = () => {
                     <input
                         className={style.input}
                         onChange={changeUploadImage}
-                        name="foto"
+                        name="image"
                         type="file"
                         accept="image/*" // Especifica los tipos de archivo permitidos
                         // onChange={changeUploadImage}
@@ -243,7 +264,7 @@ const ReportForm = () => {
                     <input
                         className={style.input}
                         onChange={changeUploadReport}
-                        name="reporte"
+                        name="court_order"
                         type="file"
                         accept="image/*" // permite imagenes y sus variantes
                         // onChange={handleCambioDeArchivo}
@@ -264,26 +285,215 @@ const ReportForm = () => {
                     
                 </div>
 
+                
+                
+                <div className={style.inlineFields3}>
+                    <div className={style.formfield}>
+                        <label>Genero</label>
+                        <br />
+                        
+                        <input
+                            className={style.input}
+                            onChange={onInputChange}
+                            name="gender"
+                            type="text"
+                            value={dataReport.gender}
+                            placeholder='M / F / OTROS'
+                            required
+                    />  
+                    </div>
+
+                    <div className={style.formfield}>
+                        <label>Fecha de nacimiento</label>
+                        <br />
+                        <input
+                            className={style.input}
+                            onChange={onInputChange}
+                            name="birthday_date"
+                            type="date"
+                            value={dataReport.birthday_date}
+                            required
+                        />  
+                    </div>
+
+                    <div className={style.formfield}>
+                        <label>Nacionalidad</label>
+                        <br />
+                        
+                        <input
+                            className={style.input}
+                            onChange={onInputChange}
+                            name="nationality"
+                            type="text"
+                            value={dataReport.nationality}
+                            required
+                    />  
+                    </div>
+                </div>
+
+                
+
+                <div className={style.formfield}>
+                    <label>Estilo de cabello</label>
+                    <br />
+                    
+                    <input
+                        className={style.input}
+                        onChange={onInputChange}
+                        name="hair_style"
+                        type="text"
+                        value={dataReport.hair_style}
+                        required
+                />  
+                </div>
+                
+                <div className={style.inlineFields3}>
+                    <div className={style.formfield}>
+                        <label>Etnia</label>
+                        <br />
+                        
+                        <input
+                            className={style.input}
+                            onChange={onInputChange}
+                            name="ethnicity"
+                            type="text"
+                            value={dataReport.ethnicity}
+                            required
+                    />  
+                    </div>
+
+                    <div className={style.formfield}>
+                        <label>Color de cabello</label>
+                        <br />
+                        
+                        <input
+                            className={style.input}
+                            onChange={onInputChange}
+                            name="hair_color"
+                            type="text"
+                            value={dataReport.hair_color}
+                            required
+                    />  
+                    </div>
+                    
+                    <div className={style.formfield}>
+                        <label>Color de ojos</label>
+                        <br />
+                        
+                        <input
+                            className={style.input}
+                            onChange={onInputChange}
+                            name="eyes_color"
+                            type="text"
+                            value={dataReport.eyes_color}
+                            required
+                    />  
+                    </div>
+                </div>
+
+                <div className={style.formfield}>
+                    <label>Ropa que llevaba puesto en momento de la desaparicion</label>
+                    <br />
+                    <textarea
+                        className={style.input}
+                        onChange={onInputChange}
+                        name="clothes"                        
+                        value={dataReport.clothes}
+                        rows={5}
+                        required
+                    />            
+                    
+                </div>  
+                
+                <div className={style.inlineFields3Long}>
+                    <div className={style.formfield}>
+                        <label>Altura en CM</label>
+                        <br />
+                        
+                        <input
+                            className={style.input}
+                            onChange={onInputChange}
+                            name="height"
+                            type="number"
+                            value={dataReport.height}
+                            min={0}
+                            max={250}
+                            required
+                    />  
+                    </div>
+
+                    <div className={style.formfield}>
+                        <label>Peso en KG</label>
+                        <br />
+                        
+                        <input
+                            className={style.input}
+                            onChange={onInputChange}
+                            name="weight"
+                            type="number"
+                            value={dataReport.weigth}
+                            min={0}
+                            max={200}
+                            required
+                    />  
+                    </div>
+
+                    {/* <div className={style.formfield}>
+                        <label>Ubicacion (???)</label>
+                        <br />
+                        
+                        <input
+                            className={style.input}
+                            onChange={onInputChange}
+                            name="location"
+                            type="text"
+                            value={dataReport.location}
+                            required
+                    />  
+                    </div> */}
+
+                </div>
+
+                <div className={style.formfield}>
+                    <label>Señas particulares</label>
+                    <br />
+                    <textarea
+                        className={style.input}
+                        onChange={onInputChange}
+                        name="particular_signs"                        
+                        value={dataReport.particular_signs}
+                        rows={5}
+                        placeholder='Tattoos, cicatrices y cualquier señal relevante '
+                        required
+                    />            
+                    
+                </div>
+
+                        
+
+                
+
+
                 <br />
                 <div className={style.contenedorBoton}>
                     <button type="submit" className={style.submitbutton}>Enviar Información</button>
                 </div>
 
-                        {/* mapa */}
-                <div>
+                        {/*--------------------- mapa --------------------- */}
+                {/* <div> */}
                     {/* <hr />
                     <h1>Contacto</h1> */}
-                    <hr />
+                    {/* <hr /> */}
                     {/* hay que usar camelCase para que no rompa  */}
-                    <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d240864.19466040455!2d-99.30842498337833!3d19.390659363934184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce0026db097507%3A0x54061076265ee841!2zQ2l1ZGFkIGRlIE3DqXhpY28sIENETVgsIE3DqXhpY28!5e0!3m2!1ses!2sco!4v1694555715837!5m2!1ses!2sco"
-                    width="600"
-                    height="400"
-                    style={{ border: 0 }}
-                    allowFullScreen 
-                    referrerPolicy="no-referrer-when-downgrade" 
-                    ></iframe>
-                </div>
+                    {/* <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d240864.19466040455!2d-99.30842498337833!3d19.390659363934184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce0026db097507%3A0x54061076265ee841!2zQ2l1ZGFkIGRlIE3DqXhpY28sIENETVgsIE3DqXhpY28!5e0!3m2!1ses!2sco!4v1694555715837!5m2!1ses!2sco"
+                        width="600"
+                        height="400"
+                        style={{ border: 0 }}
+                        allowFullScreen 
+                        referrerPolicy="no-referrer-when-downgrade" 
+                    ></iframe> */}
+                {/* </div> */}
 
                 
             </form>
