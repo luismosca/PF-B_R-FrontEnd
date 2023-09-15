@@ -1,16 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
 
 .logo {
   position: absolute;
-  top: 30px; 
-  left: 45px;
-  width: 250px; 
-  height: auto; 
-  z-index: 1; 
+  top: 20px;
+  left: 20px;
+  width: 250px;
+  height: auto;
+  z-index: 1;
 }
 
 .landing-page {
-  background-color: #F2F2F2;
+  background-color: #f2f3f2;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -33,60 +38,53 @@
   justify-content: flex-start;
 }
 
-.text-container {
-  padding-top: 300px;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: flex-start;
-}
-
 .text {
-  color: #515151;
-  text-align: center;
-  font-family: Poppins;
-  font-size: 84px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 50px; 
+color: #515151;
+text-align: center;
+font-family: Poppins;
+font-size: 84px;
+font-style:normal;
+font-weight: 900;
+line-height: 72px; 
 }
 
 .button-container {
-  display: inline-flex;
-  padding: 10px;
+  display: flex;
+  padding: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  margin-left: 160px;
+  gap: 150px;
+  margin-right: 80px;
 }
 
-.button {
-  border-radius: 31px; 
+
+
+
+.buttonlink {
+  border-radius: 31px;
   background: #F2F2F2;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   border: 2px solid transparent;
   display: inline-block;
   margin-top: 25px;
-  margin-right: 150px;
   padding: 10px 20px;
   font-size: 16px;
+  position: relative;
+  cursor: pointer;
 }
 
-.button:hover {
+
+.buttonlink:hover {
   background-color: #c5f663;
   color: #f2f2f2;
 }
 
-.button-link {
-  text-decoration: none; 
-  cursor: pointer; 
-}
 
-.tu-imagen-class {
-  width: 600px; 
+.imagen {
+  width: 600px;
   height: auto;
   position: fixed;
-  top: 20px; 
+  top: 20px;
   right: 150px;
   padding-right: 60px;
   z-index: -1;

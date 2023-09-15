@@ -16,4 +16,4 @@ function Cards ({ id, name, description, image, court_order, status, date, locat
     )
 }
 
-export default Cards;
+export { Cards } ;

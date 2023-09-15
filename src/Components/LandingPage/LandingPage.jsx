@@ -14,14 +14,14 @@ function LandingPage() {
         <h1 className={styles['text']}>camino a casa</h1>
         <div className={styles['button-container']}>
           <Link to="/home">
-            <button className={styles.button}>Ingresa al sitio</button>
+            <button className={styles.buttonlink}>Ingresa al sitio</button>
           </Link>
           <Link to="/login">
-            <button className={styles.button}>Inicia sesión</button>
+            <button className={styles.buttonlink}>Inicia sesión</button>
           </Link>
         </div>
       </div>
-      <img src={imagen} alt="imagen" className={styles['tu-imagen-class']} />
+      <img src={imagen} alt="imagen" className={styles['imagen']} />
     </div>
   );
 }
