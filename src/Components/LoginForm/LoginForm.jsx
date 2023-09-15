@@ -1,18 +1,54 @@
-
+import axios from "axios";
 import style from './LoginForm.module.css'
 import { Link, useNavigate } from "react-router-dom";
-// import axios from "axios"; 
-// import { useState, useEffect} from "react";
-// import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+
+// ! condicionar formulario
+
 //*----------------------------------------------------
-// import { validations } from "./validations"
+
 
 const LoginForm = () => {
 
+    const navigate = useNavigate();
+
+    const [dataLogin, setDataLogin] = useState({
+        email:"",
+        password:""
+    })
+
+    function onInputChange(e) {
+        e.preventDefault();
+
+        setDataLogin({
+            ...dataLogin,
+            [e.target.name]: e.target.value,
+        });       
+        
+        // console.log(dataLogin);
+    }
+
+    //-------------------------------------------------
+async function onSubmit(e) {
+    e.preventDefault();
+    
+    axios
+        .post("http://localhost:3001/session/login", dataLogin)
+        .then(() => {
+            
+            navigate("/home");
+        })
+        .catch((err) => {
+            console.log(err.message);
+            console.log("Hubo un problema al iniciar seccion");
+        });
+}
+
+//----------------------------------------------------------------
 
     return (
         <div className={style.loginContainer}>
-            <form>
+            <form onSubmit={onSubmit}>
 
                 <div>
                     <h2>Inicia sesión para ver tu perfil</h2>
@@ -25,21 +61,22 @@ const LoginForm = () => {
 
                     <div>
                         <Link to="/registro" >
-                            Reístrate
+                            Regístrate
                         </Link>
                     </div> 
                 </div>
                 
 
                 <div className={style.formfield}>
-                    <label>Correo elelctronico</label>
+                    <label>Correo electronico</label>
                     
                     <input
                         className={style.input}
-                        // onChange={onInputChange}
+                        onChange={onInputChange}
                         name="email"
                         type="email"
-                        // value={videogame.name}
+                        value={dataLogin.email}
+                        placeholder= "ejemplo@gmail.com"
                         required
                     />            
                     
@@ -50,10 +87,11 @@ const LoginForm = () => {
                     
                     <input
                         className={style.input}
-                        // onChange={onInputChange}
+                        onChange={onInputChange}
                         name="password"
                         type="password"
-                        // value={videogame.name}
+                        value={dataLogin.password}
+                        placeholder= "Escriba us contraseña"
                         required
                     />            
                     

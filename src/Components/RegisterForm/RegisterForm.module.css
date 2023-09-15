@@ -9,7 +9,7 @@
 
 .registerContainer {
     max-width: 400px;
-    height: 520px;
+    /* height: 620px; */
     margin: 0 auto;    
     padding: 20px;
     background-color: #f5f5f5;
@@ -28,6 +28,10 @@
     margin-bottom: 20px;
 }
 
+.imagenSubida{
+    width: 400px;
+    height: 300px;
+}
 /* Estilos para los encabezados */
 h1 {
     text-align: center;
