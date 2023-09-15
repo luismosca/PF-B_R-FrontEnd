@@ -1,11 +1,8 @@
 
 .searchBar {
   display: flex;
-  align-items: center;
-  justify-content: flex-end; 
-  margin-bottom: 20px;
-  padding-top: 10px;
-  padding-right: 119px;
+  justify-content: center; 
+  margin-top: 20px;
 }
   
   input {
@@ -15,7 +12,7 @@
     border-radius: 80px;
     margin-right: 10px;
     font-size: 14px;
-    width: auto;
+    width: 30% !important;
   }
   
   .buttonsearchbar {

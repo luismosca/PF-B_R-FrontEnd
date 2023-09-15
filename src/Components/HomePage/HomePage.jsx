@@ -5,7 +5,6 @@ import { NavBar } from '../NavBar/NavBar';
 import style from './HomePage.module.css'
 import { SearchBar } from '../SearchBar/SearchBar';
 
-
 const Home = () => {
 
     const allReports = useSelector (state => state.allReports);

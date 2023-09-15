@@ -8,6 +8,7 @@ import Login from './Components/LoginForm/LoginForm'
 import Registro from './Components/RegisterForm/RegisterForm';
 import Reporte from './Components/ReportForm/ReportForm';
 import { Cards } from'./Components/Cards/Cards';
+import { Profile } from './Components/Profile/Profile';
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
         <Route path="/registro" element={<Registro />} />
         <Route path="/reporte" element={<Reporte/>}/>
         <Route path="/cards" element={<Cards/>}/>
+        <Route path='/profile' element={<Profile />} />
+        
         
         
       </Routes>
