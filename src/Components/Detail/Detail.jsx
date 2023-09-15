@@ -43,6 +43,6 @@ const ReportDetail = () => {
   );
 };
 
-export default ReportDetail;
+export { ReportDetail };
 
 
