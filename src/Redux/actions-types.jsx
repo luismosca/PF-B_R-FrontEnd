@@ -1,5 +1,7 @@
-// export const GET_DOGS = 'GET_DOGS';
-// export const CREATE_DOG = 'CREATE_DOG';
-// export const TEMPERAMENT = 'TEMPERAMENT';
-// export const FILTER_TEMPERAMENT = 'FILTER_TEMPERAMENT';
-// export const FILTER_ORIGIN = 'FILTER_ORIGIN';
+export const GET_ALL_REPORTS = 'GET_ALL_REPORTS'
+export const GET_REPORT_BY_ID = 'GET_REPORT_BY_ID'
+export const PUBLISH_REPORT = 'PUBLISH_REPORT'
+export const GET_ALL_USERS = 'GET_ALL_USERS'
+export const GET_USER_BY_ID = 'GET_USER_BY_ID'
+export const REGISTER_USER = 'REGISTER_USER'
+export const LOGIN_POST = 'LOGIN_POST' 
