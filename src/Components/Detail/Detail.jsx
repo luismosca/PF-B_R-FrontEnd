@@ -1,48 +1,62 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector } from "react-redux";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
-
+import style from "./Detail.module.css";
+import { getReportDetail } from "../../Redux/actions";
 
 const ReportDetail = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
+  const reportDetail = useSelector((state) => state.reportDetail);
 
-  const allReports = useSelector((state) => state.allReports);
-  const reportDetail = allReports.find((report) => report.id == id);
+  // const isHorizontalImage =
+  //   reportDetail &&
+  //   reportDetail.imagen &&
+  //   reportDetail.imagen.width > reportDetail.imagen.height;
 
-  const isHorizontalImage =
-    reportDetail &&
-    reportDetail.imagen &&
-    reportDetail.imagen.width > reportDetail.imagen.height;
+  useEffect(() => {
+    dispatch(getReportDetail(id));
+  }, [id, dispatch]);
 
   return (
-    <div className={styles["report-detail-container"]}>
-      {reportDetail ? (
-        <div className={styles["report-detail"]}>
-          <Link to="/home">Go Back to Home</Link>
-          <h1>{reportDetail.nombre}</h1>
-          <p>{`Id: ${reportDetail.id}`}</p>
-          <p>{`Name: ${reportDetail.nombre}`}</p>
-          <p>{`Description: ${reportDetail.description}`}</p>
-          <p>{`Court_Order: ${reportDetail.court_order}`}</p>
-          <p>{`Status: ${reportDetail.status}`}</p>
+    <div className={style.contenedor}>
+      {Object.keys(reportDetail).length ? (
+        <div className={style.detail}>
+          <Link to="/home">
+            <button className={style.button}>Go Back to Home</button>
+          </Link>
+          <h1>{reportDetail.name}</h1>
+          <p>{`Nombre: ${reportDetail.name}`}</p>
+          <img
+            className={style.image}
+            src={reportDetail.image}
+            alt={reportDetail.name}
+          />
+          <p>{`Edad: ${reportDetail.age}`}</p>
+          <p>{`Género: ${reportDetail.gender}`}</p>
+          <p>{`Edad: ${reportDetail.status}`}</p>
+          <p>{`Día de nacimiento: ${reportDetail.birthday_date}`}</p>
+          <p>{`País: ${reportDetail.nationality}`}</p>
+          <p>{`Etnia: ${reportDetail.ethnicity}`}</p>
+          <p>{`Estilo cabello: ${reportDetail.hair_style}`}</p>
+          <p>{`Color cabello: ${reportDetail.hair_color}`}</p>
+          <p>{`Color de ojos: ${reportDetail.eyes_color}`}</p>
+          <p>{`Altura: ${reportDetail.height}`}</p>
+          <p>{`Peso: ${reportDetail.weight}`}</p>
+          <p>{`Ropa: ${reportDetail.clothes}`}</p>
+          <p>{`Señas particulares: ${reportDetail.particular_signs}`}</p>
           <p>{`Date: ${reportDetail.date}`}</p>
           <p>{`Location: ${reportDetail.location}`}</p>
-          <img
-            className={`${styles["report-detail-img"]} ${
-              isHorizontalImage
-                ? styles["horizontal-img"]
-                : styles["vertical-img"]
-            }`}
-            src={reportDetail.imagen}
-            alt={reportDetail.nombre}
-          />
+          <p>{`Reporte policial: ${reportDetail.court_order}`}</p>
+          <p>{`Description: ${reportDetail.description}`}</p>
         </div>
-      ) : null}
+      ) : (
+        <div>          
+          <h1>LOADING...</h1>
+        </div>
+      )}
     </div>
   );
 };
 
-export { ReportDetail };
-
-
+export default ReportDetail;
