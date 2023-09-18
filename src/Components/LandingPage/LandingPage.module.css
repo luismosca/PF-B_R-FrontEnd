@@ -3,7 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+/* eslint-disable css-modules/no-unused-class */
 @import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+/* eslint-enable css-modules/no-unused-class */
 
 .logo {
   position: absolute;
@@ -39,13 +41,13 @@
 }
 
 .text {
-color: #515151;
-text-align: center;
-font-family: Poppins;
-font-size: 84px;
-font-style:normal;
-font-weight: 900;
-line-height: 72px; 
+  color: #515151;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 84px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: 72px;
 }
 
 .button-container {
@@ -57,12 +59,9 @@ line-height: 72px;
   margin-right: 80px;
 }
 
-
-
-
 .buttonlink {
   border-radius: 31px;
-  background: #F2F2F2;
+  background: #f2f2f2;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   border: 2px solid transparent;
   display: inline-block;
@@ -73,12 +72,10 @@ line-height: 72px;
   cursor: pointer;
 }
 
-
 .buttonlink:hover {
   background-color: #c5f663;
   color: #f2f2f2;
 }
-
 
 .imagen {
   width: 600px;
