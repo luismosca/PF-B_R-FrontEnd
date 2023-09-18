@@ -2,6 +2,8 @@ import axios from "axios";
 import style from './RegisterForm.module.css'
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import logo from '../../assets/B&R.png'
+import { NavBar } from "../NavBar/NavBar";
 // import axios from "axios"; 
 // import { useState, useEffect} from "react";
 //*----------------------------------------------------
@@ -90,134 +92,153 @@ async function onSubmit(e) {
     //----------------------------------------------------------------
 
     return (
-        <div className={style.registerContainer}>
-            <form onSubmit={onSubmit}>
+
+        <div>
+
+                <div >
+                    <a href="/home">
+                        <img src={logo} alt="Logo" className={style.logo} />
+                    </a>
+                </div>
 
                 <div>
-                    <h1 className={style.h1register} >Regístrate a la plataforma B&R</h1>
+                    <NavBar />
                 </div>
 
-                <div className={style.inlineFields}>
+                <div className={style.registerContainer}>
+
+                
+
+                <form onSubmit={onSubmit}>                
+
                     <div>
-                        <h4 className={style.h4register} >¿Ya tienes una cuenta?</h4>
+                        <h1 className={style.h1register} >Regístrate a la plataforma B&R</h1>
                     </div>
 
-                    <div>
-                        <Link className={style.linkRegister} to="/Login" >
-                            Inicia sesión
-                        </Link>
-                    </div> 
-
-                </div>
-                
-
-                <div className={style.formfield}>
-                    <label className={style.labelRegister} >Nombre y Apellido</label>
-                    
-                    <input
-                        className={style.input}
-                        onChange={onInputChange}
-                        name="name_surName"
-                        type="text"
-                        value={dataRegistro.name_surName}
-                        // placeholder= ""
-                        required
-                    />            
-                    
-                </div>
-
-                
-                
-                <div className={style.formfield}>
-                    <label className={style.labelRegister} >Fotografia</label>
-                    {/* <br /> */}
-                    <input
-                        className={style.input}
-                        // onChange={onInputChange}
-                        name="image"
-                        type="file"
-                        accept="image/*" // Especifica los tipos de archivo permitidos
-                        onChange={changeUploadImage}
-                        // value={dataRegistro.image}
-                        // placeholder= "Foto aca"
-                        required
-                    />
-                    {/* si subio archivo muetra el mensaje, el nombre y la imagen subida */}                    
-                    {urlImage && (
-                        <div className={style.contenedorimg} >
-                            {/* <p>Archivo seleccionado: {urlImage.name}</p> */}
-                            <img src={urlImage} className={style.imagenSubida} alt="Imagen seleccionada" />
-                            <br />
-                            <button onClick={()=>FuncionDeleteImage()}>
-                                Eliminar imagen
-                            </button>
+                    <div className={style.inlineFields}>
+                        <div>
+                            <h4 className={style.h4register} >¿Ya tienes una cuenta?</h4>
                         </div>
-                    )}
+
+                        <div>
+                            <Link className={style.linkRegister} to="/Login" >
+                                Inicia sesión
+                            </Link>
+                        </div> 
+
+                    </div>
+                    
+
+                    <div className={style.formfield}>
+                        <label className={style.labelRegister} >Nombre y Apellido</label>
+                        
+                        <input
+                            className={style.input}
+                            onChange={onInputChange}
+                            name="name_surName"
+                            type="text"
+                            value={dataRegistro.name_surName}
+                            // placeholder= ""
+                            required
+                        />            
+                        
+                    </div>
+
                     
                     
+                    <div className={style.formfield}>
+                        <label className={style.labelRegister} >Fotografia</label>
+                        {/* <br /> */}
+                        <input
+                            className={style.input}
+                            // onChange={onInputChange}
+                            name="image"
+                            type="file"
+                            accept="image/*" // Especifica los tipos de archivo permitidos
+                            onChange={changeUploadImage}
+                            // value={dataRegistro.image}
+                            // placeholder= "Foto aca"
+                            required
+                        />
+                        {/* si subio archivo muetra el mensaje, el nombre y la imagen subida */}                    
+                        {urlImage && (
+                            <div className={style.contenedorimg} >
+                                {/* <p>Archivo seleccionado: {urlImage.name}</p> */}
+                                <img src={urlImage} className={style.imagenSubida} alt="Imagen seleccionada" />
+                                <br />
+                                <button onClick={()=>FuncionDeleteImage()}>
+                                    Eliminar imagen
+                                </button>
+                            </div>
+                        )}
+                        
+                        
+                    </div>
+
+                    <div className={style.formfield}>
+                        <label className={style.labelRegister} >Correo electronico</label>
+                        
+                        <input
+                            className={style.input}
+                            onChange={onInputChange}
+                            name="email"
+                            type="email"
+                            value={dataRegistro.email}
+                            placeholder= "ejemplo@gmail.com"
+                            required
+                        />            
+                        
+                    </div>
+
+                    <div className={style.formfield}>
+                        <label className={style.labelRegister} >Contraseña</label>
+                        
+                        <input
+                            className={style.input}
+                            onChange={onInputChange}
+                            name="password"
+                            type="password"
+                            value={dataRegistro.password}
+                            placeholder= "Escriba su contraseña"
+                            required
+                        />            
+                        
+                    </div>
+
+                    {/* //* pendiente en segundo semana */}
+                    {/* <div className={style.formfield}>
+                        <label>Confirmar Contraseña</label>
+                        
+                        <input
+                            className={style.input}
+                            onChange={onInputChange}
+                            name="confirmPassword"
+                            type="password"
+                            value={dataRegistro.confirmPassword}
+                            placeholder= "Escriba su contraseña"
+                            required
+                        />            
+                        
+                    </div> */}
+
+                    
+
+                    <br />
+                    <div className={style.contenedorBoton}>
+                        <button type="submit" className={style.submitbutton}>Registrate</button>
+                    </div>
+
+
+                    {/* <div>
+                        <img src={imagen} alt="img" />
+                    </div> */}
+
+                    
+                </form>
                 </div>
-
-                <div className={style.formfield}>
-                    <label className={style.labelRegister} >Correo electronico</label>
-                    
-                    <input
-                        className={style.input}
-                        onChange={onInputChange}
-                        name="email"
-                        type="email"
-                        value={dataRegistro.email}
-                        placeholder= "ejemplo@gmail.com"
-                        required
-                    />            
-                    
-                </div>
-
-                <div className={style.formfield}>
-                    <label className={style.labelRegister} >Contraseña</label>
-                    
-                    <input
-                        className={style.input}
-                        onChange={onInputChange}
-                        name="password"
-                        type="password"
-                        value={dataRegistro.password}
-                        placeholder= "Escriba su contraseña"
-                        required
-                    />            
-                    
-                </div>
-
-                {/* //* pendiente en segundo semana */}
-                {/* <div className={style.formfield}>
-                    <label>Confirmar Contraseña</label>
-                    
-                    <input
-                        className={style.input}
-                        onChange={onInputChange}
-                        name="confirmPassword"
-                        type="password"
-                        value={dataRegistro.confirmPassword}
-                        placeholder= "Escriba su contraseña"
-                        required
-                    />            
-                    
-                </div> */}
-
-                
-
-                <br />
-                <div className={style.contenedorBoton}>
-                    <button type="submit" className={style.submitbutton}>Registrate</button>
-                </div>
-
-
-                {/* <div>
-                    <img src={imagen} alt="img" />
-                </div> */}
-
-                
-            </form>
         </div>
+
+        
     )
 }
 
