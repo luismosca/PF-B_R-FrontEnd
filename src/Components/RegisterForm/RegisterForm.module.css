@@ -2,11 +2,12 @@
 .registerContainer {
 
     margin-top: 40px;
-    max-width: 400px;
+    max-width: 500px;
+    margin-top: 50px !important;
     /* height: 620px; */
     margin: 0 auto;    
     padding-left: 30px;
-    padding-right: 50px;
+    padding-right: 40px;
     padding-top: 40px;
     padding-bottom: 40px;
     /* padding: 40px; */
@@ -17,6 +18,15 @@
     border-bottom-right-radius: 90px;    
     
 
+}
+
+.logo {
+    position: absolute;
+    top: 10px;
+    left: 40px;
+    width: 150px;
+    height: 150px;
+    z-index: 1;
 }
 
 .inlineFields {

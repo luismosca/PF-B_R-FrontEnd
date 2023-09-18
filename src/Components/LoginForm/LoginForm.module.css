@@ -1,14 +1,28 @@
 /* Estilos para el contenedor principal */
 .loginContainer {
     max-width: 400px;
+    margin-top: 50px !important;
     /* height: 400px; */
     margin: 0 auto;
-    padding: 20px;
+    /* padding: 20px; */
+    padding-left: 30px;
+    padding-right: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
     background-color: #f5f5f5;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-bottom-left-radius: 90px;
     border-bottom-right-radius: 90px;
+}
+
+.logo {
+    position: absolute;
+    top: 10px;
+    left: 40px;
+    width: 150px;
+    height: 150px;
+    z-index: 1;
 }
 
 .inlineFields {
@@ -17,34 +31,43 @@
     gap: 30px; /* Espacio entre los campos */
     margin-bottom: 20px;
 }
+/* //! */
+.h1Login {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #576362;
+}
 
-/* Estilos para los encabezados */
-h1 {
+.h2Login {
     text-align: center;
     margin-bottom: 20px;
     color: #515151;
 }
-
-h3 {
+.h3Login {
     text-align: center;
     margin-bottom: 10px;
     color: #515151;
-    
 }
 
+
+
+
 /* Estilos para los enlaces */
-a {
+.linkLogin  {
     display: block;
     text-align: center;
     margin-top: 10px;
     text-decoration: none;
     color: #007bff; /* Cambia el color del enlace según tu preferencia */
 }
-label {
+
+.labelLogin {
     text-align: justify;
     margin-bottom: 10px;
     color: #515151;
 }
+/* //! */
+
 
 /* Estilos para los campos de entrada */
 .input {
@@ -55,7 +78,15 @@ label {
     border-radius: 4px;
 }
 
+
 /* Estilos para el botón de inicio de sesión */
+.contenedorBoton {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+
 .submitbutton {
     width: 80%;
     padding: 10px;
