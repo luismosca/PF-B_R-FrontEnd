@@ -1,11 +1,11 @@
 
 .reportContainer {   
     
-    margin-top: 40px !important;
+    margin-top: 50px !important;
     max-width: 600px;
     margin: 0 auto;
     padding-left: 30px;
-    padding-right: 50px;
+    padding-right: 40px;
     padding-top: 40px;
     padding-bottom: 40px;
     /* padding: 40px; */
@@ -13,6 +13,15 @@
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     
+}
+
+.logo {
+    position: absolute;
+    top: 10px;
+    left: 40px;
+    width: 150px;
+    height: 150px;
+    z-index: 1;
 }
 
 .inlineFields {
