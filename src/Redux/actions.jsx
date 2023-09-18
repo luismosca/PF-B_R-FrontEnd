@@ -7,6 +7,9 @@
 //   FILTER_ORIGIN
 // } from "./actions-types";
 
+import axios from "axios"
+import { FILTERED_REPORTS } from "./actions-types"
+
 // export const fetchDogs = () => {
 //   const endpoint = "http://localhost:3001/dogs";
 //   return async (dispatch) => {
@@ -66,3 +69,18 @@
 //     }
 //   };
 // };
+
+export const getFilteredReport = (filters) => {
+    const { gender, age, location } = filters
+    return async function(dispatch){
+        try {
+            const response = await axios.get(`http://localhost:3001/reports/?location=${location}&gender=${gender}&age=${age}`)
+            dispatch({
+                type: FILTERED_REPORTS,
+                payload: response.data.reports,
+            })
+        } catch (error) {
+            console.log(`Not reports found`);
+        }
+    }
+}
