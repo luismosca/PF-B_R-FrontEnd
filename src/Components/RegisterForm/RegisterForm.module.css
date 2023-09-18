@@ -1,17 +1,15 @@
-/* Estilos para el contenedor principal */
-/* body {
-    background-image: url("Formbg.jpg") ;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    background-size: cover;
-} */
 
 .registerContainer {
+
+    margin-top: 40px;
     max-width: 400px;
     /* height: 620px; */
     margin: 0 auto;    
-    padding: 20px;
+    padding-left: 30px;
+    padding-right: 50px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    /* padding: 40px; */
     background-color: #f5f5f5;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -28,30 +26,44 @@
     margin-bottom: 20px;
 }
 
+.contenedorimg{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh; /* O ajusta la altura según tus necesidades */
+}
+
 .imagenSubida{
     width: 400px;
     height: 300px;
+    margin-bottom: 20px;
 }
+
 /* Estilos para los encabezados */
-h1 {
+/* //! */
+.h1register {
     text-align: center;
     margin-bottom: 20px;
     color: #576362;
 }
+.h3register {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #576362;
+}
 
-h3 {
+.h4register  {
     text-align: center;
     margin-bottom: 10px;
-    color: #576362;
+    color: #515151;
+    
 }
-h4 {
-    text-align: center;
-    margin-bottom: 10px;
-    color: #576362;
-}
+
 
 /* Estilos para los enlaces */
-a{    
+.linkRegister  {
     display: block;
     text-align: center;
     margin-top: 10px;
@@ -59,10 +71,16 @@ a{
     color: #007bff; /* Cambia el color del enlace según tu preferencia */
 }
 
-label {
+.labelRegister {
+    font-weight: bold;
+    display: block;
+    color: #576362;
+}
+/* //! */
+/* label {
     text-align: justify;
     margin-bottom: 10px;
-}
+} */
 
 /* Estilos para los campos de entrada */
 .input {
@@ -74,17 +92,25 @@ label {
 }
 
 /* Estilos para el botón de registro */
+.contenedorBoton {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
 .submitbutton {
     width: 80%;
     padding: 10px;
-    background-color: #5df4ed; /* Cambia el color del botón según tu preferencia */
+    background-color: #5df4ed; 
     color: #576362;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    /* margin-left: auto;
+    margin-right: auto; */
 }
 
 .submitbutton:hover {
-    background-color: #0056b3; /* Cambia el color de fondo al pasar el mouse */
+    background-color: #0056b3; 
 }

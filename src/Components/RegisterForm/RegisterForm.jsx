@@ -94,16 +94,16 @@ async function onSubmit(e) {
             <form onSubmit={onSubmit}>
 
                 <div>
-                    <h1>Regístrate a la plataforma B&R</h1>
+                    <h1 className={style.h1register} >Regístrate a la plataforma B&R</h1>
                 </div>
 
                 <div className={style.inlineFields}>
                     <div>
-                        <h4>¿Ya tienes una cuenta?</h4>
+                        <h4 className={style.h4register} >¿Ya tienes una cuenta?</h4>
                     </div>
 
                     <div>
-                        <Link to="/Login" >
+                        <Link className={style.linkRegister} to="/Login" >
                             Inicia sesión
                         </Link>
                     </div> 
@@ -112,7 +112,7 @@ async function onSubmit(e) {
                 
 
                 <div className={style.formfield}>
-                    <label>Nombre y Apellido</label>
+                    <label className={style.labelRegister} >Nombre y Apellido</label>
                     
                     <input
                         className={style.input}
@@ -129,8 +129,8 @@ async function onSubmit(e) {
                 
                 
                 <div className={style.formfield}>
-                    <label>Fotografia</label>
-                    <br />
+                    <label className={style.labelRegister} >Fotografia</label>
+                    {/* <br /> */}
                     <input
                         className={style.input}
                         // onChange={onInputChange}
@@ -144,7 +144,7 @@ async function onSubmit(e) {
                     />
                     {/* si subio archivo muetra el mensaje, el nombre y la imagen subida */}                    
                     {urlImage && (
-                        <div>
+                        <div className={style.contenedorimg} >
                             {/* <p>Archivo seleccionado: {urlImage.name}</p> */}
                             <img src={urlImage} className={style.imagenSubida} alt="Imagen seleccionada" />
                             <br />
@@ -158,7 +158,7 @@ async function onSubmit(e) {
                 </div>
 
                 <div className={style.formfield}>
-                    <label>Correo electronico</label>
+                    <label className={style.labelRegister} >Correo electronico</label>
                     
                     <input
                         className={style.input}
@@ -173,7 +173,7 @@ async function onSubmit(e) {
                 </div>
 
                 <div className={style.formfield}>
-                    <label>Contraseña</label>
+                    <label className={style.labelRegister} >Contraseña</label>
                     
                     <input
                         className={style.input}

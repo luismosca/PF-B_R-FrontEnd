@@ -140,19 +140,19 @@ const ReportForm = () => {
     }
 
     return (
-        <div className={style.container}>
-            <form onSubmit={onSubmit}>
+        <div className={style.reportContainer}>
+            <form onSubmit={onSubmit} className={style.form}>
 
                 <div >
-                    <h1>Reporte B&R</h1>
+                    <h1 className={style.h1report}>Reporte B&R</h1>
                 </div>                
 
                 <div className={style.inlineFields2}>
                     <div className={style.formfield}>
-                        <label>Nombre y Apellido (Completos)</label>
-                        <br />
+                        <label className={style.labelreport} >Nombre y Apellido (Completos)</label  >
+                        
                         <input
-                            className={style.input}
+                            className={style.inputForm}
                             onChange={onInputChange}
                             name="name"
                             type="text"
@@ -163,11 +163,11 @@ const ReportForm = () => {
                     </div>
 
                     <div className={style.formfield}>
-                        <label>Edad:</label>
-                        <br />
+                        <label className={style.labelreport}  >Edad:</label  >
+                        
 
                         <input
-                            className={style.input}
+                            className={style.inputForm}
                             onChange={onInputChange}
                             name="age"
                             type="number"
@@ -184,10 +184,10 @@ const ReportForm = () => {
 
                 <div className={style.inlineFields}>
                     <div className={style.formfield}>
-                        <label>Fecha a la que fue visto por ultima vez</label>
-                        <br />
+                        <label className={style.labelreport}  >Fecha a la que fue visto por ultima vez</label  >
+                        {/* <br /> */}
                         <input
-                            className={style.input}
+                            className={style.inputForm}
                             onChange={onInputChange}
                             name="date"
                             type="date"
@@ -197,11 +197,11 @@ const ReportForm = () => {
                     </div>
                 
                     <div className={style.formfield}>
-                        <label>Lugar donde fue visto por ultima vez</label>
+                        <label  className={style.labelreport} >Lugar donde fue visto por ultima vez</label  >
                         <br />
                         <br />
                         <input
-                            className={style.input}
+                            className={style.inputForm}
                             onChange={onInputChange}
                             name="location"
                             type="text"
@@ -214,10 +214,10 @@ const ReportForm = () => {
                 </div>
 
                 <div className={style.formfield}>
-                    <label>Resumen de lo hechos</label>
+                    <label  className={style.labelreport} >Resumen de lo hechos</label  >
                     <br />
                     <textarea
-                        className={style.input}
+                        className={style.inputForm}
                         onChange={onInputChange}
                         name="description"                        
                         value={dataReport.description}
@@ -232,10 +232,10 @@ const ReportForm = () => {
                 
 
                 <div className={style.formfield}>
-                    <label>Fotografia</label>
+                    <label  className={style.labelreport} >Fotografia</label  >
                     <br />
                     <input
-                        className={style.input}
+                        className={style.inputForm}
                         onChange={changeUploadImage}
                         name="image"
                         type="file"
@@ -246,7 +246,7 @@ const ReportForm = () => {
                     />
                     {/* si subio archivo muetra el mensaje, el nombre y la imagen subida */}                    
                     {urlImage && (
-                        <div>
+                        <div className={style.contenedorimg}>
                             {/* <p>Archivo seleccionado: {urlImage.name}</p> */}
                             <img src={urlImage} className={style.imagenSubida} alt="Imagen seleccionada" />
                             <br />
@@ -259,10 +259,10 @@ const ReportForm = () => {
                 </div>
 
                 <div className={style.formfield}>
-                    <label>Subir Reporte Oficial</label>
+                    <label  className={style.labelreport} >Subir Reporte Oficial</label  >
                     <br />
                     <input
-                        className={style.input}
+                        className={style.inputForm}
                         onChange={changeUploadReport}
                         name="court_order"
                         type="file"
@@ -272,7 +272,7 @@ const ReportForm = () => {
                         required
                     />
                     {urlReport && (
-                        <div>
+                        <div className={style.contenedorimg}>
                             {/* <p>Archivo seleccionado: {urlImage.name}</p> */}
                             <img src={urlReport} className={style.imagenSubida} alt="Imagen seleccionada" />
                             <br />
@@ -289,11 +289,11 @@ const ReportForm = () => {
                 
                 <div className={style.inlineFields3}>
                     <div className={style.formfield}>
-                        <label>Genero</label>
+                        <label className={style.labelreport}  >Genero</label  >
                         <br />
                         
                         <input
-                            className={style.input}
+                            className={style.inputForm}
                             onChange={onInputChange}
                             name="gender"
                             type="text"
@@ -304,10 +304,10 @@ const ReportForm = () => {
                     </div>
 
                     <div className={style.formfield}>
-                        <label>Fecha de nacimiento</label>
+                        <label  className={style.labelreport} >Fecha de nacimiento</label  >
                         <br />
                         <input
-                            className={style.input}
+                            className={style.inputForm}
                             onChange={onInputChange}
                             name="birthday_date"
                             type="date"
@@ -317,11 +317,11 @@ const ReportForm = () => {
                     </div>
 
                     <div className={style.formfield}>
-                        <label>Nacionalidad</label>
+                        <label className={style.labelreport} >Nacionalidad</label  >
                         <br />
                         
                         <input
-                            className={style.input}
+                            className={style.inputForm}
                             onChange={onInputChange}
                             name="nationality"
                             type="text"
@@ -334,11 +334,11 @@ const ReportForm = () => {
                 
 
                 <div className={style.formfield}>
-                    <label>Estilo de cabello</label>
+                    <label  className={style.labelreport} >Estilo de cabello</label  >
                     <br />
                     
                     <input
-                        className={style.input}
+                        className={style.inputForm}
                         onChange={onInputChange}
                         name="hair_style"
                         type="text"
@@ -349,11 +349,11 @@ const ReportForm = () => {
                 
                 <div className={style.inlineFields3}>
                     <div className={style.formfield}>
-                        <label>Etnia</label>
+                        <label className={style.labelreport}  >Etnia</label  >
                         <br />
                         
                         <input
-                            className={style.input}
+                            className={style.inputForm}
                             onChange={onInputChange}
                             name="ethnicity"
                             type="text"
@@ -363,11 +363,11 @@ const ReportForm = () => {
                     </div>
 
                     <div className={style.formfield}>
-                        <label>Color de cabello</label>
+                        <label  className={style.labelreport} >Color de cabello</label  >
                         <br />
                         
                         <input
-                            className={style.input}
+                            className={style.inputForm}
                             onChange={onInputChange}
                             name="hair_color"
                             type="text"
@@ -377,11 +377,11 @@ const ReportForm = () => {
                     </div>
                     
                     <div className={style.formfield}>
-                        <label>Color de ojos</label>
+                        <label  className={style.labelreport} >Color de ojos</label  >
                         <br />
                         
                         <input
-                            className={style.input}
+                            className={style.inputForm}
                             onChange={onInputChange}
                             name="eyes_color"
                             type="text"
@@ -392,10 +392,10 @@ const ReportForm = () => {
                 </div>
 
                 <div className={style.formfield}>
-                    <label>Ropa que llevaba puesto en momento de la desaparicion</label>
+                    <label  className={style.labelreport} >Ropa que llevaba puesto en momento de la desaparicion</label  >
                     <br />
                     <textarea
-                        className={style.input}
+                        className={style.inputForm}
                         onChange={onInputChange}
                         name="clothes"                        
                         value={dataReport.clothes}
@@ -407,11 +407,11 @@ const ReportForm = () => {
                 
                 <div className={style.inlineFields3Long}>
                     <div className={style.formfield}>
-                        <label>Altura en CM</label>
+                        <label className={style.labelreport}  >Altura en CM</label  >
                         <br />
                         
                         <input
-                            className={style.input}
+                            className={style.inputForm}
                             onChange={onInputChange}
                             name="height"
                             type="number"
@@ -423,11 +423,11 @@ const ReportForm = () => {
                     </div>
 
                     <div className={style.formfield}>
-                        <label>Peso en KG</label>
+                        <label className={style.labelreport}  >Peso en KG</label  >
                         <br />
                         
                         <input
-                            className={style.input}
+                            className={style.inputForm}
                             onChange={onInputChange}
                             name="weight"
                             type="number"
@@ -439,7 +439,7 @@ const ReportForm = () => {
                     </div>
 
                     {/* <div className={style.formfield}>
-                        <label>Ubicacion (???)</label>
+                        <label  >Ubicacion (???)</label  >
                         <br />
                         
                         <input
@@ -455,10 +455,10 @@ const ReportForm = () => {
                 </div>
 
                 <div className={style.formfield}>
-                    <label>Señas particulares</label>
+                    <label className={style.labelreport} >Señas particulares</label  >
                     <br />
                     <textarea
-                        className={style.input}
+                        className={style.inputForm}
                         onChange={onInputChange}
                         name="particular_signs"                        
                         value={dataReport.particular_signs}
