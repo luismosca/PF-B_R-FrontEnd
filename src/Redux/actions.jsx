@@ -4,16 +4,18 @@ export const GET_REPORTS = "GET_REPORTS";
 export const CREATE_REPORT = "CREATE_REPORT";
 export const REPORTS_ID = "REPORTS_ID";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
+export const FILTERED_REPORTS = "FILTERED_REPORTS";
 
 export const getAllReports = () => {
   const endpoint = "http://localhost:3001/reports";
   return async (dispatch) => {
     try {
-      const { data } = await axios(endpoint);
-      console.log(data);
+        const { data } = await axios(endpoint);
+        const reports = data.reports
+      console.log(reports);
       return dispatch({
         type: GET_REPORTS,
-        payload: data,
+        payload: reports,
       });
     } catch (error) {
       console.error(error.message);
@@ -25,7 +27,7 @@ export const getReportDetail = (id) => {
   const endpoint = `http://localhost:3001/reports/${id}`;
   return async (dispatch) => {
     try {
-      const { data } = await axios(endpoint);
+      const { data } = await axios(endpoint)
       console.log(data);
       return dispatch({
         type: REPORTS_ID,
@@ -59,7 +61,7 @@ export function orderByName(payload) {
     type: ORDER_BY_NAME,
     payload,
   };
-};
+}
 
 export const getFilteredReport = (filters) => {
     const { gender, age, location } = filters

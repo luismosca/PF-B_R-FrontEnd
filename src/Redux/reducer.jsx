@@ -3,6 +3,7 @@ import {
   CREATE_REPORT,
   ORDER_BY_NAME,
   REPORTS_ID,
+  FILTERED_REPORTS,
 } from "./actions";
 
 const initialState = {
@@ -36,6 +37,11 @@ const reducer = (state = initialState, actions) => {
       return {
         ...state,
       };
+    case FILTERED_REPORTS:
+      return {
+        ...state,
+        allReports: actions.payload,
+      }
 
     default:
       return {
