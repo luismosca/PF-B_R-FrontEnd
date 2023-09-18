@@ -1,19 +1,37 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import style from "./Cards.module.css";
+import CardsContainer from "../CardsContainer/CardsContainer";
 
-function Cards ({ id, name, description, image, court_order, status, date, location}) {
-    return (
-        <div className={style.card}>
-        <h3 className={style.h3}>{name}</h3>
-        <Link to={`/detail/${id}`}>
-           <img className={style.image} src={image} alt={`${name} Image`} />
-        </Link>
-        <h4 className={style.h4}>Description.: {description}</h4>
-        <h4 className={style.h4}>Status.: {status}</h4>
-        <h4 className={style.h4}>Date.: {date}</h4>
-        <h4 className={style.h4}>Location: {location}</h4>
-     </div>
-    )
+function Cards(props) {
+  const reports = props.allReports;
+  return (
+    <div className={style.cards}>
+      {reports.map(
+        ({
+          id,
+          name,
+          image,          
+          age,         
+          nationality,          
+          date,
+          location,
+        }) => {
+          return (
+            <CardsContainer
+              key={id}
+              id={id}
+              name={name}
+              image={image}
+              age={age}              
+              nationality={nationality}              
+              date={date}
+              location={location}
+            />
+          );
+        }
+      )}
+    </div>
+  );
 }
 
-export { Cards } ;
+export default Cards;
