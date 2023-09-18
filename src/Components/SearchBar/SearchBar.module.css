@@ -3,7 +3,9 @@
   display: flex;
   justify-content: center; 
   margin-top: 20px;
+
   }
+
   
   .searchBar input {
     padding: 8px;
@@ -13,7 +15,7 @@
     margin-right: 10px;
     font-size: 14px;
     width: 30% !important;  /* Se puso el important para que tomara como prioridad este valor y no el del input de los forms, pero no afectará ya a los forms */
-  }
+}
   
   .buttonsearchbar {
     padding: 8px 12px;
