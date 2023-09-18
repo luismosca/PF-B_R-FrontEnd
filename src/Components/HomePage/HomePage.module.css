@@ -1,33 +1,31 @@
+/* Estos estilos de body se aplicarán a todos los componentes, se pueden modificar a futuro al momento de usar tailwind u otro framework*/
 body {
-    background-image: url('../../assets/homebg.webp');
-    background-color: #f2f2f2;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    margin: 0%;
-    padding: 0%;
-    font-family: Poppins, sans-serif;
-    font-size: 16px;
-    width: 100%;
-    padding-bottom: 20%;
+  background-image: url("../../assets/homebg.webp");
+  background-color: #f2f2f2;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  margin: 0%;
+  padding: 0%;
+  font-family: Poppins, sans-serif;
+  font-size: 16px;
+  width: 100%;
+  padding-bottom: 20%;
+}
 
-  }
+.title {
+  text-align: center;
+  margin-top: 150px;
+  font-size: 24px;
+  font-weight: bolder;
+}
 
-  .title {
-    text-align: center;
-    margin-top: 150px;
-    font-size: 24px;
-    font-weight: bolder;
-  }
-  
-  .title h1 {
-    font-size: 36px;
-    margin-bottom: 0;
-  }
-  
-  .title h2 {
-    font-size: 36px;
-    margin-top: 0;
-  }
-  
- 
+.title h1 {
+  font-size: 36px;
+  margin-bottom: 0;
+}
+
+.title h2 {
+  font-size: 36px;
+  margin-top: 0;
+}
