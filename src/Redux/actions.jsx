@@ -1,74 +1,65 @@
-// import axios from "axios";
-// import {
-//   GET_DOGS,
-//   CREATE_DOG,
-//   TEMPERAMENT,
-//   FILTER_TEMPERAMENT,
-//   FILTER_ORIGIN
-// } from "./actions-types";
+import axios from "axios";
 
-import axios from "axios"
-import { FILTERED_REPORTS } from "./actions-types"
+export const GET_REPORTS = "GET_REPORTS";
+export const CREATE_REPORT = "CREATE_REPORT";
+export const REPORTS_ID = "REPORTS_ID";
+export const ORDER_BY_NAME = "ORDER_BY_NAME";
 
-// export const fetchDogs = () => {
-//   const endpoint = "http://localhost:3001/dogs";
-//   return async (dispatch) => {
-//     try {
-//       const { data } = await axios(endpoint);
-//       console.log(data);
-//       return dispatch({
-//         type: GET_DOGS,
-//         payload: data,
-//       });
-//     } catch (error) {
-//       console.error(error.message);
-//     }
-//   };
-// };
-// export const Temperaments = () => {
-//   const endpoint = "http://localhost:3001/temperaments";
-//   return async (dispatch) => {
-//     try {
-//       const { data } = await axios(endpoint);
-//       console.log(data);
-//       return dispatch({
-//         type: TEMPERAMENT,
-//         payload: data,
-//       });
-//     } catch (error) {
-//       console.error(error.message);
-//     }
-//   };
-// };
-// export const filterByTemperament = (selectedTemperament) => {
-//   return {
-//     type: FILTER_TEMPERAMENT,
-//     payload: selectedTemperament,
-//   };
-// };
+export const getAllReports = () => {
+  const endpoint = "http://localhost:3001/reports";
+  return async (dispatch) => {
+    try {
+      const { data } = await axios(endpoint);
+      console.log(data);
+      return dispatch({
+        type: GET_REPORTS,
+        payload: data,
+      });
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+};
 
-// export const originFilter = (origin) => {
-//   return {
-//     type: FILTER_ORIGIN,
-//     payload: origin,
-//   }
-// }
+export const getReportDetail = (id) => {
+  const endpoint = `http://localhost:3001/reports/${id}`;
+  return async (dispatch) => {
+    try {
+      const { data } = await axios(endpoint);
+      console.log(data);
+      return dispatch({
+        type: REPORTS_ID,
+        payload: data,
+      });
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+};
 
-// export const createDog = (dogData) => {
-//   const endpoint = "http://localhost:3001/dogs";
-//   return async (dispatch) => {
-//     try {
-//       const { data } = await axios.post(endpoint, dogData);
-//       console.log("El perro fue creado exitosamente");
-//       return dispatch({
-//         type: CREATE_DOG,
-//         payload: await fetchDogs(),
-//       });
-//     } catch (error) {
-//       console.error(error.message);
-//     }
-//   };
-// };
+export const createDog = (report) => {
+  console.log(report);
+  const endpoint = "http://localhost:3001/reports";
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post(endpoint, report);
+      console.log("El reporte fue creado exitosamente");
+      return dispatch({
+        type: CREATE_REPORT,
+        payload: await data,
+      });
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+};
+
+export function orderByName(payload) {
+  return {
+    type: ORDER_BY_NAME,
+    payload,
+  };
+};
 
 export const getFilteredReport = (filters) => {
     const { gender, age, location } = filters
