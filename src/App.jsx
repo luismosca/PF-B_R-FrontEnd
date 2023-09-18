@@ -10,6 +10,7 @@ import Registro from './Components/RegisterForm/RegisterForm';
 import Reporte from './Components/ReportForm/ReportForm';
 import Cards from './Components/Cards/Cards';
 import Profile from './Components/Profile/Profile';
+import About from "./Components/About/About"
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="/cards" element={<Cards/>}/>
         <Route path="/detail/:id" element={<Detail/>} />
         <Route path='/profile' element={<Profile />} />       
+        <Route path='/ByR' element={<About/>} />       
         
         
       </Routes>

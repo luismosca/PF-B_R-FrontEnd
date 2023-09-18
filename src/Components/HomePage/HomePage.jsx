@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavBar } from "../NavBar/NavBar";
 import style from "./HomePage.module.css";
 import { SearchBar } from "../SearchBar/SearchBar";
+import Filters from "../Filters/Filters";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const Home = () => {
         <h2>la humanidad perdida</h2>
       </div>
       <SearchBar></SearchBar>
+      <Filters/>
       <Cards className={style.container} allReports={allReports} />
     </>
   );
