@@ -68,6 +68,7 @@ export const getAllUsers = () => {
       }
     }
 };
+
 export const getUserById = (id) => {
     const url = `http://localhost:3001/users/${id}`;
     return async (dispatch) => {
