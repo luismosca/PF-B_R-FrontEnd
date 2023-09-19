@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
 
 import styles from '../SearchBar/SearchBar.module.css';
+import { useDispatch,  } from 'react-redux';
+import { onSearch } from '../../Redux/actions';
 
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = () => {
   const [searchTerm, setSearchTerm] = useState('');
+  const dispatch = useDispatch()
+  
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
   };
 
   const handleSearch = () => {
-    onSearch(searchTerm);
+    const termTrimmed = searchTerm.trim()
+    dispatch(onSearch(termTrimmed));
   };
 
   return (
@@ -22,7 +27,7 @@ const SearchBar = ({ onSearch }) => {
         value={searchTerm}
         onChange={handleInputChange}
       />
-      <button onClick={handleSearch} className={styles.buttonsearchbar}>
+      <button onClick={()=> {handleSearch(); setSearchTerm("")}} className={styles.buttonsearchbar}>
         Buscar
       </button>
     </div>
