@@ -15,6 +15,7 @@ function Cards(props) {
           nationality,          
           date,
           location,
+          description
         }) => {
           return (
             <CardsContainer
@@ -26,6 +27,7 @@ function Cards(props) {
               nationality={nationality}              
               date={date}
               location={location}
+              description={description}
             />
           );
         }

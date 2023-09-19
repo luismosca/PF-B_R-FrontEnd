@@ -1,0 +1,41 @@
+.filterContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.formFilters {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+}
+
+.formFilters input {
+    border: 1px solid #ccc;
+    margin: 5px 0;
+    border-radius: 80px;
+}
+
+.formFilters button {
+    background-color: #a8ec96;
+    color: #343434;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.formFilters select {
+    background-color: #c5f6639f;
+    color: #343434;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.selectContainer,
+.inputContainer {
+    margin: 10px;
+}
