@@ -8,7 +8,7 @@ const CardContainer = ({ id, name, description, image, date, location, age }) =>
         <h2>{name}</h2>
       </Link>
       <Link to={`/detail/${id}`}>
-        <img src={"https://this-person-does-not-exist.com/img/avatar-gen4a0cc4d9a2581818a703a23e62600295.jpg"} alt="" className={style.image}/>
+        <img src={image} alt="" className={style.image}/>
       </Link>
       <Link to={`/detail/${id}`} className={style.link}>
         <h2>Date: {date}</h2>
