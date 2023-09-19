@@ -1,6 +1,7 @@
 import  { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getFilteredReport } from "../../Redux/actions";
+import style from './Filters.module.css';  
 
 const Filters = () => {
     const dispatch = useDispatch();
@@ -38,22 +39,29 @@ const Filters = () => {
     }
 
     return (
-        <div className="Filters">
+        <div className={style.filterContainer}>
 
-            <form className="FormFilters" onSubmit={(event) => handleSubmit(event)}>
-                <select name="gender" id="gender" onChange={handleChange}>
-                    <option value="">Select a gender</option>
-                    <option value="Female">Female</option>
-                    <option value="Male">Male</option>
-                </select>
+            <form className={style.formFilters} onSubmit={(event) => handleSubmit(event)}>
+
+                <div className={style.selectContainer}>
+                    <select name="gender" id="gender" onChange={handleChange}>
+                        <option value="">Select a gender</option>
+                        <option value="Female">Female</option>
+                        <option value="Male">Male</option>
+                    </select>
+                </div>
                 
-                <select name="age" id="age" onChange={handleChange}>
-                    <option value="">Order by age</option>
-                    <option value="Youngest">Youngest</option>
-                    <option value="Oldest">Oldest</option>
-                </select>
 
-                <div className="location" onChange={handleChange}>
+                <div className={style.selectContainer}>
+                    <select name="age" id="age" onChange={handleChange}>
+                        <option value="">Order by age</option>
+                        <option value="Youngest">Youngest</option>
+                        <option value="Oldest">Oldest</option>
+                    </select>
+                </div>
+                
+
+                <div className={style.inputContainer} onChange={handleChange}>
                     <input type="text" name="location" id="location" placeholder="FILTER BY LOCATION"/>
                 </div>
 
@@ -66,4 +74,4 @@ const Filters = () => {
 
 };
 
-export default Filters;
+export default Filters;
