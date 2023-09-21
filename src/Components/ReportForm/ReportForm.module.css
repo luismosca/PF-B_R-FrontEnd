@@ -1,0 +1,111 @@
+
+.reportContainer {   
+    
+    margin-top: 50px !important;
+    max-width: 600px;
+    margin: 0 auto;
+    padding-left: 30px;
+    padding-right: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    /* padding: 40px; */
+    background-color: #f5f5f5;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    
+}
+
+.logo {
+    position: absolute;
+    top: 10px;
+    left: 40px;
+    width: 150px;
+    height: 150px;
+    z-index: 1;
+}
+
+.inlineFields {
+    display: grid;
+    grid-template-columns: 1fr 3fr; /* Divide en dos columnas  */
+    gap: 30px; /* Espacio entre los campos */
+}
+.inlineFields2 {
+    display: grid;
+    grid-template-columns: 4fr 1fr; /* Divide en dos columnas  */
+    gap: 30px; /* Espacio entre los campos */
+    
+}
+.inlineFields3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Divide en tres columnas  */
+    gap: 30px; /* Espacio entre los campos */
+    
+}
+
+.inlineFields3Long {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Divide en tres columnas  */
+    gap: 30px; /* Espacio entre los campos */
+    
+}
+
+.formfield {
+    margin-bottom: 20px;
+    text-align: left;
+    
+}
+
+.contenedorimg{
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh; /* O ajusta la altura según tus necesidades */
+}
+
+.imagenSubida{
+    width: 400px;
+    height: 300px;
+    margin-bottom: 20px;
+}
+
+.inputForm{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilos para los encabezados */
+.h1report {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #576362;
+}
+
+
+.labelreport {
+    font-weight: bold;
+    display: block;
+    color: #576362;
+}
+
+.contenedorBoton {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+
+.submitbutton {
+    width: 80%;
+    background-color: #5df4ed;
+    color: #576362;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+
