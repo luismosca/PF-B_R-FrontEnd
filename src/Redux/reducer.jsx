@@ -4,6 +4,8 @@ import {
   ORDER_BY_NAME,
   REPORTS_ID,
   FILTERED_REPORTS,
+  GET_REPORTS_BYID,
+  GET_REPORTS_BYNAME,
 } from "./actions";
 
 const initialState = {
@@ -21,16 +23,20 @@ const reducer = (state = initialState, actions) => {
         reportsCopy: actions.payload,
       };
 
+    case GET_REPORTS_BYID:
+      return {
+        allReports: actions.payload,
+      }
+    
+    case GET_REPORTS_BYNAME:
+      return {
+        allReports: actions.payload,
+      }
+
     case REPORTS_ID:
       return {
         ...state,
         reportDetail: actions.payload,
-      };
-
-    case ORDER_BY_NAME:
-      return {
-        ...state,
-        dogs: actions.payload,
       };
 
     case CREATE_REPORT:
@@ -42,6 +48,7 @@ const reducer = (state = initialState, actions) => {
         ...state,
         allReports: actions.payload,
       }
+    
 
     default:
       return {

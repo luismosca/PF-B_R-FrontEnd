@@ -5,13 +5,15 @@ export const CREATE_REPORT = "CREATE_REPORT";
 export const REPORTS_ID = "REPORTS_ID";
 export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const FILTERED_REPORTS = "FILTERED_REPORTS";
+export const GET_REPORTS_BYID = "REPORTS_BYID";
+export const GET_REPORTS_BYNAME = "REPORTS_BYNAME";
 
 export const getAllReports = () => {
   const endpoint = "http://localhost:3001/reports";
   return async (dispatch) => {
     try {
-        const { data } = await axios(endpoint);
-        const reports = data.reports
+      const { data } = await axios(endpoint);
+      const reports = data.reports
       console.log(reports);
       return dispatch({
         type: GET_REPORTS,
@@ -39,7 +41,7 @@ export const getReportDetail = (id) => {
   };
 };
 
-export const createDog = (report) => {
+export const createReport = (report) => {
   console.log(report);
   const endpoint = "http://localhost:3001/reports";
   return async (dispatch) => {
@@ -56,24 +58,44 @@ export const createDog = (report) => {
   };
 };
 
-export function orderByName(payload) {
-  return {
-    type: ORDER_BY_NAME,
-    payload,
-  };
-}
+
 
 export const getFilteredReport = (filters) => {
-    const { gender, age, location } = filters
-    return async function(dispatch){
-        try {
-            const response = await axios.get(`http://localhost:3001/reports/?location=${location}&gender=${gender}&age=${age}`)
-            dispatch({
-                type: FILTERED_REPORTS,
-                payload: response.data.reports,
-            })
-        } catch (error) {
-            console.log(`Not reports found`);
-        }
+  const { gender, age, location } = filters
+  return async function (dispatch) {
+    try {
+      const response = await axios.get(`http://localhost:3001/reports/?location=${location}&gender=${gender}&age=${age}`)
+      dispatch({
+        type: FILTERED_REPORTS,
+        payload: response.data.reports,
+      })
+    } catch (error) {
+      console.log(`Not reports found`);
     }
+  }
+}
+
+export const onSearch = (value) => {
+  const guion = "-"
+  return async function (dispatch) {
+    try {
+      if (value.includes(guion)) {
+        const reportId = await axios.get(`http://localhost:3001/reports/${value}`);
+        dispatch({
+          type: GET_REPORTS_BYID,
+          payload: [reportId.data],
+        })
+        console.log(reportId.data);
+      } else {
+        const response = await axios.get(`http://localhost:3001/reports/?name=${value}`);
+        dispatch({
+          type: GET_REPORTS_BYNAME,
+          payload: response.data.reports,
+        })
+      }
+    } catch (error) {
+      alert(`Not reports found with value: ${value}` , error);
+    }
+  }
+
 }

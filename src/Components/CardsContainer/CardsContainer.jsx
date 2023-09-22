@@ -9,7 +9,7 @@ const CardContainer = ({ id, name, description, image, date, location, age }) =>
         <h2>{name}</h2>
       </Link>
       <Link to={`/detail/${id}`}>
-        <img src={img} alt="" className={style.image}/>
+        <img src={image} alt="" className={style.image}/>
       </Link>
       <Link to={`/detail/${id}`} className={style.link}>
         <h2>Date: {date}</h2>
