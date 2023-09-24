@@ -1,27 +1,37 @@
 import {
   GET_REPORTS,
   CREATE_REPORT,
-  ORDER_BY_NAME,
   REPORTS_ID,
   FILTERED_REPORTS,
   GET_REPORTS_BYID,
   GET_REPORTS_BYNAME,
+  SET_INDEX,
 } from "./actions";
 
 const initialState = {
   allReports: [],
   reportsCopy: [],
   reportDetail: [],
+  totalReports: 0,
+  index: 1
 };
+console.log( initialState.allReports);
 
 const reducer = (state = initialState, actions) => {
   switch (actions.type) {
     case GET_REPORTS:
       return {
         ...state,
-        allReports: actions.payload,
-        reportsCopy: actions.payload,
+        allReports: actions.payload.reports,
+        reportsCopy: actions.payload.reports,
+        totalReports: actions.payload.total,
       };
+    
+    case SET_INDEX:
+      return {
+        ...state,
+        index: actions.payload,
+      }
 
     case GET_REPORTS_BYID:
       return {
@@ -46,7 +56,8 @@ const reducer = (state = initialState, actions) => {
     case FILTERED_REPORTS:
       return {
         ...state,
-        allReports: actions.payload,
+        allReports: actions.payload.reports,
+        totalReports: actions.payload.total,
       }
     
 

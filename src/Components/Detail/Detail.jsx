@@ -3,6 +3,7 @@ import { useSelector, useDispatch,  } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import style from "./Detail.module.css";
 import { getReportDetail } from "../../Redux/actions";
+import Comments from "./Comments";
 
 const ReportDetail = () => {
   const { id } = useParams();
@@ -49,12 +50,20 @@ const ReportDetail = () => {
           <p>{`Location: ${reportDetail.location}`}</p>
           <p>{`Reporte policial: ${reportDetail.court_order}`}</p>
           <p>{`Description: ${reportDetail.description}`}</p>
+          <p>{`Creado en: ${reportDetail.createdAt.split("T")[0]}`}</p>
         </div>
+
       ) : (
         <div>          
           <h1>LOADING...</h1>
         </div>
       )}
+      <div style={{marginTop: "1.5rem"}}>
+        <h2>Comments Section:</h2>
+      </div>
+      <div>
+        <Comments ReportId={id}/>
+      </div>
     </div>
   );
 };
