@@ -5,6 +5,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import logo from '../../assets/B&R.png'
 import { NavBar } from '../NavBar/NavBar';
+import paises from '../../assets/paises'
+import etnias from '../../assets/etnias'
 // import axios from "axios"; 
 // import { useState, useEffect} from "react";
 //*----------------------------------------------------
@@ -14,6 +16,7 @@ import { NavBar } from '../NavBar/NavBar';
 
 const ReportForm = () => {    
     const navigate = useNavigate();
+    // const countries = paises
 
     const [dataReport, setDataReport] = useState({
         name: "",
@@ -40,11 +43,22 @@ const ReportForm = () => {
     function onInputChange(e) {
         e.preventDefault();
 
+        if (e.target.name === "birthday_date") {
+            const selectedDate = new Date(e.target.value);
+            const currentDate = new Date();
+    
+            
+            if (selectedDate > currentDate) {
+                alert("La fecha de nacimiento no puede ser mayor que la fecha actual");
+                return; 
+            }
+        }
+        
         setDataReport({
             ...dataReport,
             [e.target.name]: e.target.value,
         });       
-        
+        // console.log(paises);
         console.log(dataReport);
     }
 
@@ -309,7 +323,21 @@ const ReportForm = () => {
                             <label className={style.labelreport}  >Genero</label  >
                             <br />
                             
-                            <input
+                            <select
+                                className={style.inputForm}
+                                onChange={onInputChange}
+                                name="gender"
+                                value={dataReport.gender}
+                                required
+                            >
+                                <option value="">Elige una opción</option>
+                                <option value="Male">Masculino</option>
+                                <option value="Female">Femenino</option>
+                                <option value="No Specific">No Specificar</option>
+                                <option value="Others">Otros</option>
+                            </select>
+
+                            {/* <input
                                 className={style.inputForm}
                                 onChange={onInputChange}
                                 name="gender"
@@ -317,7 +345,7 @@ const ReportForm = () => {
                                 value={dataReport.gender}
                                 placeholder='M / F / OTROS'
                                 required
-                            />  
+                            />   */}
                         </div>
 
                         <div className={style.formfield}>
@@ -334,17 +362,26 @@ const ReportForm = () => {
                         </div>
 
                         <div className={style.formfield}>
-                            <label className={style.labelreport} >Nacionalidad</label  >
+                            <label className={style.labelreport} >Pais de origen</label  >
                             <br />
                             
-                            <input
+                            <select
                                 className={style.inputForm}
                                 onChange={onInputChange}
                                 name="nationality"
                                 type="text"
                                 value={dataReport.nationality}
-                                required
-                        />  
+                                required                                
+                            >
+                                {/* {console.log(paises)}  */}
+                                <option value="">Elige una opción</option>
+                                {paises.map(pais => (
+                                    <option key= {pais.es_name} value={pais.es_name}>
+                                        {pais.es_name}
+                                    </option>
+                                ))} 
+
+                            </select>  
                         </div>
                     </div>
 
@@ -369,14 +406,21 @@ const ReportForm = () => {
                             <label className={style.labelreport}  >Etnia</label  >
                             <br />
                             
-                            <input
+                            <select
                                 className={style.inputForm}
                                 onChange={onInputChange}
                                 name="ethnicity"
                                 type="text"
                                 value={dataReport.ethnicity}
                                 required
-                        />  
+                            >
+                            <option value="">Elige una opción</option>
+                            {etnias.map(etnia => (
+                                <option key={etnia.nombre} value={etnia.nombre}>
+                                    {etnia.nombre}
+                                </option>
+                            ))}    
+                            </select>  
                         </div>
 
                         <div className={style.formfield}>
@@ -424,19 +468,28 @@ const ReportForm = () => {
                     
                     <div className={style.inlineFields3Long}>
                         <div className={style.formfield}>
-                            <label className={style.labelreport}  >Altura en CM</label  >
+                            <label className={style.labelreport}  >Altura en MT</label  >
                             <br />
                             
                             <input
-                                className={style.inputForm}
-                                onChange={onInputChange}
-                                name="height"
-                                type="number"
-                                value={dataReport.height}
-                                min={0}
-                                max={250}
-                                required
-                        />  
+                                    className={style.inputForm}
+                                    onChange={onInputChange}
+                                    name="height"
+                                    type="number" // Cambiar el tipo de entrada a "number"
+                                    step="0.01" // Establecer el paso para permitir números decimales
+                                    value={dataReport.height}
+                                    min={0}
+                                    max={2.5} // Establecer el valor máximo como 2.5
+                                    required
+                                // className={style.inputForm}
+                                // onChange={onInputChange}
+                                // name="height"
+                                // type="number"
+                                // value={dataReport.height}
+                                // min={0}
+                                // max={250}
+                                // required
+                            />  
                         </div>
 
                         <div className={style.formfield}>
