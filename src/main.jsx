@@ -4,7 +4,7 @@ import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 
 import App from './App';
 import { Provider } from 'react-redux';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import store from './Redux/store';
 
 createRoot(document.getElementById('root')).render(
@@ -16,9 +16,9 @@ createRoot(document.getElementById('root')).render(
       }}
     >
       <Provider store={store}>
-        <HashRouter>
+        <BrowserRouter>
           <App />
-        </HashRouter>
+        </BrowserRouter>
       </Provider>
     </PayPalScriptProvider>
   </React.StrictMode>
