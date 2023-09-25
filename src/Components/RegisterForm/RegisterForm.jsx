@@ -52,7 +52,7 @@ async function onSubmit(e) {
         return; 
     }
     axios
-        .post("https://br-service.onrender.com/register", dataRegistro)
+        .post("https://br-service.onrender.com/session/register", dataRegistro)
         .then(() => {
             Swal.fire(
                 'Buen Trabajo!',
