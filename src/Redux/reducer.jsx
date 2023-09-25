@@ -6,6 +6,10 @@ import {
   FILTERED_REPORTS,
   GET_REPORTS_BYID,
   GET_REPORTS_BYNAME,
+  POST_USER_LOGIN,
+  POST_USER_REGISTER,
+  POST_FB_USER_REGISTER,
+  POST_GOOGLE_USER_REGISTER,
 } from "./actions";
 
 const initialState = {
@@ -26,12 +30,12 @@ const reducer = (state = initialState, actions) => {
     case GET_REPORTS_BYID:
       return {
         allReports: actions.payload,
-      }
-    
+      };
+
     case GET_REPORTS_BYNAME:
       return {
         allReports: actions.payload,
-      }
+      };
 
     case REPORTS_ID:
       return {
@@ -47,8 +51,27 @@ const reducer = (state = initialState, actions) => {
       return {
         ...state,
         allReports: actions.payload,
-      }
-    
+      };
+
+    case POST_USER_LOGIN:
+      return {
+        ...state,
+      };
+
+    case POST_USER_REGISTER:
+      return {
+        ...state,
+      };
+
+    case POST_FB_USER_REGISTER:
+      return {
+        ...state,
+      };
+
+    case POST_GOOGLE_USER_REGISTER:
+      return {
+        ...state,
+      };
 
     default:
       return {
