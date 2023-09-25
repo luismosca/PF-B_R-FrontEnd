@@ -1,15 +1,16 @@
 import  { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getFilteredReport } from "../../Redux/actions";
 import style from './Filters.module.css';  
 
 const Filters = () => {
     const dispatch = useDispatch();
-
+    const index = useSelector((state)=> state.index);
     const [filters, setFilters] = useState({
         gender: "",
         age: "",
-        location: ""
+        location: "",
+        page: index
     });
     
     function handleChange(event) {
@@ -74,4 +75,4 @@ const Filters = () => {
 
 };
 
-export default Filters;
+export default Filters;

@@ -1,20 +1,45 @@
-import React, { useEffect, useState } from "react";
-import { getAllReports } from "../../Redux/actions";
-import Cards  from "../Cards/Cards";
+import { useEffect, } from "react";
+import { getAllReports, setIndex } from "../../Redux/actions";
+import Cards from "../Cards/Cards";
 import { useSelector, useDispatch } from "react-redux";
 import { NavBar } from "../NavBar/NavBar";
 import style from "./HomePage.module.css";
 import { SearchBar } from "../SearchBar/SearchBar";
 import Filters from "../Filters/Filters";
+//icons
+import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs"
 
 const Home = () => {
   const dispatch = useDispatch();
   const allReports = useSelector((state) => state.allReports);
+  let index = useSelector((state) => state.index);
+  const total = useSelector((state) => state.totalReports);
+  const limit = Math.ceil(total / 4)
+  const nextLimit = limit - 1
+  // Funciones de paginado
+  const increment = () => {
+    if (index < nextLimit) { // Si no contara desde la pagina 0 sería index < limit + 1
+      dispatch(setIndex(index + 1));
+    } else {
+    dispatch(setIndex(limit - limit + 1));
+    }
+  };
+
+  const decrement = () => {
+    if (index > 0) {
+      dispatch(setIndex(index - 1));
+    } else {
+      dispatch(setIndex(limit - 1))
+    }
+  };
+  // console.log(index, limit);
 
   useEffect(() => {
-    dispatch(getAllReports()); //toda la data de reports
-  }, [dispatch]);
 
+    dispatch(getAllReports(index)); //toda la data de reports
+
+  }, [index, dispatch]);
+  // guardar el index en el redux
   return (
     <>
       <NavBar />
@@ -23,8 +48,17 @@ const Home = () => {
         <h2>la humanidad perdida</h2>
       </div>
       <SearchBar></SearchBar>
-      <Filters/>
+      <Filters page={index} />
       <Cards className={style.container} allReports={allReports} />
+      <div className={style.previous_container}>
+        <button  type="button" name="prev" id="prev" onClick={decrement}>{"<"}</button>
+      </div>
+      <div className={style.next_container}>
+        <button type="button" name="next" id="next" onClick={increment}>{">"}</button>
+      </div>
+      
+
+      
     </>
   );
 };

@@ -13,9 +13,13 @@ body {
   padding-bottom: 20%;
 }
 
+.container{
+  width: fit-content;
+}
+
 .title {
   text-align: center;
-  margin-top: 150px;
+  margin-top: 90px;
   font-size: 24px;
   font-weight: bolder;
 }
@@ -28,4 +32,46 @@ body {
 .title h2 {
   font-size: 36px;
   margin-top: 0;
+}
+
+.previous_container {
+  display: flex;
+  justify-content: center;
+  height: 4.5rem;
+  width: 5rem;
+  border: 1px groove #c5f6639f;
+  margin-right: auto; /* Mueve el contenedor "Prev" hacia la izquierda */
+  position: absolute;
+  left: 5rem;
+  top: 750px;
+  border-radius: 100%;
+}
+
+.next_container {
+  display: flex;
+  justify-content: center;
+  height: 4.5rem;
+  width: 5rem;
+  border: 1px groove #c5f6639f;
+  margin-left: auto; /* Mueve el contenedor "Next" hacia la derecha */
+  position: absolute;
+  right: 5rem;
+  top: 750px;
+  border-radius: 100%;
+}
+
+.previous_container button {
+  background-color: #c5f6639f;
+  color: #1a1a1a;
+  border: none;
+  flex: 1;
+  border-radius: 100%;
+}
+
+.next_container button{
+  background-color: #c5f6639f;
+  color: #1a1a1a;
+  border: none;
+  flex: 1;
+  border-radius: 100%;
 }

@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import logo from '../../assets/B&R.png'
 import { NavBar } from '../NavBar/NavBar';
+import Swal from 'sweetalert2';
 import paises from '../../assets/paises'
 import etnias from '../../assets/etnias'
 // import axios from "axios"; 
@@ -145,9 +146,17 @@ const ReportForm = () => {
         e.preventDefault();
         
         axios
-            .post("https://br-service.onrender.com/reports", dataReport)
+             .post("https://br-service.onrender.com/reports", dataReport)
+
             .then(() => {
                 navigate("/home");
+                Swal.fire({
+                    position: 'top-start',
+                    icon: 'success',
+                    title: 'Your report was submited',
+                    showConfirmButton: false,
+                    timer: 3000
+                  })
             })
             .catch((err) => {
                 console.log(err.message);

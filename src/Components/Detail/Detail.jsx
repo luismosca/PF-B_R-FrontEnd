@@ -1,15 +1,19 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch,  } from "react-redux";
+import { useSelector, useDispatch, } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import style from "./Detail.module.css";
 import { getReportDetail } from "../../Redux/actions";
+import Comments from "./Comments";
 import logo from '../../assets/B&R.png'
 
 const ReportDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const reportDetail = useSelector((state) => state.reportDetail);
+  let comentarios = reportDetail?.Comments
+  // let usuario = reportDetail.Users[0].name_surName
 
+  // console.log(usuario);
   // const isHorizontalImage =
   //   reportDetail &&
   //   reportDetail.imagen &&
@@ -18,6 +22,8 @@ const ReportDetail = () => {
   useEffect(() => {
     dispatch(getReportDetail(id));
   }, [id, dispatch]);
+
+
 
   return (
     <div className={style.detailContainer}>
@@ -87,11 +93,26 @@ const ReportDetail = () => {
           </div>
           
         </div>
+
       ) : (
-        <div>          
+        <div>
           <h1>LOADING...</h1>
         </div>
       )}
+      <div style={{ marginTop: "1.5rem" }}>
+        <h2>Comments Section:</h2>
+      </div>
+      <div>
+        {comentarios?.map((coment, index) => (
+          <div key={index}>
+            {/* <label>{usuario}: </label> */}
+            <span>{coment.comment}</span>
+          </div>
+        ))}
+      </div>
+      <div>
+        <Comments ReportId={id} />
+      </div>
     </div>
   );
 };

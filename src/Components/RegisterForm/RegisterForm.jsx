@@ -63,7 +63,7 @@ async function onSubmit(e) {
         })
         .catch((err) => {
             
-        console.log("Hubo un problema al guardar el registro");
+        console.log("Hubo un problema al guardar el registro", err);
         });
 }
 
