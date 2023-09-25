@@ -146,7 +146,8 @@ const ReportForm = () => {
         e.preventDefault();
         
         axios
-            .post("http://localhost:3001/reports", dataReport) //
+             .post("https://br-service.onrender.com/reports", dataReport)
+
             .then(() => {
                 navigate("/home");
                 Swal.fire({
