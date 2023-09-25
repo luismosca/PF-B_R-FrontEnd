@@ -41,7 +41,7 @@ const Comments = (id) => {
         e.preventDefault();
 
         axios
-            .post("http://localhost:3001/comments", comment) //
+            .post("https://br-service.onrender.com/comments", comment) //
             .then(() => {
                 Swal.fire({
                     position: 'top-end',
