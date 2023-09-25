@@ -32,7 +32,7 @@ const Home = () => {
       dispatch(setIndex(limit - 1))
     }
   };
-  console.log(index, limit);
+  // console.log(index, limit);
 
   useEffect(() => {
 
