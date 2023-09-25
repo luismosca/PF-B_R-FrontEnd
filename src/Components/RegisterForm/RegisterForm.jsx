@@ -34,8 +34,8 @@ const RegisterForm = () => {
   //------------------Estado Data------------------------
   const [dataRegistro, setDataRegistro] = useState({
     name_surName: "",
-    image: "",
     email: "",
+    image: "",
     password: "",
     // confirmPassword: ""
   });
@@ -118,7 +118,7 @@ const RegisterForm = () => {
       </div>
 
       <div className={style.registerContainer}>
-        <form onSubmit={onSubmit}>
+        <form onSubmit={(e) => onSubmit(e)}>
           <div>
             <h1 className={style.h1register}>Regístrate a la plataforma B&R</h1>
           </div>
@@ -234,7 +234,7 @@ const RegisterForm = () => {
 
           <br />
           <div>
-            <Link to="/home" className={style.contenedorBoton}>
+            <Link to="/login" className={style.contenedorBoton}>
               <button type="submit" className={style.submitbutton}>
                 Registrate
               </button>

@@ -64,7 +64,7 @@ const LoginForm = () => {
           </a>
         </div>
 
-        <form onSubmit={onSubmit}>
+        <form onSubmit={(e) => onSubmit(e)}>
           <div>
             <h1 className={style.h1Login}>Inicia sesión para ver tu perfil</h1>
           </div>
