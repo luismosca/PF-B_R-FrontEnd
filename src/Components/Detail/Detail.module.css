@@ -125,3 +125,11 @@
     margin-bottom: 20px;
     
 }
+
+.comentarios {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin: 0 auto; 
+    width: 50%; 
+}

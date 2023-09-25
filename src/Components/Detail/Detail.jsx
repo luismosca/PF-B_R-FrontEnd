@@ -99,9 +99,17 @@ const ReportDetail = () => {
           <h1>LOADING...</h1>
         </div>
       )}
-      <div style={{ marginTop: "1.5rem" }}>
+      {/* <div style={{ marginTop: "1.5rem" }}>
         <h2>Comments Section:</h2>
+      </div> */}
+      <br />
+      
+      <div className={style.comentarios}>
+        <Comments ReportId={id} />
       </div>
+
+      <hr />
+      {/* //!comentarios renderizados */}
       <div>
         {comentarios?.map((coment, index) => (
           <div key={index}>
@@ -109,9 +117,6 @@ const ReportDetail = () => {
             <span>{coment.comment}</span>
           </div>
         ))}
-      </div>
-      <div>
-        <Comments ReportId={id} />
       </div>
     </div>
   );
