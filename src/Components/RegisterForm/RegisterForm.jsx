@@ -8,6 +8,8 @@ import { NavBar } from "../NavBar/NavBar";
 // import { useState, useEffect} from "react";
 //*----------------------------------------------------
 // import { validations } from "./validations"
+import Swal from 'sweetalert2'
+// const Swal = require('sweetalert2')
 
 // ! condicionar formulario
 
@@ -22,12 +24,13 @@ const RegisterForm = () => {
         image:"",
         email: "",
         password:"",  
-        // confirmPassword: ""
+        confirmPassword: ""
     })
 
     function onInputChange(e) {
         e.preventDefault();
 
+        
         setDataRegistro({
             ...dataRegistro,
             [e.target.name]: e.target.value,
@@ -38,10 +41,24 @@ const RegisterForm = () => {
 //-------------------------------------------------
 async function onSubmit(e) {
     e.preventDefault();
-    
+    if (dataRegistro.password !== dataRegistro.confirmPassword) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Las contraseñas no coinciden!',
+            
+        })
+        // alert("Las contraseñas deben coincidir");
+        return; 
+    }
     axios
         .post("http://localhost:3001/session/register", dataRegistro)
         .then(() => {
+            Swal.fire(
+                'Buen Trabajo!',
+                'Te registraste exitosamente!',
+                'success'
+            )
             navigate("/login");
         })
         .catch((err) => {
@@ -206,7 +223,7 @@ async function onSubmit(e) {
                     </div>
 
                     {/* //* pendiente en segundo semana */}
-                    {/* <div className={style.formfield}>
+                    <div className={style.formfield}>
                         <label>Confirmar Contraseña</label>
                         
                         <input
@@ -219,7 +236,7 @@ async function onSubmit(e) {
                             required
                         />            
                         
-                    </div> */}
+                    </div>
 
                     
 

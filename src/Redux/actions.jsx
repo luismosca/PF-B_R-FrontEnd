@@ -20,7 +20,7 @@ export const setIndex = (num) => {
 }
 
 export const getAllReports = (page) => {
-  const endpoint = `http://localhost:3001/reports/?page=${page}`;
+  const endpoint = `https://br-service.onrender.com/reports/?page=${page}`;
   return async (dispatch) => {
     try {
       const { data } = await axios(endpoint);
@@ -38,10 +38,10 @@ export const getAllReports = (page) => {
 };
 
 export const getReportDetail = (id) => {
-  const endpoint = `http://localhost:3001/reports/${id}`;
+  const endpoint = `https://br-service.onrender.com/reports/${id}`;
   return async (dispatch) => {
     try {
-      const { data } = await axios(endpoint)
+      const { data } = await axios(endpoint);
       console.log(data);
       return dispatch({
         type: REPORTS_ID,
@@ -55,11 +55,11 @@ export const getReportDetail = (id) => {
 
 export const createReport = (report) => {
   console.log(report);
-  const endpoint = "http://localhost:3001/reports";
+  const endpoint = 'https://br-service.onrender.com/reports';
   return async (dispatch) => {
     try {
       const { data } = await axios.post(endpoint, report);
-      console.log("El reporte fue creado exitosamente");
+      console.log('El reporte fue creado exitosamente');
       return dispatch({
         type: CREATE_REPORT,
         payload: await data,
@@ -70,13 +70,11 @@ export const createReport = (report) => {
   };
 };
 
-
-
 export const getFilteredReport = (filters) => {
   const { gender, age, location, page } = filters
   return async function (dispatch) {
     try {
-      const response = await axios.get(`http://localhost:3001/reports/?page=${page}&location=${location}&gender=${gender}&age=${age}`)
+      const response = await axios.get(`https://br-service.onrender.com/reports/?page=${page}&location=${location}&gender=${gender}&age=${age}`)
       const reports = response.data.reports
       const total = response.data.total;
       dispatch({
@@ -86,26 +84,30 @@ export const getFilteredReport = (filters) => {
     } catch (error) {
       console.log(`Not reports found`);
     }
-  }
-}
+  };
+};
 
 export const onSearch = (value) => {
-  const guion = "-"
+  const guion = '-';
   return async function (dispatch) {
     try {
       if (value.includes(guion)) {
-        const reportId = await axios.get(`http://localhost:3001/reports/${value}`);
+        const reportId = await axios.get(
+          `https://br-service.onrender.com/reports/${value}`
+        );
         dispatch({
           type: GET_REPORTS_BYID,
           payload: [reportId.data],
-        })
+        });
         console.log(reportId.data);
       } else {
-        const response = await axios.get(`http://localhost:3001/reports/?name=${value}`);
+        const response = await axios.get(
+          `https://br-service.onrender.com/reports/?name=${value}`
+        );
         dispatch({
           type: GET_REPORTS_BYNAME,
           payload: response.data.reports,
-        })
+        });
       }
     } catch (error) {
       Swal.fire({
@@ -116,6 +118,5 @@ export const onSearch = (value) => {
       })
       // alert(`Not reports found with value: ${value}` , error);
     }
-  }
-
-}
+  };
+};
