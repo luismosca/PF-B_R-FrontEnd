@@ -15,7 +15,7 @@ const NavBar = () => {
           <Link to="/ByR">Acerca de B&R</Link>
         </li>
         <li>
-          <Link to="/donations">¡Únete a la causa!</Link>
+          <Link to="/donacion">¡Únete a la causa!</Link>
         </li>
       </ul>
     </nav>
