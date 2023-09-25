@@ -7,7 +7,11 @@ import { NavBar } from "../NavBar/NavBar";
 import { useDispatch } from "react-redux";
 import Google from "../../assets/google.png";
 import Facebook from "../../assets/facebook.png";
-import {postRegisterGoogleUser, postRegisterFacebookUser} from "../../Redux/actions";
+import {
+  postRegisterGoogleUser,
+  postRegisterFacebookUser,
+  postRegisterUser,
+} from "../../Redux/actions";
 // import axios from "axios";
 // import { useState, useEffect} from "react";
 //*----------------------------------------------------
@@ -21,11 +25,11 @@ const RegisterForm = () => {
 
   const googleHandler = () => {
     dispatch(postRegisterGoogleUser());
-  }
+  };
 
   const facebookHandler = () => {
     dispatch(postRegisterFacebookUser());
-  }
+  };
 
   //------------------Estado Data------------------------
   const [dataRegistro, setDataRegistro] = useState({
@@ -47,18 +51,16 @@ const RegisterForm = () => {
     // console.log(dataRegistro);
   }
   //-------------------------------------------------
-  async function onSubmit(e) {
+    const onSubmit = async (e) => {
     e.preventDefault();
-
-    axios
-      .post("http://localhost:3001/session/register", dataRegistro)
-      .then(() => {
-        navigate("/login");
-      })
-      .catch((err) => {
-        console.log("Hubo un problema al guardar el registro");
-      });
-  }
+    try {
+      dispatch(postRegisterUser(dataRegistro));
+      navigate("/login");
+    } catch (error) {
+      console.log(err.message);
+      console.log("Hubo un problema al guardar el registro");
+    }
+  };
 
   //---------------claoudinary Foto----------------
   const [urlImage, setUrlImage] = useState("");
@@ -127,20 +129,20 @@ const RegisterForm = () => {
               <Link className={style.linkRegister} to="/Login">
                 Inicia sesión
               </Link>
-            </div>        
+            </div>
           </div>
 
-        <div className={style.buttonsContainer}>
-          <div className={style.loginButtonGoogle} onClick={googleHandler}>
-            <img src={Google} alt="" className={style.icon} />
-            Google
+          <div className={style.buttonsContainer}>
+            <div className={style.loginButtonGoogle} onClick={googleHandler}>
+              <img src={Google} alt="" className={style.icon} />
+              Google
+            </div>
+            <div className={style.loginButtonFb} onClick={facebookHandler}>
+              <img src={Facebook} alt="" className={style.icon} />
+              Facebook
+            </div>
           </div>
-          <div className={style.loginButtonFb} onClick={facebookHandler}>
-            <img src={Facebook} alt="" className={style.icon} />
-            Facebook
-          </div>          
-        </div>
-        
+
           <div className={style.formfield}>
             <label className={style.labelRegister}>Nombre y Apellido</label>
 

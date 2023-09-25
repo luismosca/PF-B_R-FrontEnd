@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import logo from "../../assets/B&R.png";
 import { NavBar } from "../NavBar/NavBar";
+import { useDispatch } from "react-redux";
+import { postLoginUser } from "../../Redux/actions";
 
 // ! condicionar formulario
 
@@ -11,6 +13,7 @@ import { NavBar } from "../NavBar/NavBar";
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [dataLogin, setDataLogin] = useState({
     email: "",
@@ -31,16 +34,13 @@ const LoginForm = () => {
   //-------------------------------------------------
   async function onSubmit(e) {
     e.preventDefault();
-
-    axios
-      .post("http://localhost:3001/session/login", dataLogin)
-      .then(() => {
-        navigate("/home");
-      })
-      .catch((err) => {
-        console.log(err.message);
-        console.log("Hubo un problema al iniciar seccion");
-      });
+    try {
+      dispatch(postLoginUser(dataLogin));
+      navigate("/home");
+    } catch (error) {
+      console.log(err.message);
+      console.log("Hubo un problema al iniciar seccion");
+    }
   }
 
   //----------------------------------------------------------------

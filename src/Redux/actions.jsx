@@ -144,7 +144,6 @@ export const postRegisterFacebookUser = () => {
   return async (dispatch) => {
     try {
       const { data } = window.open(endpoint, "_self");
-      console.log(data);
       return dispatch({
         type: POST_FB_USER_REGISTER,
         payload: data,
@@ -160,7 +159,6 @@ export const postRegisterGoogleUser = () => {
   return async (dispatch) => {
     try {
       const { data } = window.open(endpoint, "_self");
-      console.log(data);
       return dispatch({
         type: POST_GOOGLE_USER_REGISTER,
         payload: data,

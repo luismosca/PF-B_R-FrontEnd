@@ -16,6 +16,12 @@ const initialState = {
   allReports: [],
   reportsCopy: [],
   reportDetail: [],
+  usersLogin: [],
+  usersRegister: [],
+  usersRegisterFb: [],
+  usersRegisterGoogle: [],
+  usersLoginFb: [],
+  usersLoginGoogle: [],
 };
 
 const reducer = (state = initialState, actions) => {
