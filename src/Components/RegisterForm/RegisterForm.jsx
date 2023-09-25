@@ -10,12 +10,13 @@ import Facebook from "../../assets/facebook.png";
 import {
   postRegisterGoogleUser,
   postRegisterFacebookUser,
-  postRegisterUser,
 } from "../../Redux/actions";
 // import axios from "axios";
 // import { useState, useEffect} from "react";
 //*----------------------------------------------------
 // import { validations } from "./validations"
+import Swal from "sweetalert2";
+// const Swal = require('sweetalert2')
 
 // ! condicionar formulario
 
@@ -34,10 +35,10 @@ const RegisterForm = () => {
   //------------------Estado Data------------------------
   const [dataRegistro, setDataRegistro] = useState({
     name_surName: "",
-    email: "",
     image: "",
+    email: "",
     password: "",
-    // confirmPassword: ""
+    confirmPassword: "",
   });
 
   function onInputChange(e) {
@@ -51,16 +52,27 @@ const RegisterForm = () => {
     // console.log(dataRegistro);
   }
   //-------------------------------------------------
-    const onSubmit = async (e) => {
+  async function onSubmit(e) {
     e.preventDefault();
-    try {
-      dispatch(postRegisterUser(dataRegistro));
-      navigate("/login");
-    } catch (error) {
-      console.log(err.message);
-      console.log("Hubo un problema al guardar el registro");
+    if (dataRegistro.password !== dataRegistro.confirmPassword) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Las contraseñas no coinciden!",
+      });
+      // alert("Las contraseñas deben coincidir");
+      return;
     }
-  };
+    axios
+      .post("https://br-service.onrender.com/session/register", dataRegistro)
+      .then(() => {
+        Swal.fire("Buen Trabajo!", "Te registraste exitosamente!", "success");
+        navigate("/login");
+      })
+      .catch((err) => {
+        console.log("Hubo un problema al guardar el registro", err);
+      });
+  }
 
   //---------------claoudinary Foto----------------
   const [urlImage, setUrlImage] = useState("");
@@ -118,7 +130,7 @@ const RegisterForm = () => {
       </div>
 
       <div className={style.registerContainer}>
-        <form onSubmit={(e) => onSubmit(e)}>
+        <form onSubmit={onSubmit}>
           <div>
             <h1 className={style.h1register}>Regístrate a la plataforma B&R</h1>
           </div>
@@ -126,6 +138,9 @@ const RegisterForm = () => {
           <div className={style.inlineFields}>
             <div>
               <h4 className={style.h4register}>¿Ya tienes una cuenta?</h4>
+            </div>
+
+            <div>
               <Link className={style.linkRegister} to="/Login">
                 Inicia sesión
               </Link>
@@ -142,7 +157,6 @@ const RegisterForm = () => {
               Facebook
             </div>
           </div>
-
           <div className={style.formfield}>
             <label className={style.labelRegister}>Nombre y Apellido</label>
 
@@ -217,28 +231,25 @@ const RegisterForm = () => {
           </div>
 
           {/* //* pendiente en segundo semana */}
-          {/* <div className={style.formfield}>
-                        <label>Confirmar Contraseña</label>
-                        
-                        <input
-                            className={style.input}
-                            onChange={onInputChange}
-                            name="confirmPassword"
-                            type="password"
-                            value={dataRegistro.confirmPassword}
-                            placeholder= "Escriba su contraseña"
-                            required
-                        />            
-                        
-                    </div> */}
+          <div className={style.formfield}>
+            <label>Confirmar Contraseña</label>
+
+            <input
+              className={style.input}
+              onChange={onInputChange}
+              name="confirmPassword"
+              type="password"
+              value={dataRegistro.confirmPassword}
+              placeholder="Escriba su contraseña"
+              required
+            />
+          </div>
 
           <br />
-          <div>
-            <Link to="/login" className={style.contenedorBoton}>
-              <button type="submit" className={style.submitbutton}>
-                Registrate
-              </button>
-            </Link>
+          <div className={style.contenedorBoton}>
+            <button type="submit" className={style.submitbutton}>
+              Registrate
+            </button>
           </div>
 
           {/* <div>
