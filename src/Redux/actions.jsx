@@ -9,6 +9,10 @@ export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const FILTERED_REPORTS = "FILTERED_REPORTS";
 export const GET_REPORTS_BYID = "REPORTS_BYID";
 export const GET_REPORTS_BYNAME = "REPORTS_BYNAME";
+export const POST_USER_LOGIN = "POST_USER_LOGIN";
+export const POST_USER_REGISTER = "POST_USER_REGISTER";
+export const POST_FB_USER_REGISTER = "POST_FB_USER_REGISTER";
+export const POST_GOOGLE_USER_REGISTER = "POST_GOOGLE_USER_REGISTER";
 
 export const setIndex = (num) => {
   return async (dispatch) => {
@@ -120,3 +124,65 @@ export const onSearch = (value) => {
     }
   };
 };
+
+export const postLoginUser = (login) => {
+  const endpoint = "https://br-service.onrender.com/session/login";
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post(endpoint, login);
+      console.log(data);
+      return dispatch({
+        type: POST_USER_LOGIN,
+        payload: data,
+      });
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+}
+
+export const postRegisterUser = (register) => {
+  const endpoint = "https://br-service.onrender.com/session/register";
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post(endpoint, register);
+      console.log(data);
+      return dispatch({
+        type: POST_USER_REGISTER,
+        payload: data,
+      });
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+}
+
+export const postRegisterFacebookUser = () => {
+  const endpoint = "https://br-service.onrender.com/auth/facebook";
+  return async (dispatch) => {
+    try {
+      const { data } = window.open(endpoint, "_self");
+      return dispatch({
+        type: POST_FB_USER_REGISTER,
+        payload: data,
+      });
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+}
+
+export const postRegisterGoogleUser = () => {
+  const endpoint = "https://br-service.onrender.com/auth/google";
+  return async (dispatch) => {
+    try {
+      const { data } = window.open(endpoint, "_self");
+      return dispatch({
+        type: POST_GOOGLE_USER_REGISTER,
+        payload: data,
+      });
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+}
