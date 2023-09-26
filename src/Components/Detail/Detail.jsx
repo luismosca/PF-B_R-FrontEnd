@@ -32,7 +32,7 @@ const ReportDetail = () => {
               <img src={logo} alt="Logo" className={style.logo} />
           </a>
       </div>
-      {Object.keys(reportDetail).length ? (
+      {reportDetail ? (
         <div className={style.detail}>
           {/* <Link to="/home">
             <button className={style.button}>Go Back to Home</button>
