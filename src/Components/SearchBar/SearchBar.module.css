@@ -1,0 +1,34 @@
+
+  .searchBar {
+  display: flex;
+  justify-content: center; 
+  margin-top: 20px;
+
+  }
+
+  
+  .searchBar input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    margin: 5px 0;
+    border-radius: 80px;
+    margin-right: 10px;
+    font-size: 14px;
+    width: 30% !important;  /* Se puso el important para que tomara como prioridad este valor y no el del input de los forms, pero no afectará ya a los forms */
+}
+  
+  .buttonsearchbar {
+    padding: 8px 12px;
+    background-color: #FAFAFA;
+    color: #343434;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+
+  button:hover {
+    background-color: #c5f663;
+    color: #F2F2F2
+  }
+  
