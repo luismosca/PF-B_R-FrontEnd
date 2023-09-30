@@ -10,9 +10,9 @@ const ReportDetail = () => {
   const dispatch = useDispatch();
   const reportDetail = useSelector((state) => state.reportDetail);
   let comentarios = reportDetail?.Comments
-  let usuario = reportDetail.Users[0].name_surName
+  // let usuario = reportDetail.Users[0].name_surName
 
-  console.log(usuario);
+  // console.log(usuario);
   // const isHorizontalImage =
   //   reportDetail &&
   //   reportDetail.imagen &&
@@ -26,7 +26,7 @@ const ReportDetail = () => {
 
   return (
     <div className={style.contenedor}>
-      {Object.keys(reportDetail).length ? (
+      {reportDetail? (
         <div className={style.detail}>
           <Link to="/home">
             <button className={style.button}>Go Back to Home</button>
@@ -55,7 +55,7 @@ const ReportDetail = () => {
           <p>{`Location: ${reportDetail.location}`}</p>
           <p>{`Reporte policial: ${reportDetail.court_order}`}</p>
           <p>{`Description: ${reportDetail.description}`}</p>
-          <p>{`Creado en: ${reportDetail.createdAt.split("T")[0]}`}</p>
+          {/* <p>{`Creado en: ${reportDetail.createdAt.split("T")[0]}`}</p> */}
         </div>
 
       ) : (
@@ -63,18 +63,19 @@ const ReportDetail = () => {
           <h1>LOADING...</h1>
         </div>
       )}
-      <div style={{ marginTop: "1.5rem" }}>
+      <div style={{ margin: "0.5rem" }}>
         <h2>Comments Section:</h2>
       </div>
       <div>
         {comentarios?.map((coment, index) => (
-          <div key={index}>
-            <label>{usuario}: </label>
+          <div key={index} style={{border: "1px groove black", width: "600px", height: "auto", borderRadius: "4px", margin: "10px"}}>
+            <label >{}</label>
             <span>{coment.comment}</span>
+            {/* <span>{coment.comment.state === true ? coment.coment : null}</span> */}
           </div>
         ))}
       </div>
-      <div>
+      <div style={{margin:"10rem"}}>
         <Comments ReportId={id} />
       </div>
     </div>
