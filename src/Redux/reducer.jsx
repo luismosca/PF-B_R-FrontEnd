@@ -6,6 +6,10 @@ import {
   GET_REPORTS_BYID,
   GET_REPORTS_BYNAME,
   SET_INDEX,
+  POST_FB_USER_REGISTER,
+  POST_GOOGLE_USER_REGISTER,
+  POST_USER_LOGIN,
+  POST_USER_REGISTER,
 } from "./actions";
 
 const initialState = {
@@ -13,9 +17,9 @@ const initialState = {
   reportsCopy: [],
   reportDetail: [],
   totalReports: 0,
-  index: 1
+  index: 1,
 };
-console.log( initialState.allReports);
+console.log(initialState.allReports);
 
 const reducer = (state = initialState, actions) => {
   switch (actions.type) {
@@ -26,22 +30,22 @@ const reducer = (state = initialState, actions) => {
         reportsCopy: actions.payload.reports,
         totalReports: actions.payload.total,
       };
-    
+
     case SET_INDEX:
       return {
         ...state,
         index: actions.payload,
-      }
+      };
 
     case GET_REPORTS_BYID:
       return {
         allReports: actions.payload,
-      }
-    
+      };
+
     case GET_REPORTS_BYNAME:
       return {
         allReports: actions.payload,
-      }
+      };
 
     case REPORTS_ID:
       return {
@@ -58,8 +62,26 @@ const reducer = (state = initialState, actions) => {
         ...state,
         allReports: actions.payload.reports,
         totalReports: actions.payload.total,
-      }
-    
+      };
+    case POST_USER_LOGIN:
+      return {
+        ...state,
+      };
+
+    case POST_USER_REGISTER:
+      return {
+        ...state,
+      };
+
+    case POST_FB_USER_REGISTER:
+      return {
+        ...state,
+      };
+
+    case POST_GOOGLE_USER_REGISTER:
+      return {
+        ...state,
+      };
 
     default:
       return {
