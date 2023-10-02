@@ -101,7 +101,7 @@ const ReportDetail = () => {
       )}
       <div style={{ margin: "0.5rem" }}>
         <h2>Comments Section:</h2>
-      </div> */}
+      </div> 
       <br />
       
       <div className={style.comentarios}>
