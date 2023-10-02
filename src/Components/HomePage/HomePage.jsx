@@ -15,10 +15,10 @@ const Home = () => {
   let index = useSelector((state) => state.index);
   const total = useSelector((state) => state.totalReports);
   const limit = Math.ceil(total / 4)
-  const nextLimit = limit - 1
-  // Funciones de paginado
+  const nextLimit = limit // limit + 1
+  // Funciones de paginado//////
   const increment = () => {
-    if (index < nextLimit) { // Si no contara desde la pagina 0 sería index < limit + 1
+    if (index < nextLimit) { // Si no contara desde la pagina 1 sería index < limit - 1
       dispatch(setIndex(index + 1));
     } else {
     dispatch(setIndex(limit - limit + 1));
@@ -26,14 +26,14 @@ const Home = () => {
   };
 
   const decrement = () => {
-    if (index > 0) {
-      dispatch(setIndex(index - 1));
+    if (index < 2) {
+      dispatch(setIndex(limit))
     } else {
-      dispatch(setIndex(limit - 1))
+      dispatch(setIndex(index - 1));
     }
   };
-  // console.log(index, limit);
-
+  console.log(index, limit);
+///////////////////////////////
   useEffect(() => {
 
     dispatch(getAllReports(index)); //toda la data de reports

@@ -21,6 +21,9 @@ const NavBar = () => {
           <li>
             <Link to="/donacion">¡Únete a la causa!</Link>
           </li>
+        <li>
+          <Link to="/admin">Panel Administrador</Link>
+        </li>
           <li>
             <Link to="/home" onClick={handleLogOut}>Cerrar Sesión</Link>
           </li>
