@@ -1,30 +1,30 @@
 .navBar {
-    position: relative;
-    top: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    background-color: transparent;
-  }
+  position: relative;
+  top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
 
 .navBar ul {
-list-style: none;
-display: flex;
-gap: 20px;
-margin: 0;
-padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
 }
 
 .navBar ul li a {
-display: inline-block;
-padding: 10px 20px;
-background-color: #F2F2F2 ;
-color: rgb(58, 58, 58);
-border-radius: 20px; 
-text-decoration: none;
-transition: background-color 0.3s ease-in-out;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f2f2f2;
+  color: rgb(58, 58, 58);
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .navBar ul li a:hover {
-background-color: #c5f663; 
+  background-color: #c5f663;
 }
