@@ -1,18 +1,18 @@
 import axios from "axios";
 
-const setToken = (token) => {
+export const setToken = (token) => {
   localStorage.setItem("token", token);
 };
 
-const getToken = () => {
+export const getToken = () => {
   return localStorage.getItem("token");
 };
 
-const deleteToken = () => {
+export const deleteToken = () => {
   localStorage.removeItem("token");
 };
 
-const initAxiosInterceptors = () => {
+export const initAxiosInterceptors = () => {
   axios.interceptors.request.use(() => {
     const token = getToken();
 
@@ -34,11 +34,4 @@ const initAxiosInterceptors = () => {
       return Promise.reject(error);
     }
   );
-};
-
-module.exports = {
-  setToken,
-  getToken,
-  deleteToken,
-  initAxiosInterceptors,
 };
