@@ -24,7 +24,7 @@ export const setIndex = (num) => {
 }
 
 export const getAllReports = (page) => {
-  const endpoint = `http://localhost:3001/reports/?page=${page}`;
+  const endpoint = `https://br-service.onrender.com/reports/?page=${page}`;
   return async (dispatch) => {
     try {
       const { data } = await axios(endpoint);
@@ -42,7 +42,7 @@ export const getAllReports = (page) => {
 };
 
 export const getReportDetail = (id) => {
-  const endpoint = `http://localhost:3001/reports/${id}`;
+  const endpoint = `https://br-service.onrender.com/reports/${id}`;
   return async (dispatch) => {
     try {
       const { data } = await axios(endpoint);
@@ -59,7 +59,7 @@ export const getReportDetail = (id) => {
 
 export const createReport = (report) => {
   console.log(report);
-  const endpoint = 'http://localhost:3001/reports';
+  const endpoint = 'https://br-service.onrender.com/reports';
   return async (dispatch) => {
     try {
       const { data } = await axios.post(endpoint, report);
@@ -78,7 +78,7 @@ export const getFilteredReport = (filters) => {
   const { gender, age, location, page } = filters
   return async function (dispatch) {
     try {
-      const response = await axios.get(`http://localhost:3001/reports/?page=${page}&location=${location}&gender=${gender}&age=${age}`)
+      const response = await axios.get(`https://br-service.onrender.com/reports/?page=${page}&location=${location}&gender=${gender}&age=${age}`)
       const reports = response.data.reports
       const total = response.data.total;
       dispatch({
@@ -97,7 +97,7 @@ export const onSearch = (value) => {
     try {
       if (value.includes(guion)) {
         const reportId = await axios.get(
-          `http://localhost:3001/reports/${value}`
+          `https://br-service.onrender.com/reports/${value}`
         );
         dispatch({
           type: GET_REPORTS_BYID,
@@ -106,7 +106,7 @@ export const onSearch = (value) => {
         console.log(reportId.data);
       } else {
         const response = await axios.get(
-          `http://localhost:3001/reports/?name=${value}`
+          `https://br-service.onrender.com/reports/?name=${value}`
         );
         dispatch({
           type: GET_REPORTS_BYNAME,
@@ -126,7 +126,7 @@ export const onSearch = (value) => {
 };
 
 export const postLoginUser = (login) => {
-  const endpoint = "http://localhost:3001/session/login";
+  const endpoint = "https://br-service.onrender.com/session/login";
   return async (dispatch) => {
     try {
       const { data } = await axios.post(endpoint, login);
@@ -142,7 +142,7 @@ export const postLoginUser = (login) => {
 }
 
 export const postRegisterUser = (register) => {
-  const endpoint = "http://localhost:3001/session/register";
+  const endpoint = "https://br-service.onrender.com/session/register";
   return async (dispatch) => {
     try {
       const { data } = await axios.post(endpoint, register);
@@ -158,7 +158,7 @@ export const postRegisterUser = (register) => {
 }
 
 export const postRegisterFacebookUser = () => {
-  const endpoint = "http://localhost:3001/auth/facebook";
+  const endpoint = "https://br-service.onrender.com/auth/facebook";
   return async (dispatch) => {
     try {
       const { data } = window.open(endpoint, "_self");
@@ -173,7 +173,7 @@ export const postRegisterFacebookUser = () => {
 }
 
 export const postRegisterGoogleUser = () => {
-  const endpoint = "http://localhost:3001/auth/google";
+  const endpoint = "https://br-service.onrender.com/auth/google";
   return async (dispatch) => {
     try {
       const { data } = window.open(endpoint, "_self");
