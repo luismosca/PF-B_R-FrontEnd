@@ -1,16 +1,28 @@
 import React from 'react';
 import { PayPalButtons } from '@paypal/react-paypal-js';
-
-// import axios from "axios";
 import style from './Donations.module.css';
-// import { Link, useNavigate } from "react-router-dom";
-// import { useState } from "react";
 import logo from '../../assets/B&R.png';
 import { NavBar } from '../NavBar/NavBar';
+import Swal from "sweetalert2";
+import axios from "axios";
+import { useState } from "react";
 
 //*----------------------------------------------------
 
+const notificacion = ()=>{
+  Swal.fire({
+    // position: 'top-end',
+    icon: 'success',
+    title: 'GRACIAS POR SU DONACION',
+    showConfirmButton: false,
+    timer: 3000
+  })
+} 
+
 const Donations = (props) => {
+
+  const [dataDonation, setDataDonation] = useState("")
+
   return (
     <div className={style.divDonation}>
       <div>
@@ -50,7 +62,22 @@ const Donations = (props) => {
             }}
             onApprove={async (data, actions) => {
               const order = await actions.order?.capture();
-              console.log('order', order);
+              setDataDonation(order)
+              if (order) {
+                notificacion()
+                //dataregistro
+                //* order.payer.email_address
+                axios
+                  .post("http://localhost:3001/donations/sendEmail", {"userEmail": "hadavidg@gmail.com"}) 
+              }
+              axios.post("http://localhost:3001/donations",
+              {
+                "idUser": "",
+                "email": order.payer.email_address,
+                "value": order.purchase_units[0].amount.value                
+              })
+              // console.log('Valor', order.purchase_units[0].amount.value);
+              // order.purchase_units.amount.value
             }}
           />
         </div>
@@ -83,11 +110,28 @@ const Donations = (props) => {
             //capturamos la info de la transaccio
             onApprove={async (data, actions) => {
               const order = await actions.order?.capture();
-              console.log('order', order);
+              setDataDonation(order)
+              if (order) {
+                
+                notificacion()
+                //dataregistro
+                //* order.payer.email_address
+                axios
+                  .post("http://localhost:3001/donations/sendEmail", {"userEmail": "hadavidg@gmail.com"}) 
+                  
+              }
+              axios.post("http://localhost:3001/donations",
+              {
+                "idUser": "",
+                "email": order.payer.email_address,
+                "value": order.purchase_units[0].amount.value                
+              })
+              // console.log('Donacions', dataDonation, 'Donacions' ,order);
             }}
           />
         </div>
       </div>
+      {console.log("estado Donacion",dataDonation)}
     </div>
   );
 };

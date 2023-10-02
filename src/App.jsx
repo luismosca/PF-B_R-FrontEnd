@@ -10,6 +10,8 @@ import Cards from './Components/Cards/Cards';
 import Profile from './Components/Profile/Profile';
 import About from "./Components/About/About"
 import Donations from './Components/Donations/Donations';
+import TableDonation from './Components/Donationstable/Table';
+
 
 function App() {
   return (
@@ -25,6 +27,7 @@ function App() {
         <Route path='/profile' element={<Profile />} />       
         <Route path='/ByR' element={<About/>} />       
         <Route path='/donacion' element={<Donations totalValue={"4.99"} invoice={"taza de Cafe"}/>} />       
+        <Route path='/tabla' element={<TableDonation />} />       
         
         
       </Routes>
