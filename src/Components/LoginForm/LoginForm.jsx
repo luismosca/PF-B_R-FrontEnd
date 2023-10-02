@@ -1,44 +1,50 @@
-import axios from "axios";
-import style from "./LoginForm.module.css";
-import { Link, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import logo from "../../assets/B&R.png";
-import { NavBar } from "../NavBar/NavBar";
-import Google from "../../assets/google.png";
-import Facebook from "../../assets/facebook.png";
+import axios from 'axios';
+import style from './LoginForm.module.css';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import logo from '../../assets/B&R.png';
+import { NavBar } from '../NavBar/NavBar';
+import Google from '../../assets/google.png';
+import Facebook from '../../assets/facebook.png';
 import {
   postRegisterGoogleUser,
   postRegisterFacebookUser,
-} from "../../Redux/actions";
+} from '../../Redux/actions';
 
-import {getToken, setToken, initAxiosInterceptors} from "../../auth-helpers/auth-helpers"
+import {
+  getToken,
+  setToken,
+  initAxiosInterceptors,
+} from '../../auth-helpers/auth-helpers';
 
 //*----------------------------------------------------
-initAxiosInterceptors();
+//initAxiosInterceptors();
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
 
   const [usuario, setUsuario] = useState(null);
   const [cargandoUsuario, setCargandoUsuario] = useState(true);
 
   useEffect(() => {
     const cargarUsuario = async () => {
-      if(!getToken()){
+      if (!getToken()) {
         setCargandoUsuario(false);
         return;
       }
       try {
-        const { token } = await axios.get("https://br-service.onrender.com/session/login");
+        const { token } = await axios.get(
+          'https://br-service.onrender.com/session/login'
+        );
         setToken(token);
-        alert("Usuario ya esta logeado, proceda a Home");
+        alert('Usuario ya esta logeado, proceda a Home');
         setCargandoUsuario(false);
       } catch (error) {
         console.log(error.message);
       }
-    }
+    };
     cargarUsuario();
   }, []);
 
@@ -51,8 +57,8 @@ const LoginForm = () => {
   };
 
   const [dataLogin, setDataLogin] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
   function onInputChange(e) {
@@ -70,14 +76,15 @@ const LoginForm = () => {
   async function onSubmit(e) {
     e.preventDefault();
 
-    const { results } = axios.post("https://br-service.onrender.com/session/login", dataLogin)
+    const { results } = axios
+      .post('https://br-service.onrender.com/session/login', dataLogin)
       .then(() => {
-        setToken(results.token)
-        navigate("/home");
+        setToken(results.token);
+        navigate('/home');
       })
       .catch((err) => {
         console.log(err.message);
-        console.log("Hubo un problema al iniciar seccion");
+        console.log('Hubo un problema al iniciar seccion');
       });
   }
 
