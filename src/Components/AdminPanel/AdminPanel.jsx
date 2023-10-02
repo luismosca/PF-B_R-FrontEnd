@@ -6,6 +6,7 @@ import logo from '../../assets/B&R.png';
 import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Table from '../DonationsTable/Table'
 
 const Navbar = ({ sidebarClosed, setActiveSection, activeSection }) => {
   return (
@@ -600,9 +601,13 @@ const DonacionesTable = ({ donations }) => {
           <span className="data-title">Monto</span>
         </div>
       </div>
-      {
+
+      <div>
+        <Table></Table>
+      </div>
+      {/* {
         donations === undefined ? <div><span style={{ fontSize: "1.5rem", marginTop: "5rem" }}>No donations here yet {":)"}</span></div> : null
-      }
+      } */}
     </div>
   );
 };

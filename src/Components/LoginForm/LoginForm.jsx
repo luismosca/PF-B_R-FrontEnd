@@ -15,7 +15,7 @@ import {
 import {getToken, setToken, initAxiosInterceptors} from "../../auth-helpers/auth-helpers"
 
 //*----------------------------------------------------
-initAxiosInterceptors();
+// initAxiosInterceptors();
 
 const LoginForm = () => {
   const navigate = useNavigate();
