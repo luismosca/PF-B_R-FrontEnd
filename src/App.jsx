@@ -12,6 +12,7 @@ import About from "./Components/About/About"
 import Donations from './Components/Donations/Donations';
 import TableDonation from './Components/Donationstable/Table';
 
+import AdminPanel from './Components/AdminPanel/AdminPanel';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path='/ByR' element={<About/>} />       
         <Route path='/donacion' element={<Donations totalValue={"4.99"} invoice={"taza de Cafe"}/>} />       
         <Route path='/tabla' element={<TableDonation />} />       
+        <Route path='/admin' element={<AdminPanel/>} />       
         
         
       </Routes>

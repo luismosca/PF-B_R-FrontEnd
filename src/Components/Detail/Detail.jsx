@@ -99,9 +99,9 @@ const ReportDetail = () => {
           <h1>LOADING...</h1>
         </div>
       )}
-      {/* <div style={{ marginTop: "1.5rem" }}>
+      <div style={{ margin: "0.5rem" }}>
         <h2>Comments Section:</h2>
-      </div> */}
+      </div> 
       <br />
       
       <div className={style.comentarios}>
@@ -115,6 +115,7 @@ const ReportDetail = () => {
           <div key={index}>
             {/* <label>{usuario}: </label> */}
             <span>{coment.comment}</span>
+            {/* <span>{coment.comment.state === true ? coment.coment : null}</span> */}
           </div>
         ))}
       </div>
