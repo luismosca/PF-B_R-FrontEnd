@@ -227,7 +227,7 @@ const ComentariosTable = ({ comments, users }) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           Swal.fire('Saved!', '', 'success')
-          const response = await axios.put(`http://localhost:3001/admin/Comments/${comentId}`, disapprove)
+          const response = await axios.put(`https://br-service.onrender.com/admin/Comments/${comentId}`, disapprove)
           if (response.status === 200) {
             const Toast = Swal.mixin({
               toast: true,
@@ -290,7 +290,7 @@ const ComentariosTable = ({ comments, users }) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           Swal.fire('Saved!', '', 'success')
-          const response = await axios.put(`http://localhost:3001/admin/Comments/${comentId}`, approve)
+          const response = await axios.put(`https://br-service.onrender.com/admin/Comments/${comentId}`, approve)
           if (response.status === 200) {
             const Toast = Swal.mixin({
               toast: true,
@@ -409,7 +409,7 @@ const ReportTable = ({ reports }) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           Swal.fire('Saved!', '', 'success')
-          const response = await axios.put(`http://localhost:3001/admin/Reports/${reportId}`, disapprove)
+          const response = await axios.put(`https://br-service.onrender.com/admin/Reports/${reportId}`, disapprove)
           if (response.status === 200) {
             const Toast = Swal.mixin({
               toast: true,
@@ -472,7 +472,7 @@ const ReportTable = ({ reports }) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           Swal.fire('Saved!', '', 'success')
-          const response = await axios.put(`http://localhost:3001/admin/Reports/${reportId}`, approve)
+          const response = await axios.put(`https://br-service.onrender.com/admin/Reports/${reportId}`, approve)
           if (response.status === 200) {
             const Toast = Swal.mixin({
               toast: true,
@@ -619,7 +619,7 @@ const RoleChangeModal = ({ isOpen, close, user }) => {
       role: selectedRole,
     }
     try {
-      const response = await axios.put(`http://localhost:3001/admin/Users/${user.id}`, role);
+      const response = await axios.put(`https://br-service.onrender.com/admin/Users/${user.id}`, role);
 
       if (response.status === 200) {
         // Swal.fire({
@@ -720,7 +720,7 @@ const AdminPanel = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('http://localhost:3001/admin/Users');
+        const response = await fetch('https://br-service.onrender.com/admin/Users');
         if (!response.ok) throw Error('Error fetching users');
         const data = await response.json();
         setUsers(data);
@@ -731,7 +731,7 @@ const AdminPanel = () => {
 
     const fetchReports = async () => {
       try {
-        const response = await fetch('http://localhost:3001/admin/Reports');
+        const response = await fetch('https://br-service.onrender.com/admin/Reports');
         if (!response.ok) throw Error('Error fetching reports');
         const data = await response.json();
         setReports(data);
@@ -743,7 +743,7 @@ const AdminPanel = () => {
     const fetchComments = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3001/admin/Comments"
+          "https://br-service.onrender.com/admin/Comments"
         );
         if (!response.ok) throw Error('Error fetching comments');
         const data = await response.json();
