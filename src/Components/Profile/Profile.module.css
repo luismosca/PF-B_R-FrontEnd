@@ -55,3 +55,25 @@
     color: #04d9d9;
   }
   
+
+.formControl {
+    /* border: 1px solid #cfd1d8; */
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    font-size: .825rem;
+    /* background: #ffffff; */
+    color: #2e323c;
+    height: 2rem;
+    width: 44rem;
+}
+
+.card {
+    /* background: #ffffff; */
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    border: 0;
+    margin-bottom: 1rem;
+    height: 15rem;
+}
