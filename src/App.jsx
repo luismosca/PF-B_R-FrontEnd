@@ -11,6 +11,7 @@ import Profile from './Components/Profile/Profile';
 import About from "./Components/About/About"
 import Donations from './Components/Donations/Donations';
 import TableDonation from './Components/Donationstable/Table';
+import TableUser from './Components/DonationTableUser/TableUser';
 
 import AdminPanel from './Components/AdminPanel/AdminPanel';
 
@@ -29,6 +30,7 @@ function App() {
         <Route path='/ByR' element={<About/>} />       
         <Route path='/donacion' element={<Donations totalValue={"4.99"} invoice={"taza de Cafe"}/>} />       
         <Route path='/tabla' element={<TableDonation />} />       
+        <Route path='/tabla/user' element={<TableUser />} />       
         <Route path='/admin' element={<AdminPanel/>} />       
         
         

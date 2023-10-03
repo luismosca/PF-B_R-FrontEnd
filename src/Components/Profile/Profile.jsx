@@ -29,7 +29,7 @@ const Profile = () => {
                 <a href="/reporte">Crear reporte</a>
               </li>
               <li>
-                <a href="/donations">Mis donaciones</a>
+                <a href="/tabla/user">Mis donaciones</a>
               </li>
               <li>
                 <a href="/notifications">Notificaciones</a>
