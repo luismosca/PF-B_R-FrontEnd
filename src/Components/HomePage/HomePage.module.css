@@ -75,3 +75,20 @@ body {
   flex: 1;
   border-radius: 100%;
 }
+
+/* Estilos para el botón de WhatsApp */
+a[href^="https://wa.me"] {
+  display: flex;
+  justify-content: end;
+  background-color: transparent; /* Color de fondo del botón */
+  color: #fff; /* Color del texto del botón */
+  text-decoration: none;
+  position: fixed;
+  bottom: 20px; /* Distancia desde la parte inferior de la ventana del navegador */
+  right: 20px; /* Distancia desde el lado derecho de la ventana del navegador */
+  z-index: 999;
+}
+
+a img{
+  width: 60px;
+}

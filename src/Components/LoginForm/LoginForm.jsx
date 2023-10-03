@@ -2,7 +2,7 @@ import axios from 'axios';
 import style from './LoginForm.module.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import logo from '../../assets/B&R.png';
 import { NavBar } from '../NavBar/NavBar';
 import Google from '../../assets/google.png';
@@ -10,16 +10,9 @@ import Facebook from '../../assets/facebook.png';
 import {
   postRegisterGoogleUser,
   postRegisterFacebookUser,
+  postLoginUser
 } from '../../Redux/actions';
 
-import {
-  getToken,
-  setToken,
-  initAxiosInterceptors,
-} from '../../auth-helpers/auth-helpers';
-
-//*----------------------------------------------------
-//initAxiosInterceptors();
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -27,34 +20,21 @@ const LoginForm = () => {
 
   const [usuario, setUsuario] = useState(null);
   const [cargandoUsuario, setCargandoUsuario] = useState(true);
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    const cargarUsuario = async () => {
-      if (!getToken()) {
-        setCargandoUsuario(false);
-        return;
-      }
-      try {
-        const { token } = await axios.get(
-          'https://br-service.onrender.com/session/login'
-        );
-        setToken(token);
-        alert('Usuario ya esta logeado, proceda a Home');
-        setCargandoUsuario(false);
-      } catch (error) {
-        console.log(error.message);
-      }
-    };
-    cargarUsuario();
-  }, []);
+    if (user.email){
+      navigate('/home');
+    }
+  },[user])
 
   const googleHandler = () => {
     dispatch(postRegisterGoogleUser());
   };
 
-  const facebookHandler = () => {
-    dispatch(postRegisterFacebookUser());
-  };
+  // const facebookHandler = () => {
+  //   dispatch(postRegisterFacebookUser());
+  // };
 
   const [dataLogin, setDataLogin] = useState({
     email: '',
@@ -75,18 +55,8 @@ const LoginForm = () => {
   //-------------------------------------------------
   async function onSubmit(e) {
     e.preventDefault();
-
-    const { results } = axios
-      .post('https://br-service.onrender.com/session/login', dataLogin)
-      .then(() => {
-        setToken(results.token);
-        navigate('/home');
-      })
-      .catch((err) => {
-        console.log(err.message);
-        console.log('Hubo un problema al iniciar seccion');
-      });
-  }
+    dispatch(postLoginUser(dataLogin));   
+  };
 
   //----------------------------------------------------------------
 
@@ -131,10 +101,10 @@ const LoginForm = () => {
               <img src={Google} alt="" className={style.icon} />
               Google
             </div>
-            <div className={style.loginButtonFb} onClick={facebookHandler}>
+            {/* <div className={style.loginButtonFb} onClick={facebookHandler}>
               <img src={Facebook} alt="" className={style.icon} />
               Facebook
-            </div>
+            </div> */}
           </div>
 
           <div className={style.formfield}>
