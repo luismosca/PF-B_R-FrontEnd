@@ -18,7 +18,7 @@ const TableDonation = (props) => {
     const llenarTabla = async () => {
         try {
             setDonations([]);
-            const response = await axios.get("http://localhost:3001/donations/");
+            const response = await axios.get("https://br-service.onrender.com/donations/");
             setDonations(response.data);
 
             //* calcula el total de los value
@@ -34,7 +34,7 @@ const TableDonation = (props) => {
     const FuncionBuscarIdUser = async () => {
         try {
             setDonations([]);
-            const response = await axios.get(`http://localhost:3001/donations/${idUser}`);
+            const response = await axios.get(`https://br-service.onrender.com/donations/${idUser}`);
             setDonations(response.data);
 
             //* calcula el total de los value
