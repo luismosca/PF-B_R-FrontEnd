@@ -1,0 +1,38 @@
+table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-bottom: 20px; /* Espacio entre la tabla y otros elementos */
+    font-family: Arial, sans-serif; /* Fuente de texto */
+  }
+  
+  /* Estilo para el encabezado de la tabla */
+  th {
+    background-color: #f2f2f2; /* Color de fondo del encabezado */
+    border: 1px solid #dddddd; /* Borde sólido */
+    text-align: left; /* Alineación del texto en el encabezado */
+    padding: 8px; /* Espaciado interno */
+  }
+  
+  /* Estilo para las filas pares de la tabla (cambia los colores según tus preferencias) */
+  tr:nth-child(even) {
+    background-color: #f2f2f2; /* Color de fondo para filas pares */
+  }
+  
+  /* Estilo para las celdas de la tabla */
+  td {
+    border: 1px solid #dddddd; /* Borde sólido */
+    text-align: left; /* Alineación del texto en las celdas */
+    padding: 8px; /* Espaciado interno */
+  }
+  
+  /* Estilo para las celdas de encabezado de la tabla */
+  th, td {
+    white-space: nowrap; /* Evitar que el contenido se desborde */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Agregar puntos suspensivos si el contenido es demasiado largo */
+  }
+  
+  /* Hover en las filas de la tabla (cambia el color de fondo cuando se pasa el mouse sobre una fila) */
+  tr:hover {
+    background-color: #ddd; /* Color de fondo en hover */
+  }

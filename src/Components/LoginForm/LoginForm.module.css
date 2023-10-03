@@ -99,7 +99,7 @@
 .buttonsContainer {
   display: flex;
   flex-direction: row-reverse;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .loginButtonGoogle {

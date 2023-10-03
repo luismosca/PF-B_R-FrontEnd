@@ -1,6 +1,13 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 
+import {
+  getToken,
+  setToken,
+  deleteToken,
+  initAxiosInterceptors,
+} from '../auth-helpers/auth-helpers.js';
+
 export const SET_INDEX = "SET_INDEX";
 export const GET_REPORTS = "GET_REPORTS";
 export const CREATE_REPORT = "CREATE_REPORT";
@@ -130,10 +137,11 @@ export const postLoginUser = (login) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post(endpoint, login);
+      setToken(data.token);
       console.log(data);
       return dispatch({
         type: POST_USER_LOGIN,
-        payload: data,
+        payload: data.data.user,
       });
     } catch (error) {
       console.error(error.message);
@@ -186,3 +194,24 @@ export const postRegisterGoogleUser = () => {
     }
   };
 }
+
+export const getUserByToken = (token) => {
+  const endpoint = "https://br-service.onrender.com/session/login/token";
+  return async (dispatch) => {    
+    try {
+      const { data } = await axios.post(endpoint, {},{
+        headers:{
+          Authorization:`Bearer ${token}`
+        }
+      });
+      return dispatch({
+        type: POST_USER_LOGIN,
+        payload: data.user,
+      });
+    } catch (error) {
+      deleteToken()
+      console.error(error.message);
+    }
+  };
+}
+

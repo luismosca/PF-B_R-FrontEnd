@@ -17,6 +17,7 @@ const initialState = {
   reportsCopy: [],
   reportDetail: [],
   totalReports: 0,
+  user: {},
   index: 1,
 };
 console.log(initialState.allReports);
@@ -66,6 +67,7 @@ const reducer = (state = initialState, actions) => {
     case POST_USER_LOGIN:
       return {
         ...state,
+        user: actions.payload
       };
 
     case POST_USER_REGISTER:
