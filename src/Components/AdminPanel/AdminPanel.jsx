@@ -6,8 +6,8 @@ import logo from '../../assets/B&R.png';
 import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
-import Table from '../DonationsTable/Table'
-// import Table from '../DonationsTable/Table'
+import Table from '../Donationstable/Table'
+
 
 const Navbar = ({ sidebarClosed, setActiveSection, activeSection }) => {
   return (
