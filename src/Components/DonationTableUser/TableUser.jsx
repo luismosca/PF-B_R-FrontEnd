@@ -23,7 +23,7 @@ const TableUser = (props) => {
     const FuncionBuscarIdUser = async () => {
         try {
             setDonations([]);
-            const response = await axios.get(`http://localhost:3001/donations/${user.id}`);
+            const response = await axios.get(`https://br-service.onrender.com/donations/${user.id}`);
             setDonations(response.data);
 
             //* calcula el total de los value

@@ -63,7 +63,7 @@ const RegisterForm = () => {
       return;
     } 
     axios
-      .post("http://localhost:3001/session/register", dataRegistro)
+      .post("https://br-service.onrender.com/session/register", dataRegistro)
       .then(() => {
         Swal.fire("Buen Trabajo!", "Te registraste exitosamente!", "success");
         navigate("/login");
