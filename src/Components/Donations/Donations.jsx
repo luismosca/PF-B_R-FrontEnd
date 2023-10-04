@@ -33,7 +33,7 @@ const Donations = (props) => {
   return (
     <div className={style.divDonation}>
       {/* {console.log("soy user",email)} */}
-      {console.log("http://localhost:3001/donations/sendEmail", dataEmail)}
+      {console.log("https://br-service.onrender.com/donations/sendEmail", dataEmail)}
       <div>
         <NavBar />
       </div>
@@ -77,12 +77,12 @@ const Donations = (props) => {
                 //dataregistro
                 // {"userEmail": "hadavidg@gmail.com"}
                 //* order.payer.email_address
-                // console.log("http://localhost:3001/donations/sendEmail",  dataEmail);
+                // console.log("https://br-service.onrender.com/donations/sendEmail",  dataEmail);
                   axios
-                    .post("http://localhost:3001/donations/sendEmail", dataEmail )                   
+                    .post("https://br-service.onrender.com/donations/sendEmail", dataEmail )                   
                 
               }
-              axios.post("http://localhost:3001/donations",
+              axios.post("https://br-service.onrender.com/donations",
               {
                 "idUser": user.id ? user.id :"Anonimo",
                 "email": user.email ? user.email : order.payer.email_address,
@@ -130,10 +130,10 @@ const Donations = (props) => {
                 //* order.payer.email_address
                 
                   axios
-                    .post("http://localhost:3001/donations/sendEmail", dataEmail)                   
+                    .post("https://br-service.onrender.com/donations/sendEmail", dataEmail)                   
                 
               }
-              axios.post("http://localhost:3001/donations",
+              axios.post("https://br-service.onrender.com/donations",
               {
                 "idUser": user.id ? user.id :"Anonimo",
                 "email": user.email ? user.email : order.payer.email_address,
