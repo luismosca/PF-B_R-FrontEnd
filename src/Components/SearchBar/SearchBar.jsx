@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import styles from '../SearchBar/SearchBar.module.css';
 import { useDispatch,  } from 'react-redux';
 import { onSearch } from '../../Redux/actions';
+import Swal from 'sweetalert2';
 
 
 const SearchBar = () => {
@@ -34,4 +35,4 @@ const SearchBar = () => {
   );
 };
 
-export { SearchBar }
+export { SearchBar };

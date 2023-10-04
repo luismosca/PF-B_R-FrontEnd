@@ -1,7 +1,7 @@
-import axios from "axios";
+// import axios from "axios";
 import style from './About.module.css'
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+// import { Link, useNavigate } from "react-router-dom";
+// import { useState } from "react";
 import logo from '../../assets/B&R.png'
 import { NavBar } from "../NavBar/NavBar";
 

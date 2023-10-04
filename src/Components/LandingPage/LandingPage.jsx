@@ -1,6 +1,6 @@
-import React from 'react';
+// import React from 'react';
 import { Link } from 'react-router-dom';
-import styles from '../LandingPage/LandingPage.module.css';
+import styles from './LandingPage.module.css';
 import imagen from '../../assets/landingbg.webp';
 import logo from '../../assets/B&R.png'
 

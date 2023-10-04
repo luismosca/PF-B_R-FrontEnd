@@ -1,6 +1,4 @@
-// import { useState } from 'react'
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import LandingPage from './Components/LandingPage/LandingPage';
 import Home from './Components/HomePage/HomePage';
@@ -12,6 +10,8 @@ import Cards from './Components/Cards/Cards';
 import Profile from './Components/Profile/Profile';
 import About from './Components/About/About';
 import Donations from './Components/Donations/Donations';
+import TableDonation from './Components/Donationstable/Table';
+
 import AdminPanel from './Components/AdminPanel/AdminPanel';
 
 function App() {
@@ -31,6 +31,7 @@ function App() {
           path="/donacion"
           element={<Donations totalValue={'4.99'} invoice={'taza de Cafe'} />}
         />
+        <Route path="/tabla" element={<TableDonation />} />
         <Route path="/admin" element={<AdminPanel />} />
       </Routes>
     </div>
