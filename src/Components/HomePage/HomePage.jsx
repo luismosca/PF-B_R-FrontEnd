@@ -34,11 +34,11 @@ const Home = () => {
   };
   console.log(index, limit);
 ///////////////////////////////
-  useEffect(() => {
+  // useEffect(() => {
 
-    dispatch(getAllReports(index)); //toda la data de reports
+  //   dispatch(getAllReports(index)); //toda la data de reports
 
-  }, [index, dispatch]);
+  // }, [index]);
   // guardar el index en el redux
   return (
     <>

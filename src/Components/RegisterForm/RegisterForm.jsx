@@ -61,7 +61,7 @@ const RegisterForm = () => {
       });
       // alert("Las contraseñas deben coincidir");
       return;
-    }
+    } 
     axios
       .post("https://br-service.onrender.com/session/register", dataRegistro)
       .then(() => {

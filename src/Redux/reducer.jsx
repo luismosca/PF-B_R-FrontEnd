@@ -10,6 +10,7 @@ import {
   POST_GOOGLE_USER_REGISTER,
   POST_USER_LOGIN,
   POST_USER_REGISTER,
+  LOG_OUT,
 } from "./actions";
 
 const initialState = {
@@ -84,6 +85,12 @@ const reducer = (state = initialState, actions) => {
       return {
         ...state,
       };
+     
+    case LOG_OUT:
+      return {
+        ...state,
+        user: {}
+      }  
 
     default:
       return {
