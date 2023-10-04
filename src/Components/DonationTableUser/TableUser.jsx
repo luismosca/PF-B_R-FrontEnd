@@ -4,9 +4,11 @@ import style from './TableUser.module.css';
 import { NavBar } from '../NavBar/NavBar';
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useSelector } from 'react-redux';
 
 //*----------------------------------------------------
 const TableUser = (props) => {
+    const user = useSelector(state => state.user);
     const [donations, setDonations] = useState([]);
     const [idUser, setIdUser] = useState('');
     const [totalValue, setTotalValue] = useState(0);
@@ -15,27 +17,13 @@ const TableUser = (props) => {
         FuncionBuscarIdUser();
     }, []);
 
-    // const llenarTabla = async () => {
-    //     try {
-    //         setDonations([]);
-    //         const response = await axios.get("http://localhost:3001/donations/");
-    //         setDonations(response.data);
-
-    //         //* calcula el total de los value
-    //         //* acc = acomulado 
-    //         //* 0 = valor inicial 
-    //         const total = response.data.reduce((acc, donation) => acc + donation.value, 0);
-    //         setTotalValue(total);
-    //     } catch (error) {
-    //         console.error("Error al encontrar donaciones:", error);
-    //     }
-    // }
+    
 
     // https://br-service.onrender.com/donations/${idUser}
     const FuncionBuscarIdUser = async () => {
         try {
             setDonations([]);
-            const response = await axios.get(`http://localhost:3001/donations/a2210d45-a5c0-4204-8ef0-10889db8c19c`);
+            const response = await axios.get(`http://localhost:3001/donations/${user.id}`);
             setDonations(response.data);
 
             //* calcula el total de los value

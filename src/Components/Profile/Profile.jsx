@@ -6,7 +6,17 @@ import { NavBar } from "../NavBar/NavBar";
 import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useSelector } from 'react-redux';
+import  TableUser from '../DonationTableUser/TableUser'
+
+
 const Navbar = ({ sidebarClosed, setActiveSection, activeSection }) => {
+
+  const user = useSelector(state => state.user);
+
+  const idUser = user.id
+  console.log(idUser);
+
   return (
     <div>
       <NavBar />
@@ -128,371 +138,371 @@ const DashboardOverview = ({ reports, users, comments }) => {
 
 
 
-const ComentariosTable = ({ comments, users }) => {
+// const ComentariosTable = ({ comments, users }) => {
 
-  const disapproveComment = async (comentId) => {
-    let disapprove = {
-      state: "refused",
-    }
-    try {
-      Swal.fire({
-        title: 'Quieres desaprobar el comentario?',
-        showDenyButton: true,
-        // showCancelButton: true,
-        confirmButtonText: 'Si',
-        denyButtonText: `Cancelar`,
-      }).then(async (result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          Swal.fire('Saved!', '', 'success')
-          const response = await axios.put(`https://br-service.onrender.com/admin/Comments/${comentId}`, disapprove)
-          if (response.status === 200) {
-            const Toast = Swal.mixin({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-              }
-            })
+//   const disapproveComment = async (comentId) => {
+//     let disapprove = {
+//       state: "refused",
+//     }
+//     try {
+//       Swal.fire({
+//         title: 'Quieres desaprobar el comentario?',
+//         showDenyButton: true,
+//         // showCancelButton: true,
+//         confirmButtonText: 'Si',
+//         denyButtonText: `Cancelar`,
+//       }).then(async (result) => {
+//         /* Read more about isConfirmed, isDenied below */
+//         if (result.isConfirmed) {
+//           Swal.fire('Saved!', '', 'success')
+//           const response = await axios.put(`https://br-service.onrender.com/admin/Comments/${comentId}`, disapprove)
+//           if (response.status === 200) {
+//             const Toast = Swal.mixin({
+//               toast: true,
+//               position: 'top-end',
+//               showConfirmButton: false,
+//               timer: 3000,
+//               timerProgressBar: true,
+//               didOpen: (toast) => {
+//                 toast.addEventListener('mouseenter', Swal.stopTimer)
+//                 toast.addEventListener('mouseleave', Swal.resumeTimer)
+//               }
+//             })
 
-            Toast.fire({
-              icon: 'success',
-              title: 'Successfully Disapproved'
-            })
-          }
-        } else if (result.isDenied) {
-          Swal.fire('Accion cancelada', '', 'info')
-        }
-      })
-
-
-    } catch (error) {
-
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
-
-      Toast.fire({
-        icon: 'error',
-        title: 'Error al rechazar el comentario'
-      })
-
-    }
-  };
+//             Toast.fire({
+//               icon: 'success',
+//               title: 'Successfully Disapproved'
+//             })
+//           }
+//         } else if (result.isDenied) {
+//           Swal.fire('Accion cancelada', '', 'info')
+//         }
+//       })
 
 
-  const approveComment = async (comentId) => {
-    let approve = {
-      state: "approved",
-    }
-    try {
-      Swal.fire({
-        title: 'Quieres aprobar el comentario?',
-        showDenyButton: true,
-        // showCancelButton: true,
-        confirmButtonText: 'Si',
-        denyButtonText: `Cancelar`,
-      }).then(async (result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          Swal.fire('Saved!', '', 'success')
-          const response = await axios.put(`https://br-service.onrender.com/admin/Comments/${comentId}`, approve)
-          if (response.status === 200) {
-            const Toast = Swal.mixin({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-              }
-            })
+//     } catch (error) {
 
-            Toast.fire({
-              icon: 'success',
-              title: 'Successfully approved'
-            })
-          }
-        } else if (result.isDenied) {
-          Swal.fire('Accion cancelada', '', 'info')
-        }
-      })
+//       const Toast = Swal.mixin({
+//         toast: true,
+//         position: 'top-end',
+//         showConfirmButton: false,
+//         timer: 3000,
+//         timerProgressBar: true,
+//         didOpen: (toast) => {
+//           toast.addEventListener('mouseenter', Swal.stopTimer)
+//           toast.addEventListener('mouseleave', Swal.resumeTimer)
+//         }
+//       })
+
+//       Toast.fire({
+//         icon: 'error',
+//         title: 'Error al rechazar el comentario'
+//       })
+
+//     }
+//   };
 
 
-    } catch (error) {
+//   const approveComment = async (comentId) => {
+//     let approve = {
+//       state: "approved",
+//     }
+//     try {
+//       Swal.fire({
+//         title: 'Quieres aprobar el comentario?',
+//         showDenyButton: true,
+//         // showCancelButton: true,
+//         confirmButtonText: 'Si',
+//         denyButtonText: `Cancelar`,
+//       }).then(async (result) => {
+//         /* Read more about isConfirmed, isDenied below */
+//         if (result.isConfirmed) {
+//           Swal.fire('Saved!', '', 'success')
+//           const response = await axios.put(`https://br-service.onrender.com/admin/Comments/${comentId}`, approve)
+//           if (response.status === 200) {
+//             const Toast = Swal.mixin({
+//               toast: true,
+//               position: 'top-end',
+//               showConfirmButton: false,
+//               timer: 3000,
+//               timerProgressBar: true,
+//               didOpen: (toast) => {
+//                 toast.addEventListener('mouseenter', Swal.stopTimer)
+//                 toast.addEventListener('mouseleave', Swal.resumeTimer)
+//               }
+//             })
 
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
-
-      Toast.fire({
-        icon: 'error',
-        title: 'Error al aprobar el comentario'
-      })
-    }
-
-  }
-
-  return (
-    <div className="activity">
-      <div className="title">
-        <i className="uil uil-clock-three"></i>
-        <span className="text">Listado de Comentarios</span>
-      </div>
-      <div className="activity-data" style={{ border: "1px groove black", padding: "3px", borderRadius: "10px" }}>
-        <div className="data names">
-          <span className="data-title">Usuario</span>
-          {comments ? users?.map((user) => (
-            <span className="data-list" key={user.id} style={{ border: "1px groove black", borderRadius: "5px" }}>
-              {user.name_surName}
-            </span>
-          )) : null}
-        </div>
-        <div className="data email">
-          <span className="data-title">Comentario</span>
-          {comments?.map((comment) => (
-            <span className="data-list" key={comment.id} style={{ border: "1px groove black", borderRadius: "5px" }}>
-              {comment.comment}
-            </span>
-          ))}
-        </div>
-        <div className="data joined">
-          <span className="data-title">Fecha Publicacion</span>
-          {comments?.map((comment) => (
-            <span className="data-list" key={comment.id} style={{ border: "1px groove black", borderRadius: "5px" }}>
-              {comment.createdAt.split("T")[0]}
-            </span>
-          ))}
-        </div>
-        <div className="data joined">
-          <span className="data-title">Actions</span>
-          {comments?.map((coment) => (
-            <span className="data-list" key={coment.id}>
-              <button className="btn-suspender" style={{ marginRight: 7 }} onClick={() => disapproveComment(coment.id)}>
-                Desaprobar
-              </button>
-              <button className="btn-aprobar" style={{ marginRight: 7 }} onClick={() => approveComment(coment.id)}>
-                Aprobar
-              </button>
-            </span>
-          ))}
-        </div>
-      </div>
-      {
-        comments === undefined ? <div><span style={{ fontSize: "1.5rem", marginTop: "5rem" }}>No pending comments currently</span></div> : null
-      }
-
-    </div>
-  );
-};
+//             Toast.fire({
+//               icon: 'success',
+//               title: 'Successfully approved'
+//             })
+//           }
+//         } else if (result.isDenied) {
+//           Swal.fire('Accion cancelada', '', 'info')
+//         }
+//       })
 
 
+//     } catch (error) {
 
-const ReportTable = ({ reports }) => {
+//       const Toast = Swal.mixin({
+//         toast: true,
+//         position: 'top-end',
+//         showConfirmButton: false,
+//         timer: 3000,
+//         timerProgressBar: true,
+//         didOpen: (toast) => {
+//           toast.addEventListener('mouseenter', Swal.stopTimer)
+//           toast.addEventListener('mouseleave', Swal.resumeTimer)
+//         }
+//       })
 
-  const disapproveReport = async (reportId) => {
-    let disapprove = {
-      status: "refused",
-    }
-    try {
-      Swal.fire({
-        title: 'Quieres Desaprobar el Reporte?',
-        showDenyButton: true,
-        // showCancelButton: true,
-        confirmButtonText: 'Si',
-        denyButtonText: `Cancelar`,
-      }).then(async (result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          Swal.fire('Saved!', '', 'success')
-          const response = await axios.put(`https://br-service.onrender.com/admin/Reports/${reportId}`, disapprove)
-          if (response.status === 200) {
-            const Toast = Swal.mixin({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-              }
-            })
+//       Toast.fire({
+//         icon: 'error',
+//         title: 'Error al aprobar el comentario'
+//       })
+//     }
 
-            Toast.fire({
-              icon: 'success',
-              title: 'Successfully Disapproved'
-            })
-          }
-        } else if (result.isDenied) {
-          Swal.fire('Acción cancelada', '', 'info')
-        }
-      })
+//   }
 
+//   return (
+//     <div className="activity">
+//       <div className="title">
+//         <i className="uil uil-clock-three"></i>
+//         <span className="text">Listado de Comentarios</span>
+//       </div>
+//       <div className="activity-data" style={{ border: "1px groove black", padding: "3px", borderRadius: "10px" }}>
+//         <div className="data names">
+//           <span className="data-title">Usuario</span>
+//           {comments ? users?.map((user) => (
+//             <span className="data-list" key={user.id} style={{ border: "1px groove black", borderRadius: "5px" }}>
+//               {user.name_surName}
+//             </span>
+//           )) : null}
+//         </div>
+//         <div className="data email">
+//           <span className="data-title">Comentario</span>
+//           {comments?.map((comment) => (
+//             <span className="data-list" key={comment.id} style={{ border: "1px groove black", borderRadius: "5px" }}>
+//               {comment.comment}
+//             </span>
+//           ))}
+//         </div>
+//         <div className="data joined">
+//           <span className="data-title">Fecha Publicacion</span>
+//           {comments?.map((comment) => (
+//             <span className="data-list" key={comment.id} style={{ border: "1px groove black", borderRadius: "5px" }}>
+//               {comment.createdAt.split("T")[0]}
+//             </span>
+//           ))}
+//         </div>
+//         <div className="data joined">
+//           <span className="data-title">Actions</span>
+//           {comments?.map((coment) => (
+//             <span className="data-list" key={coment.id}>
+//               <button className="btn-suspender" style={{ marginRight: 7 }} onClick={() => disapproveComment(coment.id)}>
+//                 Desaprobar
+//               </button>
+//               <button className="btn-aprobar" style={{ marginRight: 7 }} onClick={() => approveComment(coment.id)}>
+//                 Aprobar
+//               </button>
+//             </span>
+//           ))}
+//         </div>
+//       </div>
+//       {
+//         comments === undefined ? <div><span style={{ fontSize: "1.5rem", marginTop: "5rem" }}>No pending comments currently</span></div> : null
+//       }
 
-    } catch (error) {
-
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
-
-      Toast.fire({
-        icon: 'error',
-        title: 'Error al rechazar reporte :('
-      })
-
-    }
-  };
-
-
-  const approveReport = async (reportId) => {
-    let approve = {
-      status: "approved",
-    }
-    try {
-      Swal.fire({
-        title: 'Quieres aprobar el Reporte?',
-        showDenyButton: true,
-        // showCancelButton: true,
-        confirmButtonText: 'Si',
-        denyButtonText: `Cancelar`,
-      }).then(async (result) => {
-        /* Read more about isConfirmed, isDenied below */
-        if (result.isConfirmed) {
-          Swal.fire('Saved!', '', 'success')
-          const response = await axios.put(`https://br-service.onrender.com/admin/Reports/${reportId}`, approve)
-          if (response.status === 200) {
-            const Toast = Swal.mixin({
-              toast: true,
-              position: 'top-end',
-              showConfirmButton: false,
-              timer: 3000,
-              timerProgressBar: true,
-              didOpen: (toast) => {
-                toast.addEventListener('mouseenter', Swal.stopTimer)
-                toast.addEventListener('mouseleave', Swal.resumeTimer)
-              }
-            })
-
-            Toast.fire({
-              icon: 'success',
-              title: 'Successfully approved'
-            })
-          }
-        } else if (result.isDenied) {
-          Swal.fire('Accion cancelada', '', 'info')
-        }
-      })
+//     </div>
+//   );
+// };
 
 
-    } catch (error) {
 
-      const Toast = Swal.mixin({
-        toast: true,
-        position: 'top-end',
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-          toast.addEventListener('mouseenter', Swal.stopTimer)
-          toast.addEventListener('mouseleave', Swal.resumeTimer)
-        }
-      })
+// const ReportTable = ({ reports }) => {
 
-      Toast.fire({
-        icon: 'error',
-        title: 'Error al aprobar reporte :('
-      })
-    }
+//   const disapproveReport = async (reportId) => {
+//     let disapprove = {
+//       status: "refused",
+//     }
+//     try {
+//       Swal.fire({
+//         title: 'Quieres Desaprobar el Reporte?',
+//         showDenyButton: true,
+//         // showCancelButton: true,
+//         confirmButtonText: 'Si',
+//         denyButtonText: `Cancelar`,
+//       }).then(async (result) => {
+//         /* Read more about isConfirmed, isDenied below */
+//         if (result.isConfirmed) {
+//           Swal.fire('Saved!', '', 'success')
+//           const response = await axios.put(`https://br-service.onrender.com/admin/Reports/${reportId}`, disapprove)
+//           if (response.status === 200) {
+//             const Toast = Swal.mixin({
+//               toast: true,
+//               position: 'top-end',
+//               showConfirmButton: false,
+//               timer: 3000,
+//               timerProgressBar: true,
+//               didOpen: (toast) => {
+//                 toast.addEventListener('mouseenter', Swal.stopTimer)
+//                 toast.addEventListener('mouseleave', Swal.resumeTimer)
+//               }
+//             })
 
-  }
+//             Toast.fire({
+//               icon: 'success',
+//               title: 'Successfully Disapproved'
+//             })
+//           }
+//         } else if (result.isDenied) {
+//           Swal.fire('Acción cancelada', '', 'info')
+//         }
+//       })
 
 
-  return (
-    <div className="activity">
-      <div className="title">
-        <i className="uil uil-clock-three"></i>
-        <span className="text">Listado de Reportes</span>
-      </div>
+//     } catch (error) {
 
-      <div className="activity-data" >
-        <div className="data names">
-          <span className="data-title">Nombre</span>
-          {reports.reports.map((report) => (
-            <span className="data-list" key={report.id}>
-              {report.name}
-            </span>
-          ))}
-        </div>
+//       const Toast = Swal.mixin({
+//         toast: true,
+//         position: 'top-end',
+//         showConfirmButton: false,
+//         timer: 3000,
+//         timerProgressBar: true,
+//         didOpen: (toast) => {
+//           toast.addEventListener('mouseenter', Swal.stopTimer)
+//           toast.addEventListener('mouseleave', Swal.resumeTimer)
+//         }
+//       })
 
-        <div className="data joined">
-          <span className="data-title">Descripcion</span>
-          {reports.reports.map((report) => (
-            <span className="data-list" key={report.id}>
-              {report.description}
-            </span>
-          ))}
-        </div>
+//       Toast.fire({
+//         icon: 'error',
+//         title: 'Error al rechazar reporte :('
+//       })
 
-        <div className="data joined">
-          <span className="data-title">Fecha Reporte</span>
-          {reports.reports.map((report) => (
-            <span className="data-list" key={report.id}>
-              {report.date}
-            </span>
-          ))}
-        </div>
+//     }
+//   };
 
-        <div className="data joined">
-          <span className="data-title">Actions</span>
-          {reports.reports.map((report) => (
-            <span className="data-list" key={report.id}>
-              <button className="btn-suspender" style={{ marginRight: 7 }} onClick={() => disapproveReport(report.id)}>
-                Desaprobar
-              </button>
-              <button className="btn-aprobar" style={{ marginRight: 7 }} onClick={() => approveReport(report.id)}>
-                Aprobar
-              </button>
-            </span>
-          ))}
-        </div>
-      </div>
-      {
-        reports === undefined ? <div><span style={{ fontSize: "1.5rem", marginTop: "5rem" }}>No pending Reports currently</span></div> : null
-      }
-    </div>
-  );
-};
+
+//   const approveReport = async (reportId) => {
+//     let approve = {
+//       status: "approved",
+//     }
+//     try {
+//       Swal.fire({
+//         title: 'Quieres aprobar el Reporte?',
+//         showDenyButton: true,
+//         // showCancelButton: true,
+//         confirmButtonText: 'Si',
+//         denyButtonText: `Cancelar`,
+//       }).then(async (result) => {
+//         /* Read more about isConfirmed, isDenied below */
+//         if (result.isConfirmed) {
+//           Swal.fire('Saved!', '', 'success')
+//           const response = await axios.put(`https://br-service.onrender.com/admin/Reports/${reportId}`, approve)
+//           if (response.status === 200) {
+//             const Toast = Swal.mixin({
+//               toast: true,
+//               position: 'top-end',
+//               showConfirmButton: false,
+//               timer: 3000,
+//               timerProgressBar: true,
+//               didOpen: (toast) => {
+//                 toast.addEventListener('mouseenter', Swal.stopTimer)
+//                 toast.addEventListener('mouseleave', Swal.resumeTimer)
+//               }
+//             })
+
+//             Toast.fire({
+//               icon: 'success',
+//               title: 'Successfully approved'
+//             })
+//           }
+//         } else if (result.isDenied) {
+//           Swal.fire('Accion cancelada', '', 'info')
+//         }
+//       })
+
+
+//     } catch (error) {
+
+//       const Toast = Swal.mixin({
+//         toast: true,
+//         position: 'top-end',
+//         showConfirmButton: false,
+//         timer: 3000,
+//         timerProgressBar: true,
+//         didOpen: (toast) => {
+//           toast.addEventListener('mouseenter', Swal.stopTimer)
+//           toast.addEventListener('mouseleave', Swal.resumeTimer)
+//         }
+//       })
+
+//       Toast.fire({
+//         icon: 'error',
+//         title: 'Error al aprobar reporte :('
+//       })
+//     }
+
+//   }
+
+
+//   return (
+//     <div className="activity">
+//       <div className="title">
+//         <i className="uil uil-clock-three"></i>
+//         <span className="text">Listado de Reportes</span>
+//       </div>
+
+//       <div className="activity-data" >
+//         <div className="data names">
+//           <span className="data-title">Nombre</span>
+//           {reports.reports.map((report) => (
+//             <span className="data-list" key={report.id}>
+//               {report.name}
+//             </span>
+//           ))}
+//         </div>
+
+//         <div className="data joined">
+//           <span className="data-title">Descripcion</span>
+//           {reports.reports.map((report) => (
+//             <span className="data-list" key={report.id}>
+//               {report.description}
+//             </span>
+//           ))}
+//         </div>
+
+//         <div className="data joined">
+//           <span className="data-title">Fecha Reporte</span>
+//           {reports.reports.map((report) => (
+//             <span className="data-list" key={report.id}>
+//               {report.date}
+//             </span>
+//           ))}
+//         </div>
+
+//         <div className="data joined">
+//           <span className="data-title">Actions</span>
+//           {reports.reports.map((report) => (
+//             <span className="data-list" key={report.id}>
+//               <button className="btn-suspender" style={{ marginRight: 7 }} onClick={() => disapproveReport(report.id)}>
+//                 Desaprobar
+//               </button>
+//               <button className="btn-aprobar" style={{ marginRight: 7 }} onClick={() => approveReport(report.id)}>
+//                 Aprobar
+//               </button>
+//             </span>
+//           ))}
+//         </div>
+//       </div>
+//       {
+//         reports === undefined ? <div><span style={{ fontSize: "1.5rem", marginTop: "5rem" }}>No pending Reports currently</span></div> : null
+//       }
+//     </div>
+//   );
+// };
 
 
 
@@ -502,9 +512,13 @@ const DonacionesTable = ({ donations }) => {
       <div className="title">
         <i className="uil uil-clock-three"></i>
         <span className="text">Listado de Donaciones</span>
+      </div>   
+        
+      <div>
+        <TableUser></TableUser>
       </div>
 
-      <div className="activity-data">
+      {/* <div className="activity-data">
         <div className="data names">
           <span className="data-title">Usuario</span>
         </div>
@@ -517,10 +531,10 @@ const DonacionesTable = ({ donations }) => {
         <div className="data joined">
           <span className="data-title">Monto</span>
         </div>
-      </div>
-      {
+      </div> */}
+      {/* {
         donations === undefined ? <div><span style={{ fontSize: "1.5rem", marginTop: "5rem" }}>No donations here yet {":)"}</span></div> : null
-      }
+      } */}
     </div>
   );
 };
@@ -546,46 +560,43 @@ const Profile = () => {
     }
   }, []);
 
-<<<<<<< HEAD
-        <div className={styles["profile-dashboard"]}>
+        //  <div className={styles["profile-dashboard"]}>
 
-          <div className={styles["left-menu"]}>
-            <div className={styles["profile-picture"]}>
-              <img src={profilePicture} alt="Profile Picture" />
-            </div>
-            <ul>
-              <li>
-                <a href="/edit-profile">Configuración de perfil</a>
-              </li>
-              <li>
-                <a href="/reporte">Crear reporte</a>
-              </li>
-              <li>
-                <a href="/tabla/user">Mis donaciones</a>
-              </li>
-              <li>
-                <a href="/notifications">Notificaciones</a>
-              </li>
-            </ul>
-          </div>
-          <div className={styles["main-content"]}></div>
-        </div>
-      </>
-    );
-=======
+        //    <div className={styles["left-menu"]}>
+        //      <div className={styles["profile-picture"]}>
+        //        <img src={profilePicture} alt="Profile Picture" />
+        //      </div>
+        //      <ul>
+        //        <li>
+        //          <a href="/edit-profile">Configuración de perfil</a>
+        //        </li>
+        //        <li>
+        //          <a href="/reporte">Crear reporte</a>
+        //        </li>
+        //        <li>
+        //          <a href="/tabla/user">Mis donaciones</a>
+        //        </li>
+        //        <li>
+        //          <a href="/notifications">Notificaciones</a>
+        //        </li>
+        //      </ul>
+        //    </div>
+        //    <div className={styles["main-content"]}></div>
+        //  </div>
+       
+     
   const toggleSidebar = () => {
     setSidebarClosed((prevStatus) => {
       const newStatus = !prevStatus;
       localStorage.setItem('status', newStatus ? 'close' : 'open');
       return newStatus;
     });
->>>>>>> main
   };
 
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const response = await fetch('https://br-service.onrender.com/admin/Reports');
+        // const response = await fetch('https://br-service.onrender.com/admin/Reports');
         if (!response.ok) throw Error('Error fetching reports');
         const data = await response.json();
         setReports(data);
@@ -594,21 +605,21 @@ const Profile = () => {
       }
     };
 
-    const fetchComments = async () => {
-      try {
-        const response = await fetch(
-          "https://br-service.onrender.com/admin/Comments"
-        );
-        if (!response.ok) throw Error('Error fetching comments');
-        const data = await response.json();
-        setComments(data);
-        console.log(data);
-      } catch (error) {
-        console.error(error);
-      }
-    };
+    // const fetchComments = async () => {
+    //   try {
+    //     const response = await fetch(
+    //       "https://br-service.onrender.com/admin/Comments"
+    //     );
+    //     if (!response.ok) throw Error('Error fetching comments');
+    //     const data = await response.json();
+    //     setComments(data);
+    //     console.log(data);
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // };
 
-    Promise.all([fetchReports(), fetchComments()]).finally(() =>
+    Promise.all([fetchReports()]).finally(() =>
       setIsLoading(false)
     );
   }, []);
