@@ -10,6 +10,7 @@ const ReportDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const reportDetail = useSelector((state) => state.reportDetail);
+  const user = useSelector((state) => state.user);
   let comentarios = reportDetail?.Comments;
   // let usuario = reportDetail.Users[0].name_surName
 
@@ -107,25 +108,77 @@ const ReportDetail = () => {
           <h1>LOADING...</h1>
         </div>
       )}
-      <div style={{ margin: '0.5rem' }}>
-        <h2>Sección de comentarios:</h2>
-      </div>
-      <br />
 
-      <div className={style.comentarios}>
-        <Comments ReportId={id} />
-      </div>
+      {/* <br /> */}
 
-      <hr />
+      {user && user.id ? (
+        <div className={style.comentarios}>
+          <Comments ReportId={id} />
+        </div>
+      ) : (
+        <div
+          style={{
+            margin: '0.5rem',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            textAlign: 'center',
+            backgroundColor: '#c5f6639f',
+            height: '120px',
+            fontSize: '20px',
+          }}
+        >
+          <div>Inicia session para comentar en el reporte</div>
+          <button className={style.commentButton}>
+            <Link to="/login" style={{ padding: '20px' }}>
+              Iniciar Sesión
+            </Link>
+          </button>
+        </div>
+      )}
+
+      {/* <hr /> */}
       {/* //!comentarios renderizados */}
       <div>
         {comentarios?.map((coment, index) => (
           <div key={index}>
-            {/* <label>{usuario}: </label> */}
+            <img
+              src={user.image}
+              alt="userImage"
+              style={{
+                width: '45px',
+                height: '45px',
+                borderRadius: '50%',
+                objectFit: 'cover',
+                margin: '5px',
+              }}
+            />
+            <h4 htmlFor="usrname" style={{ color: '#6474459f' }}>
+              {user.name}
+            </h4>
+            <label htmlFor="date">{coment.createdAt.split('T')[0]}</label>
             <span>{coment.comment}</span>
-            {/* <span>{coment.comment.state === true ? coment.coment : null}</span> */}
           </div>
         ))}
+      </div>
+      <div
+        style={{
+          margin: '0.5rem',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+          textAlign: 'center',
+        }}
+      >
+        <h3
+          style={{
+            backgroundColor: '#c5f6639f',
+            width: '150px',
+            color: 'black',
+            borderRadius: '50px',
+            border: '1px groove black',
+          }}
+        >
+          Comentarios:
+        </h3>
       </div>
     </div>
   );

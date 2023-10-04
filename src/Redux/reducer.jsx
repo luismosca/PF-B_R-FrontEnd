@@ -10,13 +10,15 @@ import {
   POST_GOOGLE_USER_REGISTER,
   POST_USER_LOGIN,
   POST_USER_REGISTER,
-} from "./actions";
+  LOG_OUT,
+} from './actions';
 
 const initialState = {
   allReports: [],
   reportsCopy: [],
   reportDetail: [],
   totalReports: 0,
+  user: {},
   index: 1,
 };
 console.log(initialState.allReports);
@@ -66,6 +68,7 @@ const reducer = (state = initialState, actions) => {
     case POST_USER_LOGIN:
       return {
         ...state,
+        user: actions.payload,
       };
 
     case POST_USER_REGISTER:
@@ -81,6 +84,12 @@ const reducer = (state = initialState, actions) => {
     case POST_GOOGLE_USER_REGISTER:
       return {
         ...state,
+      };
+
+    case LOG_OUT:
+      return {
+        ...state,
+        user: {},
       };
 
     default:

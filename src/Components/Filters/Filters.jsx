@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilteredReport } from '../../Redux/actions';
 import style from './Filters.module.css';
@@ -39,6 +39,11 @@ const Filters = () => {
     dispatch(getFilteredReport(filters));
   }
 
+  useEffect(() => {
+    filters.page = index;
+    dispatch(getFilteredReport(filters)); //toda la data de reports
+  }, [index]);
+
   return (
     <div className={style.filterContainer}>
       <form
@@ -47,17 +52,17 @@ const Filters = () => {
       >
         <div className={style.selectContainer}>
           <select name="gender" id="gender" onChange={handleChange}>
-            <option value="">Seleccionar género</option>
-            <option value="Female">Femenino</option>
-            <option value="Male">Masculino</option>
+            <option value="">Select a gender</option>
+            <option value="Female">Female</option>
+            <option value="Male">Male</option>
           </select>
         </div>
 
         <div className={style.selectContainer}>
           <select name="age" id="age" onChange={handleChange}>
-            <option value="">Orden por edad</option>
-            <option value="Youngest">De menor a mayor</option>
-            <option value="Oldest">De mayor a menor</option>
+            <option value="">Order by age</option>
+            <option value="Youngest">Youngest</option>
+            <option value="Oldest">Oldest</option>
           </select>
         </div>
 

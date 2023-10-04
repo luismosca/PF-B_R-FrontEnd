@@ -11,10 +11,23 @@ import Profile from './Components/Profile/Profile';
 import About from './Components/About/About';
 import Donations from './Components/Donations/Donations';
 import TableDonation from './Components/Donationstable/Table';
-
 import AdminPanel from './Components/AdminPanel/AdminPanel';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getToken } from './auth-helpers/auth-helpers';
+import { getUserByToken } from './Redux/actions';
 
 function App() {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!user?.email) {
+      const token = getToken();
+      if (token != '') {
+        dispatch(getUserByToken(token));
+      }
+    }
+  }, [user]);
   return (
     <div>
       <Routes>

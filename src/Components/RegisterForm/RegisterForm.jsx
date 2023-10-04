@@ -1,20 +1,20 @@
-import axios from "axios";
-import style from "./RegisterForm.module.css";
-import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import logo from "../../assets/B&R.png";
-import { NavBar } from "../NavBar/NavBar";
-import Google from "../../assets/google.png";
-import Facebook from "../../assets/facebook.png";
+import axios from 'axios';
+import style from './RegisterForm.module.css';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import logo from '../../assets/B&R.png';
+import { NavBar } from '../NavBar/NavBar';
+import Google from '../../assets/google.png';
+import Facebook from '../../assets/facebook.png';
 import {
   postRegisterGoogleUser,
   postRegisterFacebookUser,
-} from "../../Redux/actions";
+} from '../../Redux/actions';
 
 //*----------------------------------------------------
 // import { validations } from "./validations"
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
 // const Swal = require('sweetalert2')
 
 // ! condicionar formulario
@@ -27,17 +27,17 @@ const RegisterForm = () => {
     dispatch(postRegisterGoogleUser());
   };
 
-  const facebookHandler = () => {
-    dispatch(postRegisterFacebookUser());
-  };
+  // const facebookHandler = () => {
+  //   dispatch(postRegisterFacebookUser());
+  // };
 
   //------------------Estado Data------------------------
   const [dataRegistro, setDataRegistro] = useState({
-    name_surName: "",
-    image: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+    name_surName: '',
+    image: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   });
 
   function onInputChange(e) {
@@ -55,37 +55,37 @@ const RegisterForm = () => {
     e.preventDefault();
     if (dataRegistro.password !== dataRegistro.confirmPassword) {
       Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Las contraseñas no coinciden!",
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Las contraseñas no coinciden!',
       });
       // alert("Las contraseñas deben coincidir");
       return;
     }
     axios
-      .post("https://br-service.onrender.com/session/register", dataRegistro)
+      .post('https://br-service.onrender.com/session/register', dataRegistro)
       .then(() => {
-        Swal.fire("Buen Trabajo!", "Te registraste exitosamente!", "success");
-        navigate("/login");
+        Swal.fire('Buen Trabajo!', 'Te registraste exitosamente!', 'success');
+        navigate('/login');
       })
       .catch((err) => {
-        console.log("Hubo un problema al guardar el registro", err);
+        console.log('Hubo un problema al guardar el registro', err);
       });
   }
 
   //---------------claoudinary Foto----------------
-  const [urlImage, setUrlImage] = useState("");
+  const [urlImage, setUrlImage] = useState('');
 
   const changeUploadImage = async (e) => {
     const file = e.target.files[0];
 
     const data = new FormData();
 
-    data.append("file", file);
-    data.append("upload_preset", "preset_login_pf");
+    data.append('file', file);
+    data.append('upload_preset', 'preset_login_pf');
 
     const response = await axios.post(
-      "https://api.cloudinary.com/v1_1/drhqzywsx/image/upload",
+      'https://api.cloudinary.com/v1_1/drhqzywsx/image/upload',
       data
     );
 
@@ -101,10 +101,10 @@ const RegisterForm = () => {
   //eliminar imagen:
   const FuncionDeleteImage = () => {
     // podemos poner una ruta que elimie la imagen de la db
-    setUrlImage("");
+    setUrlImage('');
     setDataRegistro({
       ...dataRegistro,
-      image: "",
+      image: '',
     });
   };
 
@@ -136,7 +136,9 @@ const RegisterForm = () => {
 
           <div className={style.inlineFields}>
             <div>
-              <h4 className={style.h4register}>¿Ya tienes una cuenta?</h4>
+              <h4 className={style.h4register}>
+                ¿Ya tienes una cuenta creada?
+              </h4>
             </div>
 
             <div>
@@ -151,12 +153,12 @@ const RegisterForm = () => {
               <img src={Google} alt="" className={style.icon} />
               Google
             </div>
-            <div className={style.loginButtonFb} onClick={facebookHandler}>
+            {/* <div className={style.loginButtonFb} onClick={facebookHandler}>
               <img src={Facebook} alt="" className={style.icon} />
               Facebook
-            </div>
+            </div> */}
           </div>
-          
+
           <div className={style.formfield}>
             <label className={style.labelRegister}>Nombre y Apellido</label>
 
