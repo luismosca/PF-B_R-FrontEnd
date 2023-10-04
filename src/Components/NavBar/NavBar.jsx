@@ -2,10 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import style from "./NavBar.module.css";
 import { deleteToken } from "../../auth-helpers/auth-helpers";
-
+import { useDispatch } from "react-redux";
+import { logOut } from "../../Redux/actions";
 const NavBar = () => {
+  const dispatch = useDispatch();
+  
   const handleLogOut = () => {
     deleteToken();
+    dispatch(logOut());
   }
 
   return (

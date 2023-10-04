@@ -21,7 +21,7 @@ function App() {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!user.email) {
+    if (!user?.email) {
       const token = getToken();
       if (token != "") {
         dispatch(getUserByToken(token));
