@@ -1,17 +1,20 @@
 import axios from "axios";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
+import styles from "./Detail.module.css";
 // import { useSelector } from "react-redux";
 
 
 const Comments = (id) => {
     // const {userInfo} = useSelector(state => state.signIn)
+    const user = useSelector((state) => state.user)
     const valueId = Object.values(id)
     const value = valueId[0]
 
     // const [comment, setComment] = useState("");
     const [comment, setComment] = useState({
-        userId: "a2210d45-a5c0-4204-8ef0-10889db8c19c",
+        userId: user.id,
         reportId: value,
         comment: "",
     });
@@ -28,14 +31,14 @@ const Comments = (id) => {
         setComment({
             ...comment,
             comment: value,
-        })    
-        
+        })
+
         // console.log(comment);
     }
 
-    
 
-    
+
+
 
     async function onSubmit(e) { // para enviar los comentarios
         e.preventDefault();
@@ -46,11 +49,11 @@ const Comments = (id) => {
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Comment posted',
+                    title: 'Comentario ennviado, en espera de ser aprobado',
                     showConfirmButton: false,
                     timer: 3000
-                  })
-                setComment({...comment, comment: ""}); //vaciar el estado
+                })
+                setComment({ ...comment, comment: "" }); //vaciar el estado
 
             })
             .catch((err) => {
@@ -61,12 +64,27 @@ const Comments = (id) => {
                     title: 'Comment was not posted :(', // Mirar que pasa ahí XD
                     showConfirmButton: false,
                     timer: 3000
-                  })
+                })
             });
-        }
+    }
 
     return (
-        <form onSubmit={onSubmit}>
+        <form onSubmit={onSubmit} style={{ display: 'flex', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <img
+                    src={user.image}
+                    alt="userImage"
+                    style={{
+                        width: '45px',
+                        height: '45px',
+                        borderRadius: '50%',
+                        objectFit: 'cover',
+                        margin: "5px"
+                    }}
+                />
+                <label style={{margin: "2px"}}>{user.name}</label>
+            </div>
+
             <textarea
                 name="comment"
                 id="comment"
@@ -74,9 +92,10 @@ const Comments = (id) => {
                 cols="100"
                 value={comment.comment}
                 onChange={onInputChange}
+                style={{ maxWidth: "100%", width: "100%", borderRadius: "20px", padding: "10px" }}
             />
             <div>
-                <button type="submit">COMMENT</button>
+                <button type="submit" className={styles.commentButton}>COMMENT</button>
             </div>
         </form>
     )

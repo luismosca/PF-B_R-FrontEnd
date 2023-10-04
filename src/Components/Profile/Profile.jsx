@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import styles from "./Profile.module.css";
-import profilePicture from "../../assets/profilepicture.png";
 import logo from '../../assets/B&R.png'
 import { NavBar } from "../NavBar/NavBar";
 import { Link, Navigate } from 'react-router-dom';
@@ -33,7 +32,7 @@ const Navbar = ({ sidebarClosed, setActiveSection, activeSection }) => {
 
         </div>
         <div className={styles["profile-picture"]} style={{ margin: "15px" }}>
-          <img src={profilePicture} alt="Profile Picture" />
+          <img src={user.image} alt="Profile Picture" style={{width: "80%"}}/>
         </div>
 
         <div className="menu-items">
@@ -82,7 +81,7 @@ const Navbar = ({ sidebarClosed, setActiveSection, activeSection }) => {
         </div>
       </nav>
     </div>
-  );
+  ) 
 };
 
 
@@ -661,6 +660,6 @@ const Profile = () => {
       )}
     </div>
   );
-};
+};  
 
 export default Profile;
