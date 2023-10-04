@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import  { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFilteredReport } from "../../Redux/actions";
 import style from './Filters.module.css';  
@@ -38,6 +38,12 @@ const Filters = () => {
         event.preventDefault();
         dispatch(getFilteredReport(filters));
     }
+
+    useEffect(() => {
+        filters.page = index
+        dispatch(getFilteredReport(filters)); //toda la data de reports
+    
+      }, [index]);
 
     return (
         <div className={style.filterContainer}>

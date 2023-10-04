@@ -14,14 +14,28 @@ import TableDonation from './Components/Donationstable/Table';
 import TableUser from './Components/DonationTableUser/TableUser';
 
 import AdminPanel from './Components/AdminPanel/AdminPanel';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getToken } from './auth-helpers/auth-helpers';
+import { getUserByToken } from './Redux/actions';
 
 function App() {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (!user?.email) {
+      const token = getToken();
+      if (token != "") {
+        dispatch(getUserByToken(token));
+      }
+    }
+  }, [user]);
   return (
     <div>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/login" element={<Login />} /> 
+        <Route path="/login" element={<Login />} />
         <Route path="/registro" element={<Registro />} />
         <Route path="/reporte" element={<Reporte/>}/>
         <Route path="/cards" element={<Cards/>}/>
@@ -39,4 +53,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

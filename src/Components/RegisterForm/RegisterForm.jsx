@@ -27,9 +27,9 @@ const RegisterForm = () => {
     dispatch(postRegisterGoogleUser());
   };
 
-  const facebookHandler = () => {
-    dispatch(postRegisterFacebookUser());
-  };
+  // const facebookHandler = () => {
+  //   dispatch(postRegisterFacebookUser());
+  // };
 
   //------------------Estado Data------------------------
   const [dataRegistro, setDataRegistro] = useState({
@@ -61,7 +61,7 @@ const RegisterForm = () => {
       });
       // alert("Las contraseñas deben coincidir");
       return;
-    }
+    } 
     axios
       .post("https://br-service.onrender.com/session/register", dataRegistro)
       .then(() => {
@@ -136,7 +136,7 @@ const RegisterForm = () => {
 
           <div className={style.inlineFields}>
             <div>
-              <h4 className={style.h4register}>¿Ya tienes una cuenta?</h4>
+              <h4 className={style.h4register}>¿Ya tienes una cuenta creada?</h4>
             </div>
 
             <div>
@@ -151,10 +151,10 @@ const RegisterForm = () => {
               <img src={Google} alt="" className={style.icon} />
               Google
             </div>
-            <div className={style.loginButtonFb} onClick={facebookHandler}>
+            {/* <div className={style.loginButtonFb} onClick={facebookHandler}>
               <img src={Facebook} alt="" className={style.icon} />
               Facebook
-            </div>
+            </div> */}
           </div>
           
           <div className={style.formfield}>

@@ -1,7 +1,15 @@
 import axios from "axios";
 import Swal from "sweetalert2";
 
+import {
+  getToken,
+  setToken,
+  deleteToken,
+  initAxiosInterceptors,
+} from '../auth-helpers/auth-helpers.js';
+
 export const SET_INDEX = "SET_INDEX";
+export const LOG_OUT = "LOG_OUT";
 export const GET_REPORTS = "GET_REPORTS";
 export const CREATE_REPORT = "CREATE_REPORT";
 export const REPORTS_ID = "REPORTS_ID";
@@ -15,7 +23,7 @@ export const POST_FB_USER_REGISTER = "POST_FB_USER_REGISTER";
 export const POST_GOOGLE_USER_REGISTER = "POST_GOOGLE_USER_REGISTER";
 
 export const setIndex = (num) => {
-  return async (dispatch) => {
+  return (dispatch) => {
     return dispatch({
       type: SET_INDEX,
       payload: num,
@@ -24,7 +32,7 @@ export const setIndex = (num) => {
 }
 
 export const getAllReports = (page) => {
-  const endpoint = `https://br-service.onrender.com/reports/?page=${page}`;
+  const endpoint = `https://br-service.onrender.com/reports?page=${page}`;
   return async (dispatch) => {
     try {
       const { data } = await axios(endpoint);
@@ -33,7 +41,7 @@ export const getAllReports = (page) => {
       console.log(reports, total);
       return dispatch({
         type: GET_REPORTS,
-        payload: {reports, total}
+        payload: { reports, total }
       });
     } catch (error) {
       console.error(error.message);
@@ -83,7 +91,7 @@ export const getFilteredReport = (filters) => {
       const total = response.data.total;
       dispatch({
         type: FILTERED_REPORTS,
-        payload: {reports, total },
+        payload: { reports, total },
       })
     } catch (error) {
       console.log(`Not reports found`);
@@ -130,10 +138,11 @@ export const postLoginUser = (login) => {
   return async (dispatch) => {
     try {
       const { data } = await axios.post(endpoint, login);
+      setToken(data.token);
       console.log(data);
       return dispatch({
         type: POST_USER_LOGIN,
-        payload: data,
+        payload: data.data.user,
       });
     } catch (error) {
       console.error(error.message);
@@ -186,3 +195,32 @@ export const postRegisterGoogleUser = () => {
     }
   };
 }
+
+export const getUserByToken = (token) => {
+  const endpoint = "https://br-service.onrender.com/session/login/token";
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.post(endpoint, {}, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      return dispatch({
+        type: POST_USER_LOGIN,
+        payload: data.user,
+      });
+    } catch (error) {
+      deleteToken()
+      console.error(error.message);
+    }
+  };
+}
+
+export const logOut = () => {
+  return {
+    type: LOG_OUT,
+  }
+
+}
+
+
