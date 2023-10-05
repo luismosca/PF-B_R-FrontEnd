@@ -77,6 +77,24 @@ const Navbar = ({ sidebarClosed, setActiveSection, activeSection }) => {
                 <span className="link-name">Mis Reportes</span>
               </a>
             </li>
+
+            <li
+              style={{ margin: 0 }}
+              // onClick={() => setActiveSection('reportes')}
+            >
+              <a
+                href="#"
+                // className={activeSection === 'reportes' ? 'active-nav-item' : ''}
+              >
+                <i className="uil uil-files-landscapes"></i>
+                <span className="link-name">
+                  <Link  to="/reporte">
+                    Hacer un reporte 
+                  </Link>
+                </span>
+              </a>
+            </li>
+            
           </ul>
 
         </div>
@@ -120,13 +138,14 @@ const DashboardOverview = ({ reports, users, comments, }) => {
                 <div className="form-group">
                   {/* <label htmlFor="eMail" style={{fontSize:"20px"}}>Email: </label> */}
                   <div className={styles.contenedorH1Verde}>
-                    <h1>Email: </h1>
+                    <h1>Correo: </h1>
                   </div>
                   <div className={styles.contenedorH1Azul}>
                     <h1>{user.email}</h1>
                   </div>
                   {/* <h2>{user.email}</h2> */}
                   {/* <input type="email" className={styles.formControl} id="eMail" placeholder="Ingresa el email" /> */}
+                  <br />
                   <div>
                     <div className={styles.contenedorH1Verde}>
                       <h1>Rol: </h1>
@@ -178,7 +197,7 @@ const ReportTable = ({ reports }) => {
   //     }).then(async (result) => {
   //       /* Read more about isConfirmed, isDenied below */
   //       if (result.isConfirmed) {
-  //         const response = await axios.put(`https://br-service.onrender.com/admin/Reports/${reportId}`, deleteReport)
+  //         const response = await axios.put(`http://localhost:3001/admin/Reports/${reportId}`, deleteReport)
   //         if (response.status === 200) {
   //           const Toast = Swal.mixin({
   //             toast: true,
@@ -239,7 +258,7 @@ const ReportTable = ({ reports }) => {
   //     }).then(async (result) => {
   //       /* Read more about isConfirmed, isDenied below */
   //       if (result.isConfirmed) {
-  //         const response = await axios.put(`https://br-service.onrender.com/admin/Reports/${reportId}`, completeReportReport)
+  //         const response = await axios.put(`http://localhost:3001/admin/Reports/${reportId}`, completeReportReport)
   //         if (response.status === 200) {
   //           const Toast = Swal.mixin({
   //             toast: true,
@@ -299,7 +318,12 @@ const ReportTable = ({ reports }) => {
       <div className="activity-data" >
 
         <div className="data joined">
-          <span className="data-title">Actions</span>
+          {/* <span className="data-title">Actions</span> */}
+          <div className={styles.containerUl}>
+            <Link className={styles.ulReporte} to="/reporte">
+              Hacer un reporte 
+            </Link>
+          </div>
           {
             reports ?
               <Cards className={style.container} allReports={reports} />
@@ -406,7 +430,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchReports = async () => {
       try {
-        const response = await axios.post(`https://br-service.onrender.com/reports/user/`, userEmail);
+        const response = await axios.post(`http://localhost:3001/reports/user/`, userEmail);
         const data = response.data
         if (response.data?.total > 0) {
           setReports(data.reports);

@@ -52,24 +52,24 @@ const Filters = () => {
 
                 <div className={style.selectContainer}>
                     <select name="gender" id="gender" onChange={handleChange}>
-                        <option value="">Select a gender</option>
-                        <option value="Female">Female</option>
-                        <option value="Male">Male</option>
+                        <option value="">Seleccionar genero</option>
+                        <option value="Female">Femenino</option>
+                        <option value="Male">Masculino</option>
                     </select>
                 </div>
                 
 
                 <div className={style.selectContainer}>
                     <select name="age" id="age" onChange={handleChange}>
-                        <option value="">Order by age</option>
-                        <option value="Youngest">Youngest</option>
-                        <option value="Oldest">Oldest</option>
+                        <option value="">Ordenar por edad</option>
+                        <option value="Youngest">Menor</option>
+                        <option value="Oldest">Mayor</option>
                     </select>
                 </div>
                 
 
                 <div className={style.inputContainer} onChange={handleChange}>
-                    <input type="text" name="location" id="location" placeholder="FILTER BY LOCATION"/>
+                    <input type="text" name="location" id="location" placeholder="FILTRAR POR LOCACIÓN"/>
                 </div>
 
                 <button type="submit">APLICAR FILTROS</button>

@@ -95,7 +95,7 @@ const Comments = (id) => {
                 style={{ maxWidth: "100%", width: "100%", borderRadius: "20px", padding: "10px" }}
             />
             <div>
-                <button type="submit" className={styles.commentButton}>COMMENT</button>
+                <button type="submit" className={styles.commentButton}>COMENTAR</button>
             </div>
         </form>
     )
