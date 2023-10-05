@@ -127,7 +127,7 @@ const DashboardOverview = ({ reports, users, comments, }) => {
                     <h1>Nombre:</h1>
                   </div>
                   <div className={styles.contenedorH1Azul}>
-                    <h1>{user.name}</h1>
+                    <h1>{user.name_surName ? user.name_surName : user.name}</h1>
                   </div>
                   {/* <h2>{user.name}</h2> */}
                   {/* <input type="text" className={styles.formControl} id="fullName" placeholder="Ingresa nombre completo" /> */}
