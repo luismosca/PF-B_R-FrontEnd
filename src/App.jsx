@@ -28,11 +28,9 @@ function App() {
       if (token != "") {
         dispatch(getUserByToken(token));
       }
-      if(token === null || token === "" || token === undefined){
-        setToken(user?.token);
-      }
     }
   }, [user]);
+  
   return (
     <div>
       <Routes>
