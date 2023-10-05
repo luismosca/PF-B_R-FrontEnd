@@ -10,6 +10,7 @@ import { getUserByToken } from '../../Redux/actions';
 //icons
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs"
 import { setToken } from "../../auth-helpers/auth-helpers";
+import {  useNavigate } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ const Home = () => {
   const limit = Math.ceil(total / 4)
   const nextLimit = limit // limit + 1
   // Funciones de paginado//////
+  const navigate = useNavigate();
   const increment = () => {
     if (index < nextLimit) { // Si no contara desde la pagina 1 sería index < limit - 1
       dispatch(setIndex(index + 1));
@@ -26,17 +28,15 @@ const Home = () => {
     dispatch(setIndex(limit - limit + 1));
     }
   };
-  // const user = useSelector((state) => state.user);
-  // useEffect(() => {
-  //   const urlParams = new URLSearchParams(window.location.search);
-  //   let token = urlParams.get('token')
-  //     if (token != "") {
-  //       setToken(token);
-  //     }
-  //     if(token === null || token === "" || token === undefined){
-  //       setToken(user?.token);
-  //     }
-  // }, [user]);
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    let token = urlParams.get('token')
+      if (token != "") {
+        setToken(token);
+        dispatch(getUserByToken(token));
+      }
+      navigate("/home");
+  }, []);
 
   const decrement = () => {
     if (index < 2) {
