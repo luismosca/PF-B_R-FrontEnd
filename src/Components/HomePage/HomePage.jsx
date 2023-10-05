@@ -31,14 +31,15 @@ const Home = (props) => {
   const [params, setParams] = useSearchParams()
   console.log(params.get("token"));
   const token = params.get("token");
+
   useEffect(() => {
     console.log(token);
-      if (token != "") {
+      if (token && token !== "") {
         setToken(token);
         dispatch(getUserByToken(token));
       }
       navigate("/home");
-  }, []);
+  }, [token]);
 
   const decrement = () => {
     if (index < 2) {
