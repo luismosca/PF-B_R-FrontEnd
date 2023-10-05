@@ -1,8 +1,8 @@
 import style from "./Cards.module.css";
 import CardsContainer from "../CardsContainer/CardsContainer";
 
-function Cards(props) {
-  const reports = props.allReports;
+function Cards({allReports}) {
+  const reports = allReports;
   return (
     <div className={style.cards}>
       {reports.map(

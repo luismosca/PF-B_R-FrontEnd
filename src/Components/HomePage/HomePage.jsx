@@ -57,7 +57,7 @@ const Home = () => {
         <button type="button" name="next" id="next" onClick={increment}>{">"}</button>
       </div>
       <div>
-      <a href="https://wa.me/51976183901" target="_blank">
+      <a href="https://wa.me/51976183901" rel="noreferrer" target="_blank">
         <img src="https://www.tuquesabesdeesto.com/wp-content/uploads/2015/04/whatsapp-logo-297x300.png" alt="WhatsApp"/>
       </a>
       </div>
