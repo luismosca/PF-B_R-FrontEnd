@@ -27,13 +27,17 @@ const Home = () => {
     }
   };
 
+  const user = useSelector((state) => state.user);
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get('token')
+    let token = urlParams.get('token')
       if (token != "") {
         setToken(token);
       }
-  }, []);
+      if(token === null || token === "" || token === undefined){
+        setToken(user?.token);
+      }
+  }, [user]);
 
   const decrement = () => {
     if (index < 2) {

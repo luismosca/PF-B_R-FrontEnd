@@ -16,7 +16,7 @@ import TableUser from './Components/DonationTableUser/TableUser';
 import AdminPanel from './Components/AdminPanel/AdminPanel';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getToken } from './auth-helpers/auth-helpers';
+import { getToken, setToken } from './auth-helpers/auth-helpers';
 import { getUserByToken } from './Redux/actions';
 
 function App() {
@@ -24,9 +24,12 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (!user?.email) {
-      const token = getToken();
+      let token = getToken();
       if (token != "") {
         dispatch(getUserByToken(token));
+      }
+      if(token === null || token === "" || token === undefined){
+        setToken(user?.token);
       }
     }
   }, [user]);

@@ -23,7 +23,7 @@ const LoginForm = () => {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (user.email){
+    if (user?.email){
       navigate('/home');
     }
   },[user])
