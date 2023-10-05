@@ -188,13 +188,34 @@ export const postRegisterGoogleUser = () => {
       const { data } = window.open(endpoint, "_self");
       return dispatch({
         type: POST_GOOGLE_USER_REGISTER,
-        payload: data,
+        payload: data
       });
     } catch (error) {
       console.error(error.message);
     }
   };
 }
+
+// export const getUserGoogleByToken = (token) => {
+//   const endpoint = "https://br-service.onrender.com/session/login/googletoken";
+//   return async (dispatch) => {
+//     try {
+//       const { data } = await axios.post(endpoint, {}, {
+//         headers: {
+//           Authorization: `Bearer ${token}`
+//         }
+//       });
+//       return dispatch({
+//         type: POST_USER_LOGIN,
+//         payload: data.user,
+//       });
+//     } catch (error) {
+//       deleteToken()
+//       console.error(error.message);
+//     }
+//   };
+// }
+
 
 export const getUserByToken = (token) => {
   const endpoint = "https://br-service.onrender.com/session/login/token";

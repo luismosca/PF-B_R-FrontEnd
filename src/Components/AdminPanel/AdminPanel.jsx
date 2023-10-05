@@ -622,7 +622,7 @@ const RoleChangeModal = ({ isOpen, close, user }) => {
       role: selectedRole,
     }
     try {
-      const response = await axios.put(`http://localhost:3001/admin/Users/${user.id}`, role);
+      const response = await axios.put(`https://br-service.onrender.com/admin/Users/${user.id}`, role);
 
       if (response.status === 200) {
         Swal.fire({
@@ -716,7 +716,7 @@ const AdminPanel = () => {
             Authorization: `Bearer ${token}`
           },
           method: "GET",
-          url: `http://localhost:3001/admin/Users`
+          url: `https://br-service.onrender.com/admin/Users`
         })
 
         // if (response !== 200) throw Error('Error fetching users');
@@ -735,7 +735,7 @@ const AdminPanel = () => {
             Authorization: `Bearer ${token}`
           },
           method: "GET",
-          url: `http://localhost:3001/admin/Reports/`
+          url: `https://br-service.onrender.com/admin/Reports/`
         })
 
         // if (response !== 200) throw Error('Error fetching users');
@@ -745,7 +745,7 @@ const AdminPanel = () => {
         console.error(error);
       }
       // try {
-      //   const response = await axios.get('http://localhost:3001/admin/Reports');
+      //   const response = await axios.get('https://br-service.onrender.com/admin/Reports');
       //   // if (response !== 200) throw Error('Error fetching reports');
       //   const data = response.data
       //   setReports(data);
@@ -762,7 +762,7 @@ const AdminPanel = () => {
             Authorization: `Bearer ${token}`
           },
           method: "GET",
-          url: "http://localhost:3001/admin/Comments"
+          url: "https://br-service.onrender.com/admin/Comments"
         })
 
         // if (response !== 200) throw Error('Error fetching users');
@@ -773,7 +773,7 @@ const AdminPanel = () => {
       }
       // try {
       //   const response = await axios.get(
-      //     "http://localhost:3001/admin/Comments"
+      //     "https://br-service.onrender.com/admin/Comments"
       //   );
       //   // if (!response.ok) throw Error('Error fetching comments');
       //   const data =  response.data;

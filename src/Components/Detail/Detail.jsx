@@ -134,7 +134,6 @@ const ReportDetail = () => {
             padding: "0.5rem",
             textAlign: "center",
             width: "150px",
-            color: "black",
             borderRadius: "20px",
             border: "2px groove black",
           }}
