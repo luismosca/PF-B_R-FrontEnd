@@ -94,7 +94,7 @@ export const getFilteredReport = (filters) => {
         payload: { reports, total },
       })
     } catch (error) {
-      console.log(`Not reports found`);
+      console.log(`Not reports found`, error.mesage);
     }
   };
 };
