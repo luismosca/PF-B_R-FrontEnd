@@ -1,7 +1,8 @@
 .registerContainer {
   margin-top: 40px;
   max-width: 500px;
-  margin-top: 50px !important;
+  margin-top: 30px !important;
+  margin-bottom: 50px !important;
   /* height: 620px; */
   margin: 0 auto;
   padding-left: 30px;
@@ -119,18 +120,22 @@
 }
 
 .buttonsContainer {
+  margin: 1rem;
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
+  flex-direction: column; /* Para apilar los botones verticalmente */
+  align-items: center; /* Para centrar los elementos verticalmente */
+  justify-content: center; /* Para centrar los elementos horizontalmente */
 }
 
 .loginButtonGoogle {
-  width: 150px;
+  /* width: 150px; */
+  width: 87%;
   padding: 15px 25px;
   border-radius: 5px;
   color: white;
-  display: flex;
-  align-items: center;
+  /* display: flex; */
+  /* align-items: center; */
+  text-align: center;
   font-weight: bold;
   margin-bottom: 20px;
   cursor: pointer;

@@ -96,16 +96,7 @@ const LoginForm = () => {
             </div>
           </div>
 
-          <div className={style.buttonsContainer}>
-            <div className={style.loginButtonGoogle} onClick={googleHandler}>
-              <img src={Google} alt="" className={style.icon} />
-              Google
-            </div>
-            {/* <div className={style.loginButtonFb} onClick={facebookHandler}>
-              <img src={Facebook} alt="" className={style.icon} />
-              Facebook
-            </div> */}
-          </div>
+          
 
           <div className={style.formfield}>
             <label className={style.labelLogin}>Correo electronico</label>
@@ -141,6 +132,14 @@ const LoginForm = () => {
               Inicia sesíon
             </button>
           </div>
+
+          <div className={style.buttonsContainer}>
+            <div className={style.loginButtonGoogle} onClick={googleHandler}>
+              <img src={Google} alt="" className={style.icon} />
+              Google
+            </div>            
+          </div>
+
         </form>
       </div>
     </div>

@@ -111,7 +111,7 @@ const Donations = (props) => {
               return actions.order.create({
                 purchase_units: [
                   {
-                    description: props.invoice,
+                    description: "Almuerzo",
                     amount: {
                       value: '10',
                     },
