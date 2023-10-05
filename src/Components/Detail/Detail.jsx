@@ -113,7 +113,7 @@ const ReportDetail = () => {
             <h4 htmlFor="usrname" style={{ color: "#6474459f" }}>
               {user.name}
             </h4>
-            <label htmlFor="date">{coment.createdAt.split("T")[0]}</label>
+            <label htmlFor="date">{coment?.createdAt?.split("T")[0]}</label>
             <span>{coment.comment}</span>
           </div>
         ))}
