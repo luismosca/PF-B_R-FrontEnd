@@ -145,7 +145,13 @@ export const postLoginUser = (login) => {
         payload: data.data.user,
       });
     } catch (error) {
-      console.error(error.message);
+      // console.error(error.message);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `No se pudo iniciar sesión :(`,
+        footer: `<label>Verifica la información</label/>`
+      })
     }
   };
 }
