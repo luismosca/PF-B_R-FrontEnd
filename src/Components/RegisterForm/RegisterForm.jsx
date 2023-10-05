@@ -144,18 +144,7 @@ const RegisterForm = () => {
                 Inicia sesión
               </Link>
             </div>
-          </div>
-
-          <div className={style.buttonsContainer}>
-            <div className={style.loginButtonGoogle} onClick={googleHandler}>
-              <img src={Google} alt="" className={style.icon} />
-              Google
-            </div>
-            {/* <div className={style.loginButtonFb} onClick={facebookHandler}>
-              <img src={Facebook} alt="" className={style.icon} />
-              Facebook
-            </div> */}
-          </div>
+          </div>          
           
           <div className={style.formfield}>
             <label className={style.labelRegister}>Nombre y Apellido</label>
@@ -250,6 +239,13 @@ const RegisterForm = () => {
             <button type="submit" className={style.submitbutton}>
               Registrate
             </button>
+          </div>
+
+          <div className={style.buttonsContainer}>
+            <div className={style.loginButtonGoogle} onClick={googleHandler}>
+              <img src={Google} alt="" className={style.icon} />
+              Google
+            </div>            
           </div>
 
           {/* <div>

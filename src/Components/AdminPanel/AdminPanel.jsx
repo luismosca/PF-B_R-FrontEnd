@@ -585,7 +585,7 @@ const DonacionesTable = ({ donations }) => {
         <span className="text">Listado de Donaciones</span>
       </div>
 
-      <div className="activity-data">
+      {/* <div className="activity-data">
         <div className="data names">
           <span className="data-title">Usuario</span>
         </div>
@@ -598,7 +598,7 @@ const DonacionesTable = ({ donations }) => {
         <div className="data joined">
           <span className="data-title">Monto</span>
         </div>
-      </div>
+      </div> */}
 
       <div>
         <Table></Table>

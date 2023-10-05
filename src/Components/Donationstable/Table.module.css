@@ -3,6 +3,9 @@ table {
     border-collapse: collapse;
     margin-bottom: 20px; /* Espacio entre la tabla y otros elementos */
     font-family: Arial, sans-serif; /* Fuente de texto */
+    margin-top: 5%;
+    margin-left: 5%;
+    margin-right: 10%;
   }
   
   /* Estilo para el encabezado de la tabla */
@@ -35,4 +38,8 @@ table {
   /* Hover en las filas de la tabla (cambia el color de fondo cuando se pasa el mouse sobre una fila) */
   tr:hover {
     background-color: #ddd; /* Color de fondo en hover */
+  }
+  
+  .h1Table{
+    margin-left: 5% !important;
   }
