@@ -7,6 +7,7 @@ import { Link, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import Table from '../Donationstable/Table'
+import { getToken } from '../../auth-helpers/auth-helpers';
 
 
 const Navbar = ({ sidebarClosed, setActiveSection, activeSection }) => {
@@ -163,7 +164,7 @@ const UsuariosTable = ({ users, openModal, setSelectedUser }) => {
       <div className="activity-data">
         <div className="data names">
           <span className="data-title">Usuario</span>
-          {users.map((user) => (
+          {users?.map((user) => (
             <span className="data-list" key={user.id}>
               {user.name_surName}
             </span>
@@ -171,7 +172,7 @@ const UsuariosTable = ({ users, openModal, setSelectedUser }) => {
         </div>
         <div className="data email">
           <span className="data-title">Email</span>
-          {users.map((user) => (
+          {users?.map((user) => (
             <span className="data-list" key={user.id}>
               {user.email}
             </span>
@@ -179,7 +180,7 @@ const UsuariosTable = ({ users, openModal, setSelectedUser }) => {
         </div>
         <div className="data joined">
           <span className="data-title">Rol</span>
-          {users.map((user) => (
+          {users?.map((user) => (
             <span className="data-list" key={user.id}>
               {user.role}
             </span>
@@ -187,7 +188,7 @@ const UsuariosTable = ({ users, openModal, setSelectedUser }) => {
         </div>
         <div className="data joined">
           <span className="data-title">Actions</span>
-          {users.map((user) => (
+          {users?.map((user) => (
             <span className="data-list" key={user.id}>
               <button className="btn-suspender" style={{ marginRight: 7 }}>
                 Suspender
@@ -228,7 +229,6 @@ const ComentariosTable = ({ comments, users }) => {
       }).then(async (result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-          Swal.fire('Saved!', '', 'success')
           const response = await axios.put(`https://br-service.onrender.com/admin/Comments/${comentId}`, disapprove)
           if (response.status === 200) {
             const Toast = Swal.mixin({
@@ -291,7 +291,6 @@ const ComentariosTable = ({ comments, users }) => {
       }).then(async (result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-          Swal.fire('Saved!', '', 'success')
           const response = await axios.put(`https://br-service.onrender.com/admin/Comments/${comentId}`, approve)
           if (response.status === 200) {
             const Toast = Swal.mixin({
@@ -410,7 +409,6 @@ const ReportTable = ({ reports }) => {
       }).then(async (result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-          Swal.fire('Saved!', '', 'success')
           const response = await axios.put(`https://br-service.onrender.com/admin/Reports/${reportId}`, disapprove)
           if (response.status === 200) {
             const Toast = Swal.mixin({
@@ -473,7 +471,6 @@ const ReportTable = ({ reports }) => {
       }).then(async (result) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
-          Swal.fire('Saved!', '', 'success')
           const response = await axios.put(`https://br-service.onrender.com/admin/Reports/${reportId}`, approve)
           if (response.status === 200) {
             const Toast = Swal.mixin({
@@ -532,7 +529,7 @@ const ReportTable = ({ reports }) => {
       <div className="activity-data" >
         <div className="data names">
           <span className="data-title">Nombre</span>
-          {reports.reports.map((report) => (
+          {reports.reports?.map((report) => (
             <span className="data-list" key={report.id}>
               {report.name}
             </span>
@@ -541,7 +538,7 @@ const ReportTable = ({ reports }) => {
 
         <div className="data joined">
           <span className="data-title">Descripcion</span>
-          {reports.reports.map((report) => (
+          {reports.reports?.map((report) => (
             <span className="data-list" key={report.id}>
               {report.description}
             </span>
@@ -550,7 +547,7 @@ const ReportTable = ({ reports }) => {
 
         <div className="data joined">
           <span className="data-title">Fecha Reporte</span>
-          {reports.reports.map((report) => (
+          {reports.reports?.map((report) => (
             <span className="data-list" key={report.id}>
               {report.date}
             </span>
@@ -559,7 +556,7 @@ const ReportTable = ({ reports }) => {
 
         <div className="data joined">
           <span className="data-title">Actions</span>
-          {reports.reports.map((report) => (
+          {reports.reports?.map((report) => (
             <span className="data-list" key={report.id}>
               <button className="btn-suspender" style={{ marginRight: 7 }} onClick={() => disapproveReport(report.id)}>
                 Desaprobar
@@ -588,7 +585,7 @@ const DonacionesTable = ({ donations }) => {
         <span className="text">Listado de Donaciones</span>
       </div>
 
-      <div className="activity-data">
+      {/* <div className="activity-data">
         <div className="data names">
           <span className="data-title">Usuario</span>
         </div>
@@ -601,7 +598,7 @@ const DonacionesTable = ({ donations }) => {
         <div className="data joined">
           <span className="data-title">Monto</span>
         </div>
-      </div>
+      </div> */}
 
       <div>
         <Table></Table>
@@ -625,22 +622,9 @@ const RoleChangeModal = ({ isOpen, close, user }) => {
       role: selectedRole,
     }
     try {
-      const response = await axios.put(`https://br-service.onrender.com/admin/Users/${user.id}`, role);
+      const response = await axios.put(`http://localhost:3001/admin/Users/${user.id}`, role);
 
       if (response.status === 200) {
-        // Swal.fire({
-        //   title: `Rol del usuario: ${user.name_surName} actualizado a ${selectedRole} `,
-        //   width: 600,
-        //   padding: '3em',
-        //   color: '#716add',
-        //   background: '#fff url(/images/trees.png)',
-        //   backdrop: `
-        //     rgba(0,0,123,0.4)
-        //     url("/images/nyan-cat.gif")
-        //     left top
-        //     no-repeat
-        //   `
-        // })
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -722,13 +706,21 @@ const AdminPanel = () => {
       return newStatus;
     });
   };
-
+  
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('https://br-service.onrender.com/admin/Users');
-        if (!response.ok) throw Error('Error fetching users');
-        const data = await response.json();
+        const token = getToken();
+        const response = await axios.request({
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+          method: "GET",
+          url: `http://localhost:3001/admin/Users`
+        })
+
+        // if (response !== 200) throw Error('Error fetching users');
+        const data = response.data;
         setUsers(data);
       } catch (error) {
         console.error(error);
@@ -737,27 +729,59 @@ const AdminPanel = () => {
 
     const fetchReports = async () => {
       try {
-        const response = await fetch('https://br-service.onrender.com/admin/Reports');
-        if (!response.ok) throw Error('Error fetching reports');
-        const data = await response.json();
+        const token = getToken();
+        const response = await axios.request({
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+          method: "GET",
+          url: `http://localhost:3001/admin/Reports/`
+        })
+
+        // if (response !== 200) throw Error('Error fetching users');
+        const data = response.data;
         setReports(data);
       } catch (error) {
         console.error(error);
       }
+      // try {
+      //   const response = await axios.get('http://localhost:3001/admin/Reports');
+      //   // if (response !== 200) throw Error('Error fetching reports');
+      //   const data = response.data
+      //   setReports(data);
+      // } catch (error) {
+      //   console.error(error);
+      // }
     };
 
     const fetchComments = async () => {
       try {
-        const response = await fetch(
-          "https://br-service.onrender.com/admin/Comments"
-        );
-        if (!response.ok) throw Error('Error fetching comments');
-        const data = await response.json();
+        const token = getToken();
+        const response = await axios.request({
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+          method: "GET",
+          url: "http://localhost:3001/admin/Comments"
+        })
+
+        // if (response !== 200) throw Error('Error fetching users');
+        const data = response.data;
         setComments(data);
-        console.log(data);
       } catch (error) {
         console.error(error);
       }
+      // try {
+      //   const response = await axios.get(
+      //     "http://localhost:3001/admin/Comments"
+      //   );
+      //   // if (!response.ok) throw Error('Error fetching comments');
+      //   const data =  response.data;
+      //   setComments(data);
+      //   console.log(data);
+      // } catch (error) {
+      //   console.error(error);
+      // }
     };
 
     Promise.all([fetchReports(), fetchUsers(), fetchComments()]).finally(() =>
