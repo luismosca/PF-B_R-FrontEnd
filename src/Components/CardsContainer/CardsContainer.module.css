@@ -56,7 +56,7 @@ body {
 }
 
 .image {
-  background-color: skyblue;
+  background-color: #94F2F2;
   position: absolute;
   left: 13.5%;
   padding: 7px;
@@ -71,7 +71,7 @@ body {
 .midcontenedor {
   height: 37%;
   width: auto;
-  background-color: skyblue;
+  background-color: #94F2F2;
 }
 
 .contenedor {
