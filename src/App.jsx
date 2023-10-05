@@ -42,7 +42,7 @@ function App() {
         <Route path="/detail/:id" element={<Detail/>} />
         <Route path='/profile' element={<Profile />} />       
         <Route path='/ByR' element={<About/>} />       
-        <Route path='/donacion' element={<Donations totalValue={"4.99"} invoice={"taza de Cafe"}/>} />       
+        <Route path='/donacion' element={<Donations totalValue={"5"} invoice={"taza de Cafe"}/>} />       
         <Route path='/tabla' element={<TableDonation />} />       
         <Route path='/tabla/user' element={<TableUser />} />       
         <Route path='/admin' element={<AdminPanel/>} />       

@@ -12,9 +12,9 @@ import  TableUser from '../DonationTableUser/TableUser'
 const Navbar = ({ sidebarClosed, setActiveSection, activeSection }) => {
 
   const user = useSelector(state => state.user);
-
+  const nombre = user.name
   const idUser = user.id
-  console.log(idUser);
+  console.log(user);
 
   return (
     <div>
@@ -85,8 +85,8 @@ const Navbar = ({ sidebarClosed, setActiveSection, activeSection }) => {
 };
 
 
-
-const DashboardOverview = ({ reports, users, comments }) => {
+const DashboardOverview = ({ reports, users, comments, }) => {
+  const user = useSelector(state => state.user);
   return (
     <div className="overview">
       <div className="title">
@@ -103,16 +103,38 @@ const DashboardOverview = ({ reports, users, comments }) => {
               </div>
               <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                 <div className="form-group">
-                  <label htmlFor="fullName" style={{fontSize:"20px"}}>Nombre Completo:</label>
-                  <h2>{"userName"}</h2>
+                  {/* <label htmlFor="fullName" style={{fontSize:"20px"}}>Nombre Completo: {user.name}</label> */}
+                  <div className={styles.contenedorH1Verde}>
+                    <h1>Nombre:</h1>                    
+                  </div>
+                  <div className={styles.contenedorH1Azul}>
+                    <h1>{user.name}</h1>                    
+                  </div>
+                  {/* <h2>{user.name}</h2> */}
                   {/* <input type="text" className={styles.formControl} id="fullName" placeholder="Ingresa nombre completo" /> */}
                 </div>
               </div>
+              <br />
               <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                 <div className="form-group">
-                  <label htmlFor="eMail" style={{fontSize:"20px"}}>Email</label>
-                  <h2>{"userEmail"}</h2>
+                  {/* <label htmlFor="eMail" style={{fontSize:"20px"}}>Email: </label> */}
+                  <div className={styles.contenedorH1Verde}>
+                    <h1>Email: </h1>
+                  </div>
+                  <div className={styles.contenedorH1Azul}>
+                    <h1>{user.email}</h1>
+                  </div>
+                  {/* <h2>{user.email}</h2> */}
                   {/* <input type="email" className={styles.formControl} id="eMail" placeholder="Ingresa el email" /> */}
+                </div>
+              </div>
+              <br />
+              <div>
+                <div className={styles.contenedorH1Verde}>
+                  <h1>Rol: </h1>
+                </div>
+                <div className={styles.contenedorH1Azul}>
+                  <h1>{user.role} </h1>
                 </div>
               </div>
             </div>
@@ -122,10 +144,10 @@ const DashboardOverview = ({ reports, users, comments }) => {
             
             <div className="row gutters">
               <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <div className="text-right">
+                {/* <div className="text-right"> */}
                   {/* <button type="button" id="submit" name="submit" className="btn btn-secondary">Cancel</button> */}
-                  <button type="button" id="submit" name="submit" className="btn btn-primary">Actualizar</button>
-                </div>
+                  {/* <button type="button" id="submit" name="submit" className="btn btn-primary">Actualizar</button> */}
+                {/* </div> */}
               </div>
             </div>
           </div>

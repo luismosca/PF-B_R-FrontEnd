@@ -33,6 +33,20 @@
     margin-bottom: 20px;
     margin-left: 20px;
   }
+
+  .contenedorH1Azul{
+    border-radius: 15px;
+    padding-left: 20px;
+    background-color: #04d9d9;
+  }
+
+  .contenedorH1Verde{
+    border-radius: 15px;
+    padding-left: 20px;
+    background-color:#CDF777;
+    
+    /* font-size:20px; */
+  }
   
   ul {
     list-style: none;

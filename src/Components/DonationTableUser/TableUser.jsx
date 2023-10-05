@@ -42,25 +42,16 @@ const TableUser = (props) => {
 
     return (
         <div className={style.divTableUser}>
-            {/* <h1>Tabla</h1> */}
-                
-            {/* <input
-                onChange={onInputChange}
-                name="idUser"
-                type="text"
-                value={idUser}
-                required
-            /> 
-            <button onClick={FuncionBuscarIdUser}>Buscar por id</button> */}
-            {/* <button onClick={llenarTabla}>Ver todo</button> */}
+            {/* toFixed reducir decimales a solo 2 */}
+                <h1>Total : ${totalValue.toFixed(2)}</h1>            
             
             <table>
                 <thead>
                     <tr>
                         {/* th crea una celda de enabezado en una tabla */}
                         <th>Correo</th>
+                        <th>Producto</th>
                         <th>Valor</th>
-                        <th>idUser</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,15 +60,17 @@ const TableUser = (props) => {
                             {/* tr crea una fila en una tabla */}
                             {/* td crea una celda en una tabla */}
                             <td>{donation.email}</td>
+                            {donation.value > 5 ? <td>{"Almuerzo"}</td> : <td>{"Cafe"}</td>}
                             <td>{donation.value}</td>
-                            <td>{donation.idUser}</td>
+                            
                         </tr>
                     ))}
                 </tbody>
             </table>
             {/* <h1>Total : {totalValue}</h1> */}
             {/* toFixed reducir decimales a solo 2 */}
-            <h1>Total : ${totalValue.toFixed(2)}</h1>
+            {/* <h1>Total : ${totalValue.toFixed(2)}</h1> */}
+            
 
         </div>
     );
