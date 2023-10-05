@@ -26,18 +26,17 @@ const Home = () => {
     dispatch(setIndex(limit - limit + 1));
     }
   };
-
-  const user = useSelector((state) => state.user);
-  useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    let token = urlParams.get('token')
-      if (token != "") {
-        setToken(token);
-      }
-      if(token === null || token === "" || token === undefined){
-        setToken(user?.token);
-      }
-  }, [user]);
+  // const user = useSelector((state) => state.user);
+  // useEffect(() => {
+  //   const urlParams = new URLSearchParams(window.location.search);
+  //   let token = urlParams.get('token')
+  //     if (token != "") {
+  //       setToken(token);
+  //     }
+  //     if(token === null || token === "" || token === undefined){
+  //       setToken(user?.token);
+  //     }
+  // }, [user]);
 
   const decrement = () => {
     if (index < 2) {
