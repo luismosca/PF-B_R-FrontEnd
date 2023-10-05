@@ -84,6 +84,7 @@ const reducer = (state = initialState, actions) => {
     case POST_GOOGLE_USER_REGISTER:
       return {
         ...state,
+        user: actions.payload
       };
      
     case LOG_OUT:

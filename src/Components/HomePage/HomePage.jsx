@@ -6,8 +6,10 @@ import { NavBar } from "../NavBar/NavBar";
 import style from "./HomePage.module.css";
 import { SearchBar } from "../SearchBar/SearchBar";
 import Filters from "../Filters/Filters";
+import { getUserByToken } from '../../Redux/actions';
 //icons
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs"
+import { setToken } from "../../auth-helpers/auth-helpers";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -24,6 +26,14 @@ const Home = () => {
     dispatch(setIndex(limit - limit + 1));
     }
   };
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token')
+      if (token != "") {
+        setToken(token);
+      }
+  }, []);
 
   const decrement = () => {
     if (index < 2) {
