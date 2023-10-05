@@ -10,9 +10,9 @@ import { getUserByToken } from '../../Redux/actions';
 //icons
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs"
 import { setToken } from "../../auth-helpers/auth-helpers";
-import {  useNavigate } from "react-router-dom";
+import {  useNavigate, useParams, useSearchParams } from "react-router-dom";
 
-const Home = () => {
+const Home = (props) => {
   const dispatch = useDispatch();
   const allReports = useSelector((state) => state.allReports);
   let index = useSelector((state) => state.index);
@@ -28,9 +28,11 @@ const Home = () => {
     dispatch(setIndex(limit - limit + 1));
     }
   };
+  const [params, setParams] = useSearchParams()
+  console.log(params.get("token"));
+  const token = params.get("token");
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    let token = urlParams.get('token')
+    console.log(token);
       if (token != "") {
         setToken(token);
         dispatch(getUserByToken(token));
