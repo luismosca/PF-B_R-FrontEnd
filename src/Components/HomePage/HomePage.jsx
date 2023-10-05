@@ -6,8 +6,10 @@ import { NavBar } from "../NavBar/NavBar";
 import style from "./HomePage.module.css";
 import { SearchBar } from "../SearchBar/SearchBar";
 import Filters from "../Filters/Filters";
+import { getUserByToken } from '../../Redux/actions';
 //icons
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs"
+import { setToken } from "../../auth-helpers/auth-helpers";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -24,6 +26,14 @@ const Home = () => {
     dispatch(setIndex(limit - limit + 1));
     }
   };
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token')
+      if (token != "") {
+        setToken(token);
+      }
+  }, []);
 
   const decrement = () => {
     if (index < 2) {
@@ -51,19 +61,16 @@ const Home = () => {
       <Filters page={index} />
       <Cards className={style.container} allReports={allReports} />
       <div className={style.previous_container}>
-        <button  type="button" name="prev" id="prev" onClick={decrement}>{"<"}</button>
+        <button  type="button" name="prev" id="prev" onClick={decrement}>{"<="}</button>
       </div>
       <div className={style.next_container}>
-        <button type="button" name="next" id="next" onClick={increment}>{">"}</button>
+        <button type="button" name="next" id="next" onClick={increment}>{"=>"}</button>
       </div>
       <div>
-      <a href="https://wa.me/51976183901" rel="noreferrer" target="_blank">
+      <a href="https://wa.me/51976183901" target="_blank" title="Contáctanos en WhatsApp">
         <img src="https://www.tuquesabesdeesto.com/wp-content/uploads/2015/04/whatsapp-logo-297x300.png" alt="WhatsApp"/>
       </a>
-      </div>
-      
-
-      
+      </div>       
     </>
   );
 };
