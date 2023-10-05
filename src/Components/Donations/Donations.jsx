@@ -6,7 +6,7 @@ import { NavBar } from '../NavBar/NavBar';
 import Swal from "sweetalert2";
 import axios from "axios";
 import { useState } from "react";
-
+import { useSelector } from 'react-redux';
 //*----------------------------------------------------
 
 const notificacion = ()=>{
@@ -20,11 +20,20 @@ const notificacion = ()=>{
 } 
 
 const Donations = (props) => {
+  const user = useSelector(state => state.user);
+
+  const email = user.email
+
+  const dataEmail = {
+    "userEmail":email
+  }
 
   const [dataDonation, setDataDonation] = useState("")
 
   return (
     <div className={style.divDonation}>
+      {/* {console.log("soy user",email)} */}
+      {console.log("https://br-service.onrender.com/donations/sendEmail", dataEmail)}
       <div>
         <NavBar />
       </div>
@@ -66,14 +75,17 @@ const Donations = (props) => {
               if (order) {
                 notificacion()
                 //dataregistro
+                // {"userEmail": "hadavidg@gmail.com"}
                 //* order.payer.email_address
-                axios
-                  .post("http://localhost:3001/donations/sendEmail", {"userEmail": "hadavidg@gmail.com"}) 
+                // console.log("https://br-service.onrender.com/donations/sendEmail",  dataEmail);
+                  axios
+                    .post("https://br-service.onrender.com/donations/sendEmail", dataEmail )                   
+                
               }
-              axios.post("http://localhost:3001/donations",
+              axios.post("https://br-service.onrender.com/donations",
               {
-                "idUser": "",
-                "email": order.payer.email_address,
+                "idUser": user.id ? user.id :"Anonimo",
+                "email": user.email ? user.email : order.payer.email_address,
                 "value": order.purchase_units[0].amount.value                
               })
               // console.log('Valor', order.purchase_units[0].amount.value);
@@ -99,7 +111,7 @@ const Donations = (props) => {
               return actions.order.create({
                 purchase_units: [
                   {
-                    description: props.invoice,
+                    description: "Almuerzo",
                     amount: {
                       value: '10',
                     },
@@ -116,14 +128,15 @@ const Donations = (props) => {
                 notificacion()
                 //dataregistro
                 //* order.payer.email_address
-                axios
-                  .post("http://localhost:3001/donations/sendEmail", {"userEmail": "hadavidg@gmail.com"}) 
-                  
+                
+                  axios
+                    .post("https://br-service.onrender.com/donations/sendEmail", dataEmail)                   
+                
               }
-              axios.post("http://localhost:3001/donations",
+              axios.post("https://br-service.onrender.com/donations",
               {
-                "idUser": "",
-                "email": order.payer.email_address,
+                "idUser": user.id ? user.id :"Anonimo",
+                "email": user.email ? user.email : order.payer.email_address,
                 "value": order.purchase_units[0].amount.value                
               })
               // console.log('Donacions', dataDonation, 'Donacions' ,order);
@@ -131,7 +144,7 @@ const Donations = (props) => {
           />
         </div>
       </div>
-      {console.log("estado Donacion",dataDonation)}
+      {/* {console.log("estado Donacion",dataDonation)} */}
     </div>
   );
 };

@@ -102,7 +102,7 @@ const Comments = (id) => {
       />
       <div>
         <button type="submit" className={styles.commentButton}>
-          COMMENT
+          COMENTAR
         </button>
       </div>
     </form>

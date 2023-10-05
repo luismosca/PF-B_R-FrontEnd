@@ -6,13 +6,16 @@ import { NavBar } from '../NavBar/NavBar';
 import style from './HomePage.module.css';
 import { SearchBar } from '../SearchBar/SearchBar';
 import Filters from '../Filters/Filters';
+import { getUserByToken } from '../../Redux/actions';
 //icons
 import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
 } from 'react-icons/bs';
+import { setToken } from '../../auth-helpers/auth-helpers';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
-const Home = () => {
+const Home = (props) => {
   const dispatch = useDispatch();
   const allReports = useSelector((state) => state.allReports);
   let index = useSelector((state) => state.index);
@@ -20,6 +23,7 @@ const Home = () => {
   const limit = Math.ceil(total / 4);
   const nextLimit = limit; // limit + 1
   // Funciones de paginado//////
+  const navigate = useNavigate();
   const increment = () => {
     if (index < nextLimit) {
       // Si no contara desde la pagina 1 sería index < limit - 1
@@ -28,6 +32,17 @@ const Home = () => {
       dispatch(setIndex(limit - limit + 1));
     }
   };
+  const [params, setParams] = useSearchParams();
+  console.log(params.get('token'));
+  const token = params.get('token');
+  useEffect(() => {
+    console.log(token);
+    if (token != '') {
+      setToken(token);
+      dispatch(getUserByToken(token));
+    }
+    navigate('/home');
+  }, []);
 
   const decrement = () => {
     if (index < 2) {
@@ -56,16 +71,20 @@ const Home = () => {
       <Cards className={style.container} allReports={allReports} />
       <div className={style.previous_container}>
         <button type="button" name="prev" id="prev" onClick={decrement}>
-          {'<'}
+          {'<='}
         </button>
       </div>
       <div className={style.next_container}>
         <button type="button" name="next" id="next" onClick={increment}>
-          {'>'}
+          {'=>'}
         </button>
       </div>
       <div>
-        <a href="https://wa.me/51976183901" target="_blank">
+        <a
+          href="https://wa.me/51976183901"
+          target="_blank"
+          title="Contáctanos en WhatsApp"
+        >
           <img
             src="https://www.tuquesabesdeesto.com/wp-content/uploads/2015/04/whatsapp-logo-297x300.png"
             alt="WhatsApp"

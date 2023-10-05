@@ -96,7 +96,7 @@ export const getFilteredReport = (filters) => {
         payload: { reports, total },
       });
     } catch (error) {
-      console.log(`Not reports found`);
+      console.log(`Not reports found`, error.mesage);
     }
   };
 };
@@ -147,7 +147,13 @@ export const postLoginUser = (login) => {
         payload: data.data.user,
       });
     } catch (error) {
-      console.error(error.message);
+      // console.error(error.message);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `No se pudo iniciar sesión :(`,
+        footer: `<label>Verifica la información</label/>`
+      })
     }
   };
 };
@@ -190,13 +196,34 @@ export const postRegisterGoogleUser = () => {
       const { data } = window.open(endpoint, '_self');
       return dispatch({
         type: POST_GOOGLE_USER_REGISTER,
-        payload: data,
+        payload: data
       });
     } catch (error) {
       console.error(error.message);
     }
   };
 };
+
+// export const getUserGoogleByToken = (token) => {
+//   const endpoint = "https://br-service.onrender.com/session/login/googletoken";
+//   return async (dispatch) => {
+//     try {
+//       const { data } = await axios.post(endpoint, {}, {
+//         headers: {
+//           Authorization: `Bearer ${token}`
+//         }
+//       });
+//       return dispatch({
+//         type: POST_USER_LOGIN,
+//         payload: data.user,
+//       });
+//     } catch (error) {
+//       deleteToken()
+//       console.error(error.message);
+//     }
+//   };
+// }
+
 
 export const getUserByToken = (token) => {
   const endpoint = 'https://br-service.onrender.com/session/login/token';

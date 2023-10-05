@@ -63,17 +63,21 @@ body {
 .previous_container button {
   background-color: #c5f6639f;
   color: #1a1a1a;
+  font-weight: bold;
   border: none;
   flex: 1;
   border-radius: 100%;
+  cursor: pointer;
 }
 
 .next_container button {
   background-color: #c5f6639f;
   color: #1a1a1a;
+  font-weight: bold;
   border: none;
   flex: 1;
   border-radius: 100%;
+  cursor: pointer;
 }
 
 /* Estilos para el botón de WhatsApp */

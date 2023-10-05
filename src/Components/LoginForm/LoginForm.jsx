@@ -22,7 +22,7 @@ const LoginForm = () => {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    if (user.email) {
+    if (user?.email) {
       navigate('/home');
     }
   }, [user]);
@@ -95,17 +95,6 @@ const LoginForm = () => {
             </div>
           </div>
 
-          <div className={style.buttonsContainer}>
-            <div className={style.loginButtonGoogle} onClick={googleHandler}>
-              <img src={Google} alt="" className={style.icon} />
-              Google
-            </div>
-            {/* <div className={style.loginButtonFb} onClick={facebookHandler}>
-              <img src={Facebook} alt="" className={style.icon} />
-              Facebook
-            </div> */}
-          </div>
-
           <div className={style.formfield}>
             <label className={style.labelLogin}>Correo electronico</label>
 
@@ -139,6 +128,13 @@ const LoginForm = () => {
             <button type="submit" className={style.submitbutton}>
               Inicia sesíon
             </button>
+          </div>
+
+          <div className={style.buttonsContainer}>
+            <div className={style.loginButtonGoogle} onClick={googleHandler}>
+              <img src={Google} alt="" className={style.icon} />
+              Google
+            </div>
           </div>
         </form>
       </div>

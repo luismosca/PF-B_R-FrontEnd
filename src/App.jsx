@@ -11,10 +11,12 @@ import Profile from './Components/Profile/Profile';
 import About from './Components/About/About';
 import Donations from './Components/Donations/Donations';
 import TableDonation from './Components/Donationstable/Table';
+import TableUser from './Components/DonationTableUser/TableUser';
+
 import AdminPanel from './Components/AdminPanel/AdminPanel';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getToken } from './auth-helpers/auth-helpers';
+import { getToken, setToken } from './auth-helpers/auth-helpers';
 import { getUserByToken } from './Redux/actions';
 
 function App() {
@@ -22,12 +24,13 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (!user?.email) {
-      const token = getToken();
+      let token = getToken();
       if (token != '') {
         dispatch(getUserByToken(token));
       }
     }
   }, [user]);
+
   return (
     <div>
       <Routes>
@@ -42,9 +45,10 @@ function App() {
         <Route path="/ByR" element={<About />} />
         <Route
           path="/donacion"
-          element={<Donations totalValue={'4.99'} invoice={'taza de Cafe'} />}
+          element={<Donations totalValue={'5'} invoice={'taza de Cafe'} />}
         />
         <Route path="/tabla" element={<TableDonation />} />
+        <Route path="/tabla/user" element={<TableUser />} />
         <Route path="/admin" element={<AdminPanel />} />
       </Routes>
     </div>
