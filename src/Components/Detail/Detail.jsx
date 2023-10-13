@@ -96,28 +96,6 @@ const ReportDetail = () => {
 
       {/* <hr /> */}
       {/* //!comentarios renderizados */}
-      <div>
-        {comentarios?.map((coment, index) => (
-          <div key={index}>
-            <img
-              src={user.image}
-              alt="userImage"
-              style={{
-                width: "45px",
-                height: "45px",
-                borderRadius: "50%",
-                objectFit: "cover",
-                margin: "5px",
-              }}
-            />
-            <h4 htmlFor="usrname" style={{ color: "#6474459f" }}>
-              {user.name}
-            </h4>
-            <label htmlFor="date">{coment?.createdAt?.split("T")[0]}</label>
-            <span>{coment.comment}</span>
-          </div>
-        ))}
-      </div>
       <div
         style={{
           margin: "0.5rem",
@@ -141,6 +119,29 @@ const ReportDetail = () => {
           Comentarios
         </h4>
       </div>
+      <div>
+        {comentarios?.map((coment, index) => (
+          <div key={index}>
+            <img
+              src={user.image}
+              alt="userImage"
+              style={{
+                width: "45px",
+                height: "45px",
+                borderRadius: "50%",
+                objectFit: "cover",
+                margin: "5px",
+              }}
+            />
+            <h4 htmlFor="usrname" style={{ color: "#6474459f" }}>
+              {user.name}
+            </h4>
+            <label htmlFor="date">{coment?.createdAt?.split("T")[0]}</label>
+            <span>{coment.comment}</span>
+          </div>
+        ))}
+      </div>
+      
     </div>
   );
 };

@@ -8,6 +8,7 @@ import { NavBar } from '../NavBar/NavBar';
 import Swal from 'sweetalert2';
 import paises from '../../assets/paises'
 import etnias from '../../assets/etnias'
+import { useSelector } from 'react-redux';
 // import axios from "axios"; 
 // import { useState, useEffect} from "react";
 //*----------------------------------------------------
@@ -17,8 +18,8 @@ import etnias from '../../assets/etnias'
 
 const ReportForm = () => {    
     const navigate = useNavigate();
+    const user = useSelector(state => state.user)
     // const countries = paises
-
     const [dataReport, setDataReport] = useState({
         name: "",
         age:"",  
@@ -38,7 +39,7 @@ const ReportForm = () => {
         weight:"",
         clothes:"",
         location:"",
-
+        user: user.id,
     })
 
     function onInputChange(e) {
@@ -146,7 +147,7 @@ const ReportForm = () => {
         e.preventDefault();
         
         axios
-             .post("https://br-service.onrender.com/reports", dataReport)
+             .post("http://localhost:3001/reports", dataReport)
 
             .then(() => {
                 navigate("/home");

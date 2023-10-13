@@ -15,7 +15,7 @@ const Navbar = ({ sidebarClosed, setActiveSection, activeSection }) => {
   const user = useSelector(state => state.user);
   const nombre = user.name
   const idUser = user.id
-  console.log(user);
+  // console.log(user);
 
   return (
     <div>
@@ -180,132 +180,7 @@ const DashboardOverview = ({ reports, users, comments, }) => {
 
 
 
-const ReportTable = ({ reports }) => {
-
-
-  // const deleteReports = async (reportId) => {
-  //   let deleteReport = {
-  //     status: "deleted",
-  //   }
-  //   try {
-  //     Swal.fire({
-  //       title: 'Quieres Desaprobar el Reporte?',
-  //       showDenyButton: true,
-  //       // showCancelButton: true,
-  //       confirmButtonText: 'Si',
-  //       denyButtonText: `Cancelar`,
-  //     }).then(async (result) => {
-  //       /* Read more about isConfirmed, isDenied below */
-  //       if (result.isConfirmed) {
-  //         const response = await axios.put(`http://localhost:3001/admin/Reports/${reportId}`, deleteReport)
-  //         if (response.status === 200) {
-  //           const Toast = Swal.mixin({
-  //             toast: true,
-  //             position: 'top-end',
-  //             showConfirmButton: false,
-  //             timer: 3000,
-  //             timerProgressBar: true,
-  //             didOpen: (toast) => {
-  //               toast.addEventListener('mouseenter', Swal.stopTimer)
-  //               toast.addEventListener('mouseleave', Swal.resumeTimer)
-  //             }
-  //           })
-
-  //           Toast.fire({
-  //             icon: 'success',
-  //             title: 'Reporte eliminado'
-  //           })
-  //         }
-  //       } else if (result.isDenied) {
-  //         Swal.fire('Acción cancelada', '', 'info')
-  //       }
-  //     })
-
-
-  //   } catch (error) {
-
-  //     const Toast = Swal.mixin({
-  //       toast: true,
-  //       position: 'top-end',
-  //       showConfirmButton: false,
-  //       timer: 3000,
-  //       timerProgressBar: true,
-  //       didOpen: (toast) => {
-  //         toast.addEventListener('mouseenter', Swal.stopTimer)
-  //         toast.addEventListener('mouseleave', Swal.resumeTimer)
-  //       }
-  //     })
-
-  //     Toast.fire({
-  //       icon: 'error',
-  //       title: 'Error al eliminar el reporte :('
-  //     })
-
-  //   }
-  // };
-
-  // const completeReport = async (reportId) => {
-  //   let completeReport = {
-  //     status: "deleted",
-  //   }
-  //   try {
-  //     Swal.fire({
-  //       title: 'Quieres Desaprobar el Reporte?',
-  //       showDenyButton: true,
-  //       // showCancelButton: true,
-  //       confirmButtonText: 'Si',
-  //       denyButtonText: `Cancelar`,
-  //     }).then(async (result) => {
-  //       /* Read more about isConfirmed, isDenied below */
-  //       if (result.isConfirmed) {
-  //         const response = await axios.put(`http://localhost:3001/admin/Reports/${reportId}`, completeReportReport)
-  //         if (response.status === 200) {
-  //           const Toast = Swal.mixin({
-  //             toast: true,
-  //             position: 'top-end',
-  //             showConfirmButton: false,
-  //             timer: 3000,
-  //             timerProgressBar: true,
-  //             didOpen: (toast) => {
-  //               toast.addEventListener('mouseenter', Swal.stopTimer)
-  //               toast.addEventListener('mouseleave', Swal.resumeTimer)
-  //             }
-  //           })
-
-  //           Toast.fire({
-  //             icon: 'success',
-  //             title: 'Reporte eliminado'
-  //           })
-  //         }
-  //       } else if (result.isDenied) {
-  //         Swal.fire('Acción cancelada', '', 'info')
-  //       }
-  //     })
-
-
-  //   } catch (error) {
-
-  //     const Toast = Swal.mixin({
-  //       toast: true,
-  //       position: 'top-end',
-  //       showConfirmButton: false,
-  //       timer: 3000,
-  //       timerProgressBar: true,
-  //       didOpen: (toast) => {
-  //         toast.addEventListener('mouseenter', Swal.stopTimer)
-  //         toast.addEventListener('mouseleave', Swal.resumeTimer)
-  //       }
-  //     })
-
-  //     Toast.fire({
-  //       icon: 'error',
-  //       title: 'Error al eliminar el reporte :('
-  //     })
-
-  //   }
-  // };
-
-
+const ReportTable = ({ allreports }) => {
 
   return (
 
@@ -325,8 +200,8 @@ const ReportTable = ({ reports }) => {
             </Link>
           </div>
           {
-            reports ?
-              <Cards className={style.container} allReports={reports} />
+            allreports.length ?
+              <Cards className={style.container} allReports={allreports} />
               : <div><span style={{ fontSize: "1.5rem", marginTop: "5rem" }}>No tienes reportes activos</span></div>
           }
         </div>
@@ -424,9 +299,11 @@ const Profile = () => {
       return newStatus;
     });
   };
+
   const userEmail = {
     email: user.email
   }
+  console.log(userEmail);
   useEffect(() => {
     const fetchReports = async () => {
       try {
@@ -473,10 +350,7 @@ const Profile = () => {
             {activeSection === 'dashboard' && (
               <DashboardOverview />
             )}
-            {activeSection === 'comentarios' && (
-              <ComentariosTable comments={comments.comments} />
-            )}
-            {activeSection === 'reportes' && <ReportTable reports={reports} />}
+            {activeSection === 'reportes' && <ReportTable allreports={reports} />}
             {activeSection === 'donaciones' && <DonacionesTable />}
 
           </div>
